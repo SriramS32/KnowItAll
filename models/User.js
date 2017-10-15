@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt-nodejs');
-const crypto = require('crypto');
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -7,22 +7,9 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  steam: String,
-  tokens: Array,
-
+  userID: Number,
   profile: {
-    name: String,
-    gender: String,
-    location: String,
-    website: String,
-    picture: String
+    name: String
   }
 }, { timestamps: true });
 
@@ -52,18 +39,26 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
 };
 
 /**
- * Helper method for getting user's gravatar.
+ * Helper method for validating user's email.
  */
-userSchema.methods.gravatar = function gravatar(size) {
-  if (!size) {
-    size = 200;
+
+userSchema.methods.validateEmail = function validateEmail(candidateEmail) {
+  const regex = /^\w+([\.-]?\w+)*@usc.edu/;
+  if (regex.test(candidateEmail)) {
+    return (true);
   }
-  if (!this.email) {
-    return `https://gravatar.com/avatar/?s=${size}&d=retro`;
-  }
-  const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-  return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
+  return (false);
 };
+
+userSchema.methods.getRatings = function getRatings() {
+
+}
+
+userSchema.methods.getPolls = function getPolls() {
+
+}
+
+
 
 const User = mongoose.model('User', userSchema);
 
