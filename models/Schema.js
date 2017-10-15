@@ -1,48 +1,50 @@
 const bcrypt = require('bcrypt-nodejs');
-
 const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  profile: {
-    name: String
-  }
+  profile: { name: String }
+  // id: Schema.Types.ObjectId
 }, { timestamps: true });
 
 const pollSchema = new mongoose.Schema({
   question: String,
-  tags: [String],
+  options: [String],
   createdOn: Date,
   closedAfter: Date,
-  owner: String,
+  owner: { type: Schema.Types.ObjectId, ref: 'User' }
+  // id: Schema.Types.ObjectId
 }, { timestamps: true });
 
 const pollVoteSchema = new mongoose.Schema({
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   choice: Number,
-  poll: {type: Schema.Types.ObjectId, ref: 'Poll'}
+  poll: { type: Schema.Types.ObjectId, ref: 'Poll' }
 }, { timestamps: true });
 
 const entitySchema = new mongoose.Schema({
   ratingTotal: Number,
   ratingCount: Number,
-  name: String,
+  name: String
+  // id: Schema.Types.ObjectId
 }, { timestamps: true });
 
 const ratingSchema = new mongoose.Schema({
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   rating: Number,
-  entity: {type: Schema.Types.ObjectId, ref: 'Entity'}
+  entity: { type: Schema.Types.ObjectId, ref: 'Entity' }
 }, { timestamps: true });
 
 const commentSchema = new mongoose.Schema({
   body: String,
   owner: String,
-  ownerId: {type: Schema.Types.ObjectId, ref: 'User'},
-  entity: {type: Schema.Types.ObjectId, ref: 'Entity'}
+  ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
+  entity: { type: Schema.Types.ObjectId, ref: 'Entity' }
 }, { timestamps: true});
 
 /**
@@ -83,7 +85,7 @@ userSchema.methods.validateEmail = function validateEmail(candidateEmail) {
 };
 
 userSchema.methods.getRatings = function getRatings() {
-
+  
 }
 
 userSchema.methods.getPolls = function getPolls() {
@@ -91,5 +93,15 @@ userSchema.methods.getPolls = function getPolls() {
 }
 
 const User = mongoose.model('User', userSchema);
+const Poll = mongoose.model('Poll', pollSchema);
+const PollVote = mongoose.model('PollVote', pollVoteSchema);
+const Entity = mongoose.model('Entity', entitySchema);
+const Rating = mongoose.model('Rating', ratingSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
 exports.User = User;
+exports.Poll = Poll;
+exports.PollVote = PollVote;
+exports.Entity = Entity;
+exports.Rating = Rating;
+exports.Comment = Comment;
