@@ -2,7 +2,7 @@ const bluebird = require('bluebird');
 const crypto = bluebird.promisifyAll(require('crypto'));
 const nodemailer = require('nodemailer');
 const passport = require('passport');
-const Schema = require('../models/User');
+const Schema = require('../models/Schema');
 const User = Schema.User;
 
 /**
