@@ -3,16 +3,18 @@ const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
 
-exports.insertEntity = function (entityData) {
+exports.insertEntity = function (entityData, user) {
     const entity = new Entity({
         ratingTotal: 0,
         ratingCount: 0,
-        name: entityData.name
+        name: entityData.name,
+        tags: entityData.tags
     });
     entity.save((err) => {
         if (err) console.log('error saving entity: ', err);
+        else exports.updateRating(entity._id, user, entityData.rating);
     });
-    return entity.id;
+    return entity._id;
 };
 
 exports.updateRating = function (entityId, user, rating) {
