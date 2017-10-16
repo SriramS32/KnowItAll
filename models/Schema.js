@@ -8,8 +8,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  profile: { name: String }
-  // id: Schema.Types.ObjectId
+  name: String
 }, { timestamps: true });
 
 const pollSchema = new mongoose.Schema({
@@ -19,7 +18,6 @@ const pollSchema = new mongoose.Schema({
   closedAfter: Date,
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   tags: [String]
-  // id: Schema.Types.ObjectId
 }, { timestamps: true });
 
 const pollVoteSchema = new mongoose.Schema({
@@ -72,18 +70,6 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     cb(err, isMatch);
   });
-};
-
-/**
- * Helper method for validating user's email.
- */
-
-userSchema.methods.validateEmail = function validateEmail(candidateEmail) {
-  const regex = /^\w+([\.-]?\w+)*@usc.edu/;
-  if (regex.test(candidateEmail)) {
-    return (true);
-  }
-  return (false);
 };
 
 userSchema.methods.getRatings = function getRatings() {
