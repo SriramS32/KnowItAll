@@ -60,110 +60,104 @@ html
           // Content
           #content
             .row(class='150%')
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic05.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic06.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic07.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic05.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic06.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    h2 Magna pulvinar tempus
-                  a.image.featured(href='#')
-                    img(src='images/pic07.jpg', alt='')
-                  p
-                    | Rutrum bibendum. Proin pellentesque diam non ligula commodo tempor. Vivamus
-                    | eget urna nibh. Curabitur non fringilla nisl. Donec accumsan interdum nisi, quis
-                    | tempus.
-                  a.button.style1(href='#') More
+              if entities.length > 0
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[0].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic05.jpg', alt='')
+                    p
+                      | Tags: #{entities[0].tags.join(", ")}
+                    a.button.style1(href='#') More
+              if entities.length > 1
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[1].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic06.jpg', alt='')
+                    p
+                      | Tags: #{entities[1].tags.join(", ")}
+                    a.button.style1(href='#') More
+              if entities.length > 2
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[2].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic07.jpg', alt='')
+                    p
+                      | Tags: #{entities[2].tags.join(", ")}
+                    a.button.style1(href='#') More
+              if entities.length > 3
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[3].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic05.jpg', alt='')
+                    p
+                      | Tags: #{entities[3].tags.join(", ")}
+                    a.button.style1(href='#') More
+              if entities.length > 4
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[4].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic06.jpg', alt='')
+                    p
+                      | Tags: #{entities[4].tags.join(", ")}
+                    a.button.style1(href='#') More
+              if entities.length > 5
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      h2 #{entities[5].name}
+                    a.image.featured(href='#')
+                      img(src='images/pic07.jpg', alt='')
+                    p
+                      | Tags: #{entities[5].tags.join(", ")}
+                    a.button.style1(href='#') More
       // Highlights
       .wrapper.style3
         .title Poll Results
         #highlights.container
           .row(class='150%')
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/pic02.jpg', alt='')
-                h3
-                  a(href='#') Aliquam diam consequat
-                p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
-                ul.actions
-                  li
-                    a.button.style1(href='#') Learn More
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/pic03.jpg', alt='')
-                h3
-                  a(href='#') Nisl adipiscing sed lorem
-                p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
-                ul.actions
-                  li
-                    a.button.style1(href='#') Learn More
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/pic04.jpg', alt='')
-                h3
-                  a(href='#') Mattis tempus lorem
-                p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
-                ul.actions
-                  li
-                    a.button.style1(href='#') Learn More
+            if polls.length > 0
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/pic02.jpg', alt='')
+                  h3 #{polls[0].question}
+                  p
+                    | Tags: #{polls[0].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') Learn More
+            if polls.length > 1
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/pic03.jpg', alt='')
+                  h3 #{polls[1].question}
+                  p
+                    | Tags: #{polls[1].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') Learn More
+            if polls.length > 2
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/pic04.jpg', alt='')
+                  h3 #{polls[2].question}
+                  p
+                    | Tags: #{polls[2].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') Learn More
       // Footer
       #footer-wrapper.wrapper
         <!--.title The Rest Of It -->
