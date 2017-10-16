@@ -152,13 +152,13 @@ app.use(errorHandler());
 // db.users.insertOne({"email":"sriramso@usc.edu","password":"abc123","profile": "Sriram"})
 function testCreatePoll(){
   let params = new Object();
-  params.question = "What's the best fast food at USC?";
-  params.options = ["Panda Express", "Five Guys", "CPK", "The Habit"];
+  params.question = "Where can I get good coffee?";
+  params.options = ["Starbucks", "Philz Coffee", "Coffee Leaf", "Parkside"];
   params.owner = mongoose.Schema.Types.ObjectId("59e420f3a05ae191bda98efe");
   let dateObj = new Date();
   params.createdOn = dateObj;
   params.closedAfter = new Date(dateObj.getTime() + 24*60*60*1000);
-  params.tags = ["Food", "Fast Food"];
+  params.tags = ["Food", "Coffee"];
   let pollid = pollController.insertPoll(params);
   console.log(pollid);
 }
