@@ -13,16 +13,19 @@ html
     link(rel='stylesheet', href='css/ev.css')
     //if lte IE 8
       link(rel='stylesheet', href='css/ie8.css')
+    link(rel='stylesheet', href='css/searchbar.css')
+
   body.homepage
     #page-wrapper
       // Header
       #header-wrapper.wrapper
         #header
+          form.form-wrapper.cf
+            input(type='text', placeholder='Search here...', required='')
+            button#searchbutton(type='submit') Search
           // Logo
           #logo
             h1
-              a(href='index.html') Escape Velocity
-            p A free responsive site template by HTML5 UP
           // Nav
           nav#nav
             ul
@@ -60,32 +63,27 @@ html
                 a(href='no-sidebar.html') No Sidebar
       // Intro
       #intro-wrapper.wrapper.style1
-        .title The Introduction
+        .title Getting Started
         section#intro.container
-          p.style1 So in case you were wondering what this is all about ...
+          p.style1 Get the most out of your campus
           p.style2
-            | Escape Velocity is a free responsive
+            | Rate, Poll, and Review everything at USC
             br.mobile-hide
-            | 							site template by 
-            a.nobr(href='http://html5up.net') HTML5 UP
           p.style3
-            | It's 
-            strong responsive
-            | , built on 
-            strong HTML5
-            |  and 
-            strong CSS3
-            | , and released for
-            | 						free under the 
-            a(href='http://html5up.net/license') Creative Commons Attribution 3.0 license
-            | , so use it for any of
-            | 						your personal or commercial projects – just be sure to credit us!
+            | Finding out about the best 
+            strong food, hangouts, classes, etc. 
+            | can be 
+            strong hard.
+            |  We're here to help. 
+            | Search our database to see ratings, reviews and polls about all sorts of stuff on campus.
+            | Create an account to make your voice heard. It's time to 
+            strong KnowItAll!
           ul.actions
             li
-              a.button.style3.big(href='#') Proceed
+              a.button.style3.big(href='#') Create Account
       // Main
       .wrapper.style2
-        .title The Details
+        .title Trending
         #main.container
           // Image
           a.image.featured(href='#')
