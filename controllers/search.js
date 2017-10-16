@@ -5,6 +5,40 @@ const Poll = Schema.Poll;
 const Comment = Schema.Comment;
 const PollVote = Schema.PollVote;
 
+/**
+ * Selects tag search or free text based on checkbox
+ * Unchecked - free text search, Checked - tag search
+ * Tags should be separated by commas ", "
+ */
+exports.search = function(req, res){
+    let opt = req.body.agreement;
+    if (typeof opt !== 'undefined' && opt) {
+        let query = [req.body.query.split(", ")]; // query is an array of tags
+        let pollPromise = Poll.find( { tags: { $in: query }} ).limit(3).exec();
+        let entityPromise = Entity.find( { tags: { $in: query }} ).limit(6).exec();
+        Promise.all([pollPromise, entityPromise]).then((results) => {
+            let [polls, entities] = results;
+            res.render('results-page', {
+                polls: polls,
+                entities: entities
+            });
+        });
+    }
+    else {
+        let query = req.body.query;
+        let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).limit(3).exec();
+        let entityPromise = Entity.find( { name: { $regex: query, $options: 'i' }} ).limit(6).exec();
+        Promise.all([pollPromise, entityPromise]).then((results) => {
+            let [polls, entities] = results;
+            console.log(results);
+            res.render('results-page', {
+                polls: polls,
+                entities: entities
+            });
+        });
+    }
+}
+
 exports.freeTextSearch = function(req, res) {
     let query = req.body.query;
     let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).limit(3).exec();
@@ -20,7 +54,7 @@ exports.freeTextSearch = function(req, res) {
 };
 
 exports.keywordSearch = function(req, res) {
-    let query = [req.params.category]; // query is an array of tags
+    let query = [req.body.category.split(", ")]; // query is an array of tags
     let pollPromise = Poll.find( { tags: { $in: query }} ).limit(3).exec();
     let entityPromise = Entity.find( { tags: { $in: query }} ).limit(6).exec();
     Promise.all([pollPromise, entityPromise]).then((results) => {

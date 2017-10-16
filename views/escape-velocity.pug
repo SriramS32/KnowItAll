@@ -23,6 +23,8 @@ html
             form.form-wrapper.cf(method='post', action='/results-page')
               input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
               button#searchbutton(type='submit') Search
+              input#searchoption(type='checkbox', name='agreement', checked=False) 
+              p Search by Tag
           // Nav
           nav#nav
             ul

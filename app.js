@@ -128,7 +128,9 @@ app.get('/new-entry', homeController.newEntryPage);
 app.get('/escape-velocity', homeController.escapeVelocity);
 
 // app.get('/results-page', homeController.resultsPage);
-app.post('/results-page/', searchController.freeTextSearch);
+
+// app.post('/results-page/', searchController.freeTextSearch);
+app.post('/results-page/', searchController.search);
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
