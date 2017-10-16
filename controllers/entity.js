@@ -69,13 +69,15 @@ exports.insertComment = function(commentData, entity) {
     name: "Test Entity 1",
     tags: ["Test", "tag"],
     rating: 5
-  }, '<userid>');
-  entityController.updateRating('<entityid>', '<userid>', 9);
+  }, '59e426e80eb24ea3effcfbc1');
+  entityController.updateRating('59e42f64c27da15c3e0d7d5a', '59e426e80eb24ea3effcfbc1', 7);
+  entityController.updateRating('59e42f7a71a7d05c4892bd15', '59e426e80eb24ea3effcfbc1', 7);
+
   entityController.insertComment({
     body: 'Test comment body',
-    username: '<username>',
-    user: '<userid>',
+    username: 'Hemant Kunda',
+    user: '59e426e80eb24ea3effcfbc1',
     anon: false
-  }, '<entityid>');
+  }, '59e42cb5a960115aa55602e7');
 
  */ 
