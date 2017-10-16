@@ -21,17 +21,37 @@ exports.insertPoll = function(pollData){
 };
 
 /**
- * poll_ID and userID are Mongo Object IDs whereas userVote
+ * Updating a poll vote that a single user made
+ * Two paths -> User hasn't voted on poll yet or User is updating his/ her poll vote
+ * 
+ * Params: poll_ID and userID are Mongo Object IDs whereas userVote
  * should be a Number representing choice on Poll
+ * 
+ * Returns: Nothing. Updates db state.
  */
 exports.updatePollVotes = function(poll_ID, userID, userVote){
-    const pollVote = new PollVote({
-        user: userID,
-        poll: poll_ID,
-        choice: userVote
-    });
-    poll.save((err) => {
-        if (err) console.log("Error in making poll choice, ", err);
+    console.log('poll id: ' + poll_ID);
+    PollVote.findOne({user: userID, poll: poll_ID}, (err, pollEntry) => {
+        if (err) console.log('error checking for existing: ' + err);
+        else if (pollEntry) {
+            // Updating poll choice
+            console.log('Updating poll choice');
+            pollEntry.choice = userVote;
+            pollEntry.save((err) => {
+                if (err) console.log('error updating poll choice to ', userVote);
+            });
+        }
+        else {
+            const pollVote = new PollVote({
+                user: userID,
+                poll: poll_ID,
+                choice: userVote
+            });
+            pollVote.save((err) => {
+                if (err) console.log("Error in making poll choice, ", err);
+            });
+            console.log('Creating new poll vote with id ', pollVote._id);
+        }
     });
 };
 

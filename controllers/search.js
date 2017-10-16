@@ -28,11 +28,11 @@ exports.fetchTrendingPolls = function(limit) {
 };
 
 exports.fetchTrendingEntities = function(limit) {
-    return Poll.find().sort({_id: -1}).limit(limit).exec();    
+    return Entity.find().sort({_id: -1}).limit(limit).exec();    
 }
 
 exports.getRecentActivity = function(user) {
-    let ratingPromise = Entity.find( {user: user} ).exec();
+    let ratingPromise = Rating.find( {user: user} ).exec();
     let commentPromise = Comment.find( {ownerId: user} ).exec();
     let pollVotePromise = PollVote.find( {user: user} ).exec();
     let pollPromise = Poll.find( {owner: user} ).exec();
