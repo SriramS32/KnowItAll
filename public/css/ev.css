@@ -16,6 +16,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		text-align: center;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -1198,6 +1199,7 @@
 	}
 
 	form input[type="text"],
+	form input[type="number"],
 	form input[type="email"],
 	form input[type="password"],
 	form select,
@@ -1217,6 +1219,7 @@
 	}
 
 		form input[type="text"]:focus,
+		form input[type="number"]:focus,
 		form input[type="email"]:focus,
 		form input[type="password"]:focus,
 		form select:focus,
@@ -1225,6 +1228,7 @@
 		}
 
 	form input[type="text"],
+	form input[type="number"],
 	form input[type="email"]
 	input[type="password"] {
 		line-height: 1em;
@@ -1648,7 +1652,8 @@
 			border-top-color: rgba(255, 255, 255, 0.05);
 		}
 
-		form input[type="text"],
+		#footer-wrapper form input[type="text"],
+		#footer-wrapper form input[type="number"],
 		#footer-wrapper form input[type="email"],
 		#footer-wrapper form input[type="password"],
 		#footer-wrapper form select,
@@ -1937,10 +1942,19 @@
 					padding-top: 0;
 				}
 
+			.box h1 {
+				margin: 0 0 0.75em 0;
+				font-size: 2.15em;
+				letter-spacing: 0.05em;
+				text-align: center;
+
+			}
+
 			.box h2 {
 				margin: 0 0 0.75em 0;
 				font-size: 1.15em;
 				letter-spacing: 0.05em;
+				text-align: center;
 			}
 
 			.box h3 {
@@ -1989,7 +2003,7 @@
 
 			#header {
 				position: relative;
-				padding: 12em 0;
+				padding: 6em 0;
 			}
 
 			.homepage #header {
@@ -2257,7 +2271,7 @@
 		/* Header */
 
 			#header {
-				padding: 10em 0;
+				padding: 6em 0;
 			}
 
 			.homepage #header {
