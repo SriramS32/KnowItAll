@@ -6,7 +6,12 @@ const Comment = Schema.Comment;
 const PollVote = Schema.PollVote;
 
 exports.freeTextSearch = function(query) {
-
+    let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).exec();
+    let entityPromise = Entity.find( { name: { $regex: query, $options: 'i' }} ).exec();
+    return {
+        poll: pollPromise,
+        entity: entityPromise
+    };
 };
 
 exports.keywordSearch = function(query) {
@@ -18,12 +23,12 @@ exports.keywordSearch = function(query) {
     };
 };
 
-exports.fetchTrendingPolls = function() {
-
+exports.fetchTrendingPolls = function(limit) {
+    return Poll.find({closedAfter: {$gt: new Date()}}).sort({createdOn: -1}).limit(limit).exec();
 };
 
-exports.fetchTrendingEntities = function() {
-
+exports.fetchTrendingEntities = function(limit) {
+    return Poll.find().sort({_id: -1}).limit(limit).exec();    
 }
 
 exports.getRecentActivity = function(user) {
