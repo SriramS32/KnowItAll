@@ -27,7 +27,7 @@ exports.escapeVelocity = (req, res) => {
 };
 
 exports.resultsPage = (req, res) => {
-  Promise.all([searchController.freeTextSearch(req.params.query)])
+  // Promise.all([searchController.freeTextSearch(req.params.query)])
 
   res.render('results-page', {
      title: 'Results Page'

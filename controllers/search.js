@@ -7,8 +7,8 @@ const PollVote = Schema.PollVote;
 
 exports.freeTextSearch = function(req, res) {
     let query = req.body.query;
-    let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).exec();
-    let entityPromise = Entity.find( { name: { $regex: query, $options: 'i' }} ).exec();
+    let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).limit(3).exec();
+    let entityPromise = Entity.find( { name: { $regex: query, $options: 'i' }} ).limit(6).exec();
     Promise.all([pollPromise, entityPromise]).then((results) => {
         let [polls, entities] = results;
         console.log(results);
@@ -21,11 +21,11 @@ exports.freeTextSearch = function(req, res) {
 
 exports.keywordSearch = function(req, res) {
     let query = [req.params.category]; // query is an array of tags
-    let pollPromise = Poll.find( { tags: { $in: query }} ).exec();
-    let entityPromise = Entity.find( { tags: { $in: query }} ).exec();
+    let pollPromise = Poll.find( { tags: { $in: query }} ).limit(3).exec();
+    let entityPromise = Entity.find( { tags: { $in: query }} ).limit(6).exec();
     Promise.all([pollPromise, entityPromise]).then((results) => {
         let [polls, entities] = results;
-        res.render('searchresults', {
+        res.render('results-page', {
             polls: polls,
             entities: entities
         });
