@@ -13,175 +13,102 @@ html
     link(rel='stylesheet', href='css/ev.css')
     //if lte IE 8
       link(rel='stylesheet', href='css/ie8.css')
+
   body.homepage
     #page-wrapper
       // Header
       #header-wrapper.wrapper
         #header
-          // Logo
-          #logo
-            h1
-              a(href='index.html') Escape Velocity
-            p A free responsive site template by HTML5 UP
+          h1#searchwrapper
+            form.form-wrapper.cf
+              input#searchinput(type='text', placeholder='Search KnowItAll...', required='')
+              button#searchbutton(type='submit') Search
           // Nav
           nav#nav
             ul
               li.current
-                a(href='index.html') Home
+                a(href='#') Home
               li
-                a(href='#') Dropdown
+                a(href='#') Create
+              li
+                a(href='#') Categories
                 ul
                   li
-                    a(href='#') Lorem ipsum
+                    a(href='#') Food
                   li
-                    a(href='#') Magna veroeros
+                    a(href='#') Classes
                   li
-                    a(href='#') Etiam nisl
+                    a(href='#') Clubs
                   li
-                    a(href='#') Sed consequat
-                    ul
-                      li
-                        a(href='#') Lorem dolor
-                      li
-                        a(href='#') Amet consequat
-                      li
-                        a(href='#') Magna phasellus
-                      li
-                        a(href='#') Etiam nisl
-                      li
-                        a(href='#') Sed feugiat
-                  li
-                    a(href='#') Nisl tempus
+                    a(href='#') Residences
               li
-                a(href='left-sidebar.html') Left Sidebar
-              li
-                a(href='right-sidebar.html') Right Sidebar
-              li
-                a(href='no-sidebar.html') No Sidebar
+                a(href='no-sidebar.html') Login/Logout
       // Intro
       #intro-wrapper.wrapper.style1
-        .title The Introduction
+        .title Getting Started
         section#intro.container
-          p.style1 So in case you were wondering what this is all about ...
+          p.style1 Get the most out of your campus
           p.style2
-            | Escape Velocity is a free responsive
+            | Rate, Poll, and Review everything at USC
             br.mobile-hide
-            | 							site template by 
-            a.nobr(href='http://html5up.net') HTML5 UP
           p.style3
-            | It's 
-            strong responsive
-            | , built on 
-            strong HTML5
-            |  and 
-            strong CSS3
-            | , and released for
-            | 						free under the 
-            a(href='http://html5up.net/license') Creative Commons Attribution 3.0 license
-            | , so use it for any of
-            | 						your personal or commercial projects – just be sure to credit us!
+            | Finding out about the best 
+            strong food, hangouts, classes, etc. 
+            | can be 
+            strong hard.
+            |  We're here to help. 
+            | Search our database to see ratings, reviews and polls about all sorts of stuff on campus.
+            | Create an account to make your voice heard. It's time to 
+            strong KnowItAll!
           ul.actions
             li
-              a.button.style3.big(href='#') Proceed
-      // Main
-      .wrapper.style2
-        .title The Details
-        #main.container
-          // Image
-          a.image.featured(href='#')
-            img(src='images/pic01.jpg', alt='')
-          // Features
-          section#features
-            header.style1
-              h2 Dolor consequat feugiat amet veroeros
-              p Feugiat dolor nullam orci pretium phasellus justo
-            .feature-list
-              .row
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-comment Mattis velit diam vulputate
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-refresh Lorem ipsum dolor sit veroeros
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-              .row
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-picture-o Pretium phasellus justo lorem
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-cog Tempus sed pretium orci
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-              .row
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-wrench Aliquam consequat et feugiat
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-                div(class='6u 12u(mobile)')
-                  section
-                    h3.icon.fa-check Dolore laoreet aliquam mattis
-                    p
-                      | Eget mattis at, laoreet vel et velit aliquam diam ante, aliquet sit amet vulputate. Eget mattis at, laoreet vel velit lorem.
-            ul.actions.actions-centered
-              li
-                a.button.style1.big(href='#') Get Started
-              li
-                a.button.style2.big(href='#') More Info
+              a.button.style3.big(href='#') Create Account
       // Highlights
       .wrapper.style3
-        .title The Endorsements
+        .title Trending
         #highlights.container
           .row(class='150%')
             div(class='4u 12u(mobile)')
               section.highlight
                 a.image.featured(href='#')
-                  img(src='images/pic02.jpg', alt='')
+                  img(src='images/poll0.jpg', alt='')
                 h3
-                  a(href='#') Aliquam diam consequat
+                  a(href='#') polls[0].question
                 p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
+                  | polls[0].tags
                 ul.actions
                   li
-                    a.button.style1(href='#') Learn More
+                    a.button.style1(href='#') More Info
             div(class='4u 12u(mobile)')
               section.highlight
                 a.image.featured(href='#')
-                  img(src='images/pic03.jpg', alt='')
+                  img(src='images/entity.jpg', alt='')
                 h3
-                  a(href='#') Nisl adipiscing sed lorem
+                  a(href='#') entities[0].name
                 p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
+                  | entities[0].tags
                 ul.actions
                   li
-                    a.button.style1(href='#') Learn More
+                    a.button.style1(href='#') More Info
             div(class='4u 12u(mobile)')
               section.highlight
                 a.image.featured(href='#')
-                  img(src='images/pic04.jpg', alt='')
+                  img(src='images/poll2.jpg', alt='')
                 h3
-                  a(href='#') Mattis tempus lorem
+                  a(href='#') polls[1].question
                 p
-                  | Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.
+                  | polls[1].tags
                 ul.actions
                   li
-                    a.button.style1(href='#') Learn More
+                    a.button.style1(href='#') More Info
       // Footer
       #footer-wrapper.wrapper
         .title The Rest Of It
         #footer.container
           header.style1
-            h2 Ipsum sapien elementum portitor?
+            h2 Questions? Comments? Concerns?
             p
-              | Sed turpis tortor, tincidunt sed ornare in metus porttitor mollis nunc in aliquet.
-              br
-              | 								Nam pharetra laoreet imperdiet volutpat etiam consequat feugiat.
+              | Contact us for any issues or just to say hi!
           hr
           .row(class='150%')
             div(class='6u 12u(mobile)')

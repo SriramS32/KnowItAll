@@ -1284,6 +1284,7 @@
 
 	header.style1 {
 		text-align: center;
+		margin: 0 auto;
 	}
 
 		header.style1 h2 {
@@ -1293,6 +1294,25 @@
 		header.style1 p {
 			color: #b1b4b9;
 		}
+
+/* Search */
+	
+
+	#searchwrapper {
+		width: 550px;
+		margin: 0 auto;
+	}
+
+	#searchbutton {
+		float: right;
+		background-color: #e2736d;
+	}
+
+	#searchinput {
+		display: inline-block;
+		width: 350px;
+		height: 58px;
+	}
 
 /* Image */
 
@@ -1628,7 +1648,7 @@
 			border-top-color: rgba(255, 255, 255, 0.05);
 		}
 
-		#footer-wrapper form input[type="text"],
+		form input[type="text"],
 		#footer-wrapper form input[type="email"],
 		#footer-wrapper form input[type="password"],
 		#footer-wrapper form select,

@@ -1,0 +1,102 @@
+extends layout
+
+block content
+  body.no-sidebar
+    #page-wrapper
+      // Main
+      .wrapper.style2
+        #main.container
+          // Content
+          #content
+            .row(class='150%')
+              div(class='6u 12u(mobile)')
+                // Contact Form
+                section.box
+                  header
+                    h2 Create New Poll 
+                  form(method='post', action='#')
+                    .row(class='50%')
+                      div(class='12u')
+                        textarea#contact-question(type='text', name='question', placeholder='Question', rows='2')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='option1', placeholder='Option 1')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='option2', placeholder='Option 2')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='option3', placeholder='Option 3')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='option4', placeholder='Option 4')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                    .row(class='50%')
+                      // Nav
+                      nav#nav
+                        ul
+                          li.current
+                            a(href='index.html') Home
+                          li
+                            a(href='#') Dropdown
+                            ul
+                              li
+                                a(href='#') Lorem ipsum
+                              li
+                                a(href='#') Magna veroeros
+                              li
+                                a(href='#') Etiam nisl
+                              li
+                                a(href='#') Sed consequat
+                                ul
+                                  li
+                                    a(href='#') Lorem dolor
+                                  li
+                                    a(href='#') Amet consequat
+                                  li
+                                    a(href='#') Magna phasellus
+                                  li
+                                    a(href='#') Etiam nisl
+                                  li
+                                    a(href='#') Sed feugiat
+                              li
+                                a(href='#') Nisl tempus
+                    .row
+                      div(class='12u')
+                        ul.actions
+                          li
+                            input.style1(type='submit', value='Send')
+                          li
+                            input.style2(type='reset', value='Reset')
+              div(class='6u 12u(mobile)')
+                // Contact Form
+                section.box
+                  header
+                    h2 Create New Rating 
+                  form(method='post', action='#')
+                    .row(class='50%')
+                      div(class='6u 12u(mobile)')
+                        input#contact-name(type='text', name='name', placeholder='Name')
+                      div(class='6u 12u(mobile)')
+                        input#contact-email(type='text', name='email', placeholder='Email')
+                    .row(class='50%')
+                      div(class='12u')
+                        textarea#contact-message(name='message', placeholder='Message', rows='4')
+                    .row
+                      div(class='12u')
+                        ul.actions
+                          li
+                            input.style1(type='submit', value='Send')
+                          li
+                            input.style2(type='reset', value='Reset')
+    // Scripts
+    script(src='js/jquery.min.js')
+    script(src='js/jquery.dropotron.min.js')
+    script(src='js/skel.min.js')
+    script(src='js/skel-viewport.min.js')
+    script(src='js/util.js')
+    //if lte IE 8
+      script(src='js/ie/respond.min.js')
+    script(src='js/main.js')
