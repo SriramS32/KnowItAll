@@ -2257,15 +2257,15 @@
 		/* Wrappers */
 
 			.wrapper {
-				padding: 4em 0 7em 0;
+				padding: 4em 0 4em 0;
 			}
 
 			#intro-wrapper {
-				padding-bottom: 7em;
+				padding-bottom: 6em;
 			}
 
 			#footer-wrapper hr {
-				margin: 3em 0 3em 0;
+				margin: 1em 0 1em 0;
 			}
 
 		/* Header */
@@ -2632,7 +2632,7 @@
 			}
 
 			#footer-wrapper {
-				padding-top: 3em;
+				padding-top: 1em;
 			}
 
 				#footer-wrapper .feature-list section {

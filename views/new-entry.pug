@@ -3,11 +3,6 @@ extends layout
 block content
   body.no-sidebar
     #page-wrapper
-      // Logo
-      #logo
-        h1
-          a(href='index.html') Escape Velocity
-        p A free responsive site template by HTML5 UP
       // Main
       .wrapper.style2
         .title Create Something New      
@@ -53,10 +48,13 @@ block content
                   form(method='post', action='#')
                     .row(class='50%')
                       div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Name')
+                        input#contact-email(type='text', name='tags', placeholder='Entity Name')
                     .row(class='50%')
                       div(class='12u')
-                        input#contact-email(type='number', name='tags', placeholder='Rating', min='0', max='10')
+                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
+                    .row(class='50%')
+                      div(class='12u')
+                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
                     .row(class='50%')
                       div(class='12u')
                         input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')

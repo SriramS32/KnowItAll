@@ -31,3 +31,9 @@ exports.newEntryPage = (req, res) => {
      title: 'New Entry Page'
    });
 };
+
+exports.entityPage = (req, res) => {
+  res.render('entity-page', {
+     title: 'Entity Page'
+   });
+};

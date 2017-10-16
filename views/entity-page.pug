@@ -5,8 +5,56 @@ block content
     #page-wrapper
       // Main
       .wrapper.style2
-        .title Entity Results
         #main.container
+          // Content
+          #content
+            article.box.post
+              header.style1
+                h2
+                  | Entity Name
+                p Average Rating: 5.5/10
+                p
+                  | tags, tags, tags, tags, tags, tags, tags 
+            .row(class='150%')
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
+                    .row
+                      h2 Submit your own rating
+                  form(method='post', action='#')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
+                    .row(class='50%')
+                      div(class='12u')
+                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                    .row
+                      div(class='12u')
+                        input.style1(type='submit', value='Create New Rating')
+              .row(class='100%')
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      .row
+                        h1 *****
+                        h2 6/15/17
+                    p
+                      | Comments if any...
+                    p 
+                      | User/Anonymous
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      .row
+                        h1 *****
+                        h2 6/15/17
+                    p
+                      | Comments if any...
+                    p 
+                      | User/Anonymous
           // Content
           #content
             .row(class='150%')
@@ -114,6 +162,15 @@ block content
                 ul.actions
                   li
                     a.button.style1(href='#') Learn More
+      // Footer
+      #footer-wrapper.wrapper
+        <!--.title The Rest Of It -->
+        #copyright
+          ul
+            li © Untitled.
+            li
+              | Design: 
+              a(href='http://html5up.net') HTML5 UP 
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
