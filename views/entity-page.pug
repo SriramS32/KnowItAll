@@ -16,28 +16,59 @@ block content
                 p
                   | tags, tags, tags, tags, tags, tags, tags 
             .row(class='150%')
+              //-
+                div(class='4u 12u(mobile)')
+                  section.box
+                    header
+                      .row
+                        h2 Submit your own rating
+                    form(method='post', action='#')
+                      .row(class='50%')
+                        div(class='12u')
+                          input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
+                      .row(class='50%')
+                        div(class='12u')
+                          textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
+                      .row(class='50%')
+                        div(class='12u')
+                          input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                      .row(class='50%')
+                        div(class='12u')
+                          input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
+                          label(for='contact-anon') Submit as Anonymous
+                      .row
+                        div(class='12u')
+                          input.style1(type='submit', value='Create New Rating')
               div(class='4u 12u(mobile)')
                 section.box
                   header
                     .row
-                      h2 Submit your own rating
-                  form(method='post', action='#')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
-                    .row(class='50%')
-                      div(class='12u')
-                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
-                        label(for='contact-anon') Submit as Anonymous
+                      h1 *****
+                      h2 6/15/17
+                  p
+                    | Comments if any...
+                  p 
+                    | User/Anonymous
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
                     .row
-                      div(class='12u')
-                        input.style1(type='submit', value='Create New Rating')
+                      h1 *****
+                      h2 6/15/17
+                  p
+                    | Comments if any...
+                  p 
+                    | User/Anonymous
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
+                    .row
+                      h1 *****
+                      h2 6/15/17
+                  p
+                    | Comments if any...
+                  p 
+                    | User/Anonymous
               div(class='4u 12u(mobile)')
                 section.box
                   header
@@ -78,9 +109,6 @@ block content
                     | Comments if any...
                   p 
                     | User/Anonymous
-          // Content
-          #content
-            .row(class='150%')
               div(class='4u 12u(mobile)')
                 section.box
                   header
@@ -101,16 +129,7 @@ block content
                     | Comments if any...
                   p 
                     | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
+
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
