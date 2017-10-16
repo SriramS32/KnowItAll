@@ -20,8 +20,8 @@ html
       #header-wrapper.wrapper
         #header
           h1#searchwrapper
-            form.form-wrapper.cf
-              input#searchinput(type='text', placeholder='Search KnowItAll...', required='')
+            form.form-wrapper.cf(method='post', action='/results-page')
+              input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
               button#searchbutton(type='submit') Search
           // Nav
           nav#nav
