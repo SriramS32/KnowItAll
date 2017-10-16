@@ -21,7 +21,7 @@ exports.insertEntity = function (entityData, user) {
 
 exports.updateRating = function (entityId, user, rating) {
     console.log('entity id: ' + entityId);
-    Rating.findOne({user: user}, (err, ratingEntry) => {
+    Rating.findOne({user: user, entity: entityId}, (err, ratingEntry) => {
         if (err) console.log('error checking for existing: ' + err);
         else if (ratingEntry) {
             let ratingDiff = rating - ratingEntry.rating;
@@ -63,3 +63,19 @@ exports.insertComment = function(commentData, entity) {
         if (err) console.log('error inserting comment: ', err);
     });
 };
+
+/*
+  let entityId = entityController.insertEntity({
+    name: "Test Entity 1",
+    tags: ["Test", "tag"],
+    rating: 5
+  }, '<userid>');
+  entityController.updateRating('<entityid>', '<userid>', 9);
+  entityController.insertComment({
+    body: 'Test comment body',
+    username: '<username>',
+    user: '<userid>',
+    anon: false
+  }, '<entityid>');
+
+ */ 
