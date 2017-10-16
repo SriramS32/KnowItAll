@@ -5,6 +5,7 @@ block content
     #page-wrapper
       // Main
       .wrapper.style2
+        .title Create Something New      
         #main.container
           // Content
           #content
@@ -13,7 +14,7 @@ block content
                 // Contact Form
                 section.box
                   header
-                    h2 Create New Poll 
+                    h1 Poll 
                   form(method='post', action='#')
                     .row(class='50%')
                       div(class='12u')
@@ -34,63 +35,40 @@ block content
                       div(class='12u')
                         input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
                     .row(class='50%')
-                      // Nav
-                      nav#nav
-                        ul
-                          li.current
-                            a(href='index.html') Home
-                          li
-                            a(href='#') Dropdown
-                            ul
-                              li
-                                a(href='#') Lorem ipsum
-                              li
-                                a(href='#') Magna veroeros
-                              li
-                                a(href='#') Etiam nisl
-                              li
-                                a(href='#') Sed consequat
-                                ul
-                                  li
-                                    a(href='#') Lorem dolor
-                                  li
-                                    a(href='#') Amet consequat
-                                  li
-                                    a(href='#') Magna phasellus
-                                  li
-                                    a(href='#') Etiam nisl
-                                  li
-                                    a(href='#') Sed feugiat
-                              li
-                                a(href='#') Nisl tempus
+                      div(class='12u')
+                        input#contact-email(type='number', name='tags', placeholder='Duration (in days)', min='0')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
+                        label(for='contact-anon') Submit as Anonymous
                     .row
                       div(class='12u')
-                        ul.actions
-                          li
-                            input.style1(type='submit', value='Send')
-                          li
-                            input.style2(type='reset', value='Reset')
+                        input.style1(type='submit', value='Create New Poll')
               div(class='6u 12u(mobile)')
                 // Contact Form
                 section.box
                   header
-                    h2 Create New Rating 
+                    h1 Rating 
                   form(method='post', action='#')
                     .row(class='50%')
-                      div(class='6u 12u(mobile)')
-                        input#contact-name(type='text', name='name', placeholder='Name')
-                      div(class='6u 12u(mobile)')
-                        input#contact-email(type='text', name='email', placeholder='Email')
+                      div(class='12u')
+                        input#contact-email(type='text', name='tags', placeholder='Entity Name')
                     .row(class='50%')
                       div(class='12u')
-                        textarea#contact-message(name='message', placeholder='Message', rows='4')
+                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
+                    .row(class='50%')
+                      div(class='12u')
+                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                    .row(class='50%')
+                      div(class='12u')
+                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
+                        label(for='contact-anon') Submit as Anonymous
                     .row
                       div(class='12u')
-                        ul.actions
-                          li
-                            input.style1(type='submit', value='Send')
-                          li
-                            input.style2(type='reset', value='Reset')
+                        input.style1(type='submit', value='Create New Rating')
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')

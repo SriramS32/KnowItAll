@@ -125,7 +125,9 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.get('/', homeController.index);
 app.get('/landing', homeController.landing);
 app.get('/new-entry', homeController.newEntryPage);
+app.get('/entity-page', homeController.entityPage);
 app.get('/escape-velocity', homeController.escapeVelocity);
+
 
 // app.get('/results-page', homeController.resultsPage);
 
