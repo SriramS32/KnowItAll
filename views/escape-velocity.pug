@@ -73,9 +73,9 @@ html
                 a.image.featured(href='#')
                   img(src='images/poll0.jpg', alt='')
                 h3
-                  a(href='#') polls[0].question
+                  a(href='#') #{polls[0].question}
                 p
-                  | polls[0].tags
+                  | #{polls[0].tags.join(", ")}
                 ul.actions
                   li
                     a.button.style1(href='#') More Info
@@ -84,9 +84,9 @@ html
                 a.image.featured(href='#')
                   img(src='images/entity.jpg', alt='')
                 h3
-                  a(href='#') entities[0].name
+                  a(href='#') #{entities[0].name}
                 p
-                  | entities[0].tags
+                  | #{entities[0].tags.join(", ")}
                 ul.actions
                   li
                     a.button.style1(href='#') More Info
@@ -95,9 +95,9 @@ html
                 a.image.featured(href='#')
                   img(src='images/poll2.jpg', alt='')
                 h3
-                  a(href='#') polls[1].question
+                  a(href='#') #{polls[1].question}
                 p
-                  | polls[1].tags
+                  | #{polls[1].tags.join(", ")}
                 ul.actions
                   li
                     a.button.style1(href='#') More Info
