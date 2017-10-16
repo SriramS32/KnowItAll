@@ -31,3 +31,9 @@ exports.newEntryPage = (req, res) => {
      title: 'New Entry Page'
    });
 };
+
+exports.pollPage = (req, res) => {
+  res.render('poll-page', {
+     title: 'Poll'
+   });
+};
