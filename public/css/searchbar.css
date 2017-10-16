@@ -30,8 +30,8 @@
         -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
         box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
     }
-    
-    .form-wrapper input {
+    /*
+    #searchinput {
         width: 330px;
         height: 20px;
         padding: 10px 5px;
@@ -42,9 +42,9 @@
         -moz-border-radius: 3px 0 0 3px;
         -webkit-border-radius: 3px 0 0 3px;
         border-radius: 3px 0 0 3px;      
-    }
+    }*/
     
-    .form-wrapper input:focus {
+    #searchinput:focus {
         outline: 0;
         background: #fff;
         -moz-box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
@@ -52,25 +52,25 @@
         box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
     }
     
-    .form-wrapper input::-webkit-input-placeholder {
+    #searchinput::-webkit-input-placeholder {
        color: #999;
        font-weight: normal;
        font-style: italic;
     }
     
-    .form-wrapper input:-moz-placeholder {
+    #searchinput:-moz-placeholder {
         color: #999;
         font-weight: normal;
         font-style: italic;
     }
     
-    .form-wrapper input:-ms-input-placeholder {
+    #searchinput:-ms-input-placeholder {
         color: #999;
         font-weight: normal;
         font-style: italic;
     }    
     
-    .form-wrapper button {
+    #searchbutton {
 		overflow: visible;
         position: relative;
         float: right;
@@ -89,16 +89,16 @@
         text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
     }   
       
-    .form-wrapper button:hover{		
+    #searchbutton:hover{		
         background: #e54040;
     }	
       
-    .form-wrapper button:active,
-    .form-wrapper button:focus{   
+    #searchbutton:active,
+    #searchbutton:focus{   
         background: #c42f2f;    
     }
     
-    .form-wrapper button:before {
+    #searchbutton:before {
         content: '';
         position: absolute;
         border-width: 8px 8px 8px 0;
@@ -108,15 +108,15 @@
         left: -6px;
     }
     
-    .form-wrapper button:hover:before{
+    #searchbutton:hover:before{
         border-right-color: #e54040;
     }
     
-    .form-wrapper button:focus:before{
+    #searchbutton:focus:before{
         border-right-color: #c42f2f;
     }    
     
-    .form-wrapper button::-moz-focus-inner {
+    #searchbutton::-moz-focus-inner {
         border: 0;
         padding: 0;
     }
