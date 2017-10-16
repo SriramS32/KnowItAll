@@ -49,7 +49,7 @@ exports.updateRating = function (entityId, user, rating) {
 };
 
 exports.fetchRating = function(entity) {
-    return Entity.findOne({_id: entity}, 'ratingTotal ratingCount').exec();
+    return Entity.findOne({_id: entity}).exec();
 }
 
 exports.insertComment = function(commentData, entity) {
