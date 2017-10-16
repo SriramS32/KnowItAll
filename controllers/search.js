@@ -8,19 +8,26 @@ const PollVote = Schema.PollVote;
 exports.freeTextSearch = function(query) {
     let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).exec();
     let entityPromise = Entity.find( { name: { $regex: query, $options: 'i' }} ).exec();
-    return {
-        poll: pollPromise,
-        entity: entityPromise
-    };
+    Promise.all([pollPromise, entityPromise]).then((results) => {
+        let [polls, entities] = results;
+        res.render('results-page', {
+            polls: polls,
+            entities: entities
+        });
+    });
 };
 
-exports.keywordSearch = function(query) {
+exports.keywordSearch = function(res, req) {
+    let query = [req.params.category]; // query is an array of tags
     let pollPromise = Poll.find( { tags: { $in: query }} ).exec();
     let entityPromise = Entity.find( { tags: { $in: query }} ).exec();
-    return {
-        poll: pollPromise,
-        entity: entityPromise
-    };
+    Promise.all([pollPromise, entityPromise]).then((results) => {
+        let [polls, entities] = results;
+        res.render('searchresults', {
+            polls: polls,
+            entities: entities
+        });
+    });
 };
 
 exports.fetchTrendingPolls = function(limit) {
