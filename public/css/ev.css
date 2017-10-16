@@ -1840,7 +1840,7 @@
 		/* Form */
 
 			form label {
-				margin: 0.25em 0 0.5em 0;
+				margin: 0.25em 0.25em 0.5em .25em;
 				display: inline-block;
 			}
 
