@@ -75,10 +75,8 @@ exports.getSignup = (req, res) => {
  * Create a new local account.
  */
 exports.postSignup = (req, res, next) => {
-  req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-  req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -88,8 +86,9 @@ exports.postSignup = (req, res, next) => {
   }
 
   const user = new User({
-    email: req.body.email,
-    password: req.body.password
+    email: req.body.username + '@usc.edu',
+    password: req.body.password,
+    name: req.body.fname + ' ' + req.body.lname
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
