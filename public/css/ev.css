@@ -1943,7 +1943,7 @@
 		/* Wrappers */
 
 			.wrapper {
-				padding: 6em 0 9em 0;
+				padding: 1em 0 1em 0;
 			}
 
 				.wrapper .title {
@@ -1969,7 +1969,7 @@
 
 			#header {
 				position: relative;
-				padding: 12em 0;
+				padding: 6em 0;
 			}
 
 			.homepage #header {
@@ -2173,7 +2173,7 @@
 		/* Copyright */
 
 			#copyright {
-				margin: 6em 0 0 0;
+				margin: 2em 0 0 0;
 			}
 
 				#copyright ul {
@@ -2223,7 +2223,7 @@
 		/* Wrappers */
 
 			.wrapper {
-				padding: 4em 0 7em 0;
+				padding: 1em 0 1em 0;
 			}
 
 			#intro-wrapper {
@@ -2237,7 +2237,7 @@
 		/* Header */
 
 			#header {
-				padding: 10em 0;
+				padding: 6em 0;
 			}
 
 			.homepage #header {
