@@ -2,6 +2,12 @@ const Schema = require('../models/Schema')
 const Poll = Schema.Poll
 const PollVote = Schema.PollVote
 
+
+exports.insertPol = function(req, res){
+    
+}
+
+
 /**
  * Returns id of poll created
  */

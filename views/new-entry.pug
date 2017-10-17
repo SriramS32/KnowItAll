@@ -49,16 +49,16 @@ block content
                 section.box
                   header
                     h1 Rating 
-                  form(method='post', action='#')
+                  form(method='post', action='/entity-submit')
                     .row(class='50%')
                       div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Entity Name')
+                        input#contact-email(type='text', name='name', placeholder='Entity Name')
                     .row(class='50%')
                       div(class='12u')
-                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
+                        input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
                     .row(class='50%')
                       div(class='12u')
-                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
+                        textarea#contact-question(type='text', name='comment', placeholder='Comments', rows='2')
                     .row(class='50%')
                       div(class='12u')
                         input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')

@@ -13,7 +13,7 @@ const PollVote = Schema.PollVote;
 exports.search = function(req, res){
     let opt = req.body.agreement;
     if (typeof opt !== 'undefined' && opt) {
-        let query = [req.body.query.split(", ")]; // query is an array of tags
+        let query = req.body.query.split(', '); // query is an array of tags
         let pollPromise = Poll.find( { tags: { $in: query }} ).limit(3).exec();
         let entityPromise = Entity.find( { tags: { $in: query }} ).limit(6).exec();
         Promise.all([pollPromise, entityPromise]).then((results) => {

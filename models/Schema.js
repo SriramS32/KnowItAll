@@ -36,6 +36,7 @@ const entitySchema = new mongoose.Schema({
 
 const ratingSchema = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
+  owner: String,
   rating: Number,
   entity: { type: Schema.Types.ObjectId, ref: 'Entity' }
 }, { timestamps: true });
