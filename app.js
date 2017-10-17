@@ -128,6 +128,8 @@ app.get('/new-entry', homeController.newEntryPage);
 app.get('/entity/:entityId', homeController.entityPage);
 app.get('/escape-velocity', homeController.escapeVelocity);
 app.get('/profile-page', homeController.profilePage)
+app.get('/poll-page', homeController.pollPage);
+
 
 // app.get('/results-page', homeController.resultsPage);
 
