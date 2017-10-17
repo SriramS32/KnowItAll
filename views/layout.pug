@@ -28,7 +28,11 @@ html
               li
                 a(href='/escape-velocity') Search
               li
-                a(href='/signup') Login/Signup
+                if user
+                  a(href='profile') Profile
+                else
+                  a(href='signup') Login/Signup
+
           block header
       block content
 

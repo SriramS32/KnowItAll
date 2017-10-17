@@ -69,5 +69,10 @@ exports.entityPage = (req, res) => {
           user: req.user
       });
   });
-  
+};
+
+exports.profilePage = (req, res) => {
+  res.render('profile-page', {
+    title: 'Profile Page'
+  });
 };
