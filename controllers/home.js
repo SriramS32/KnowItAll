@@ -41,7 +41,13 @@ exports.newEntryPage = (req, res) => {
 };
 
 exports.entityPage = (req, res) => {
-  res.render('entity-page', {
-    title: 'Entity Page'
-  });
+  searchController.fetchEntity(req.params.entityId).then((entity) => {
+    res.render('entity-page', {
+      title: 'Entity Page',
+      entity: entity
+    });
+  }, (err) => {
+    
+  })
+  
 };
