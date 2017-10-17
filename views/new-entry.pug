@@ -9,68 +9,6 @@ block content
         #main.container
           // Content
           #content
-<<<<<<< HEAD
-            .row(class='150%')
-              div(class='6u 12u(mobile)')
-                // Contact Form
-                section.box
-                  header
-                    h1 Poll 
-                  form(method='post', action='/poll-submit')
-                    .row(class='50%')
-                      div(class='12u')
-                        textarea#contact-question(type='text', name='question', placeholder='Question', rows='2')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='option1', placeholder='Option 1')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='option2', placeholder='Option 2')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='option3', placeholder='Option 3')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='option4', placeholder='Option 4')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='number', name='duration', placeholder='Duration (in days)', min='1', step='1')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
-                        label(for='contact-anon') Submit as Anonymous
-                    .row
-                      div(class='12u')
-                        input.style1(type='submit', value='Create New Poll')
-              div(class='6u 12u(mobile)')
-                // Contact Form
-                section.box
-                  header
-                    h1 Rating 
-                  form(method='post', action='/entity-submit')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='name', placeholder='Entity Name')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
-                    .row(class='50%')
-                      div(class='12u')
-                        textarea#contact-question(type='text', name='comment', placeholder='Comments', rows='2')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
-                        label(for='contact-anon') Submit as Anonymous
-                    .row
-                      div(class='12u')
-                        input.style1(type='submit', value='Create New Rating')
-=======
             if !user
               .row(class='150&')
                 div(class='12u')
@@ -138,7 +76,6 @@ block content
                       .row
                         div(class='12u')
                           input.style1(type='submit', value='Create New Rating')
->>>>>>> origin/UI-integrate-poll
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
