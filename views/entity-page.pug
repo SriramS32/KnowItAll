@@ -12,7 +12,7 @@ block content
               header.style1
                 h2
                   | #{entity.name}
-                p Average Rating: #{entity.ratingTotal/entity.ratingCount}/10
+                p Average Rating: #{(1.0*entity.ratingTotal/entity.ratingCount).toFixed(1)}/10
                 p
                   | Tags: #{entity.tags.join(", ")}
             .row(class='150%')
@@ -46,7 +46,7 @@ block content
                           h1 Rating: #{val.rating}/10
                           h2 #{val.updatedAt}
                       p 
-                        | #{val.owner}
+                        | #{val.owner || 'anon'}
               if comments && comments.length > 0
                 each val in comments
                   div(class='4u 12u(mobile)')
@@ -56,7 +56,7 @@ block content
                           h1 #{val.body}
                           h2 #{val.updatedAt}
                       p 
-                        | #{val.owner}
+                        | #{val.owner || 'anon'}
     // Scripts
     script(src='/js/jquery.min.js')
     script(src='/js/jquery.dropotron.min.js')
