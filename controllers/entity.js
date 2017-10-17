@@ -13,10 +13,20 @@ exports.newRating = function(req, res){
     // console.log(newRating);
     // console.log(req.body.entityId);
     exports.updateRating(entityId, req.user._id, req.body.rating, newRating.owner)
-    if (newRating.comment.length > 0){
-        exports.insertComment(newRating, entityId);
-    }
-    res.redirect(`entity/${entityId}`);
+    .then((success) => {
+        if (newRating.comment.length > 0){
+            exports.insertComment(newRating, entityId);
+        }
+    }, (err) => {
+        console.log('error: ' + err);
+        res.redirect('/error');
+    })
+    .then((success) => {
+        res.redirect(`/entity/${entityId}`);        
+    }, (err) => {
+        console.log('error: ' + err);
+        res.redirect('/error');
+    });
 }
 
 exports.postEntity = function(req, res){
@@ -88,8 +98,35 @@ exports.insertEntity = function (entityData, user) {
 
 exports.updateRating = function (entityId, user, rating, owner) {
     console.log('entity id: ' + entityId);
-    Rating.findOne({user: user, entity: entityId}, (err, ratingEntry) => {
-        if (err) console.log('error checking for existing: ' + err);
+    return Rating.findOne({user: user, entity: entityId}).exec().then((ratingEntry) => {
+        if (ratingEntry) {
+            let ratingDiff = rating - ratingEntry.rating;
+            ratingEntry.rating = rating;
+            ratingEntry.save((err) => {
+                if (err) console.log('error updating rating');
+            });
+            Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: ratingDiff } }, (err, entity) => {
+                if (err) console.log('error updating total rating: ', err);
+            });
+        }
+        else {
+            Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: rating, ratingCount: 1 } }, (err, entity) => {
+                if (err) console.log('error updating total rating: ', err);
+                else if (entity) {
+                    console.log('adding to rating table');
+                    const ratingEntry = new Rating({ user: user, rating: rating, entity: entityId, owner: owner});
+                    ratingEntry.save((err) => {
+                        if (err) console.log('error adding rating entry: ', err);
+                    });
+                }
+            });
+        }
+        return Promise.resolve(1);
+    }, (err) => {
+        console.log('error checking for existing: ' + err);
+        return Promise.reject('error checking for existing: ' + err);
+    }); /*(err, ratingEntry) => {
+        if (err) 
         else if (ratingEntry) {
             let ratingDiff = rating - ratingEntry.rating;
             ratingEntry.rating = rating;
@@ -112,7 +149,7 @@ exports.updateRating = function (entityId, user, rating, owner) {
                 }
             });
         }
-    });
+    });*/
 };
 
 exports.insertComment = function(commentData, entity) {
