@@ -5,56 +5,37 @@ block content
     #page-wrapper
       // Main
       .wrapper.style2
-        .title Create Something New      
+        .title Log In    
         #main.container
           // Content
           #content
-            .row(class='150%')
-              div(class='6u 12u(mobile)')
-                // Contact Form
-                section.box
-                  header
-                    h1 Poll 
-                  form.form-horizontal(method='POST')
-                    input(type='hidden', name='_csrf', value=_csrf)
-                    .form-group
-                      label.col-sm-3.control-label(for='email') Email
+            div(class'6u 12u(mobile)')
+              // Contact Form
+              section.box
+                form.form-horizontal(method='POST')
+                  input(type='hidden', name='_csrf', value=_csrf)
+                  .row(class='50%')
+                    .div(class='12u')
+                      label.col-sm-3.control-label(for='username') Username
                       .col-sm-7
-                        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
-                    .form-group
+                        input.form-control(type='email', name='username', id='username', placeholder='USC ID', autofocus, required)
+                  .row(class='50%')
+                    .div(class='12u')
                       label.col-sm-3.control-label(for='password') Password
                       .col-sm-7
                         input.form-control(type='password', name='password', id='password', placeholder='Password', required)
-                    .form-group
-                      .col-sm-offset-3.col-sm-7
+                  .row(class='50%')  
+                    .div(class='12u')
+                      a.btn.btn-link(href='/forgot') Forgot your password?
+                      .div(class='12u')
                         button.col-sm-3.btn.btn-primary(type='submit', class='style1')
                           i.fa.fa-user
                           | Login
-                      a.btn.btn-link(href='/forgot') Forgot your password?
-                    .form-group
+                  .row(class='50%')
+                    .div(class='12u')
+                      label(for='signup') New to Know it All?   
+                      a.btn.btn-link(href='/signup', id='signup') Sign up
+                  .row(class='50%')  
+                    .div(class='12u')
                       .col-sm-offset-3.col-sm-7
-              div(class='6u 12u(mobile)')
-                // Contact Form
-                section.box
-                  header
-                    h1 Rating 
-                  form(method='post', action='#')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Entity Name')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='number', name='tags', placeholder='Rating (0-10)', min='0', max='10')
-                    .row(class='50%')
-                      div(class='12u')
-                        textarea#contact-question(type='text', name='question', placeholder='Comments', rows='2')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
-                    .row(class='50%')
-                      div(class='12u')
-                        input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
-                        label(for='contact-anon') Submit as Anonymous
-                    .row
-                      div(class='12u')
-                        input.style1(type='submit', value='Create New Rating')
+

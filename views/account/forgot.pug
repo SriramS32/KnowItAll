@@ -1,15 +1,26 @@
 extends ../layout
 
 block content
-  .col-sm-8.col-sm-offset-2
-    form(method='POST')
-      legend Forgot Password
-      input(type='hidden', name='_csrf', value=_csrf)
-      .form-group
-        p Enter your email address below and we will send you password reset instructions.
-        label.control-label(for='email') Email
-        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
-      .form-group
-        button.btn.btn-primary(type='submit')
-          i.fa.fa-key
-          | Reset Password
+  body.no-sidebar
+      #page-wrapper
+        // Main
+        .wrapper.style2
+          .title Forgot Password    
+          #main.container
+            // Content
+            #content
+              div(class'6u 12u(mobile)')
+                // Contact Form
+                section.box
+                  form(method='POST')
+                    input(type='hidden', name='_csrf', value=_csrf)
+                    .row(class='50%')
+                      .div(class='12u')
+                        p Enter your USC email address below and we will send you password reset instructions.
+                        label.control-label(for='email') Email
+                        input.form-control(type='email', name='email', id='email', placeholder='USC Email', autofocus, required)
+                    .row(class='50%')
+                      .div(class='12u')
+                        button.btn.btn-primary(type='submit', class='style1')
+                          i.fa.fa-key
+                          | Reset Password

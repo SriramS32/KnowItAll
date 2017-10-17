@@ -1768,7 +1768,7 @@
 
 	#intro > .style2 {
 		font-weight: 700;
-		color: #fff;
+		color: #e3746e;
 		border-radius: 0.35em;
 		box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.25);
 	}
@@ -1857,7 +1857,7 @@
 		/* Form */
 
 			form label {
-				margin: 0.25em 0 0.5em 0;
+				margin: 0.25em 0.25em 0.5em 0.25em;
 				display: inline-block;
 			}
 

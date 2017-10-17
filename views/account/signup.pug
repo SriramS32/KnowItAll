@@ -1,24 +1,41 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Sign up
-  form.form-horizontal(id='signup-form', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='text') USC Username
-      .col-sm-7
-        input.form-control(type='text', name='username', id='email', placeholder='Username', autofocus, required)
-    .form-group
-      label.col-sm-3.control-label(for='password') Password
-      .col-sm-7
-        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
-    .form-group
-      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
-      .col-sm-7
-        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
-    .form-group
-      .col-sm-offset-3.col-sm-7
-        button.btn.btn-success(type='submit')
-          i.fa.fa-user-plus
-          | Signup
+  body.no-sidebar
+    #page-wrapper
+      // Main
+      .wrapper.style2
+        .title Sign Up   
+        #main.container
+          // Content
+          #content
+            div(class'6u 12u(mobile)')
+              // Contact Form
+              section.box
+                form.form-horizontal(id='signup-form', method='POST')
+                  input(type='hidden', name='_csrf', value=_csrf)
+                  .row(class='50%')
+                    .div(class='12u')
+                      label.col-sm-3.control-label(for='username') Username
+                      .col-sm-7
+                        input.form-control(type='email', name='username', id='username', placeholder='USC ID', autofocus, required)
+                  .row(class='50%')
+                    .div(class='12u')
+                      label.col-sm-3.control-label(for='password') Password
+                      .col-sm-7
+                        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+                  .row(class='50%')
+                    .div(class='12u')
+                      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+                      .col-sm-7
+                        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
+                  .row(class='50%')
+                    .div(class='12u')
+                      .col-sm-offset-3.col-sm-7
+                        button.btn.btn-success(type='submit', class='style1')
+                          i.fa.fa-user-plus
+                          | Sign Up
+                  .row(class='50%')
+                    .div(class='12u')
+                      label(for='login') Already on Know it All?   
+                      a.btn.btn-link(href='/login', id='login') Log In

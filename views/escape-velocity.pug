@@ -16,10 +16,12 @@ block content
                       input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
                     li 
                       input.style3(type='submit', class='style3', value='Search')
-              .row(class='150%')
-                .div(class='12u')
-                  input#searchoption(type='checkbox', name='agreement', checked=False) 
-                  p Search by Tag
+              .row(class='50%')
+                div(class='12u')
+                  input#contact-anon(type='checkbox', name='agreement')
+                  label(for='contact-anon') Search by Tag
+      .wrapper.style2
+        .title Your Vote Counts
         #intro.container
           p.style1 Get the most out of your campus
           p.style2
@@ -32,52 +34,53 @@ block content
             strong hard.
             |  We're here to help. 
             | Search our database to see ratings, reviews and polls about all sorts of stuff on campus.
-            | Create an account to make your voice heard. It's time to 
+            | Sign up with your USC ID to make your voice heard. It's time to 
             strong KnowItAll!
           ul.actions
             li
-              a.button.style3.big(href='#') Create Account
-      // Highlights
-      .wrapper.style3
-        .title Trending
-        #highlights.container
-          .row(class='150%')
-            if polls.length > 0
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/poll0.jpg', alt='')
-                  h3
-                    a(href='#') #{polls[0].question}
-                  p
-                    | #{polls[0].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
-            if entities.length > 0
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/entity.jpg', alt='')
-                  h3
-                    a(href='#') #{entities[0].name}
-                  p
-                    | #{entities[0].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
-            if polls.length > 1
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/poll2.jpg', alt='')
-                  h3
-                    a(href='#') #{polls[1].question}
-                  p
-                    | #{polls[1].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
+              a.button.style3.big(href='/signup') Sign Up
+      if entities.length > 0 && polls.length > 0
+        // Highlights
+        .wrapper.style3
+          .title Trending
+          #highlights.container
+            .row(class='150%')
+              if polls.length > 0
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/poll0.jpg', alt='')
+                    h3
+                      a(href='#') #{polls[0].question}
+                    p
+                      | #{polls[0].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
+              if entities.length > 0
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/entity.jpg', alt='')
+                    h3
+                      a(href='#') #{entities[0].name}
+                    p
+                      | #{entities[0].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
+              if polls.length > 1
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/poll2.jpg', alt='')
+                    h3
+                      a(href='#') #{polls[1].question}
+                    p
+                      | #{polls[1].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
