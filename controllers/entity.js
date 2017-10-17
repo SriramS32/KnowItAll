@@ -102,6 +102,7 @@ exports.updateRating = function (entityId, user, rating, owner) {
         if (ratingEntry) {
             let ratingDiff = rating - ratingEntry.rating;
             ratingEntry.rating = rating;
+            ratingEntry.owner = owner;
             ratingEntry.save((err) => {
                 if (err) console.log('error updating rating');
             });
@@ -172,8 +173,8 @@ exports.entityPage = (req, res) => {
     let ratingPromise = Rating.find( { entity: entityId } ).exec();
     Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
         let [entity, comments, ratings] = results;
-        console.log(ratings);
-        console.log(comments);
+        // console.log(ratings);
+        // console.log(comments);
         res.render(`entity-page`, {
             entity: entity,
             comments: comments,
