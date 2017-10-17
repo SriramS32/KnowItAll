@@ -45,3 +45,9 @@ exports.entityPage = (req, res) => {
     title: 'Entity Page'
   });
 };
+
+exports.profilePage = (req, res) => {
+  res.render('profile-page', {
+    title: 'Profile Page'
+  });
+};

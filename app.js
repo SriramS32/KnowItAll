@@ -127,7 +127,7 @@ app.get('/landing', homeController.landing);
 app.get('/new-entry', homeController.newEntryPage);
 app.get('/entity-page', homeController.entityPage);
 app.get('/escape-velocity', homeController.escapeVelocity);
-
+app.get('/profile-page', homeController.profilePage)
 
 // app.get('/results-page', homeController.resultsPage);
 
