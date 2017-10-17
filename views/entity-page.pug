@@ -39,25 +39,27 @@ block content
                         .row
                         div(class='12u')
                             input.style1(type='submit', value='Create New Rating')
-              each val in ratings
-                div(class='4u 12u(mobile)')
-                  section.box
-                    header
-                      .row
-                        h1 #{val.rating}/10
-                        h2 #{val.updatedAt}
-                    p 
-                      | #{val.owner}
-              each val in comments
-                div(class='4u 12u(mobile)')
-                  section.box
-                    header
-                      .row
-                        h2 #{val.updatedAt}
-                    p
-                      | #{val.body}
-                    p 
-                      | #{val.owner}
+          if ratings && ratings.length > 0
+            each val in ratings
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
+                    .row
+                      h1 #{val.rating}/10
+                      h2 #{val.updatedAt}
+                  p 
+                    | #{val.owner}
+          if comments && comments.length > 0
+            each val in comments
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
+                    .row
+                      h2 #{val.updatedAt}
+                  p
+                    | #{val.body}
+                  p 
+                    | #{val.owner}
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
