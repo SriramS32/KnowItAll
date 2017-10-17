@@ -41,7 +41,7 @@ exports.postLogin = (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) { return next(err); }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect('/escape-velocity');
+      res.redirect('/landing');
     });
   })(req, res, next);
 };

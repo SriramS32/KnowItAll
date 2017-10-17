@@ -126,7 +126,6 @@ app.get('/', homeController.index);
 app.get('/landing', homeController.landing);
 app.get('/new-entry', homeController.newEntryPage);
 app.get('/entity/:entityId', entityController.entityPage);
-app.get('/escape-velocity', homeController.escapeVelocity);
 app.get('/profile-page', homeController.profilePage)
 app.get('/poll/:pollId', pollController.pollPage);
 
