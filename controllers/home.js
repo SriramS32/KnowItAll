@@ -45,3 +45,9 @@ exports.entityPage = (req, res) => {
     title: 'Entity Page'
   });
 };
+
+exports.pollPage = (req, res) => {
+  res.render('poll-page', {
+    title: 'Poll Page'
+  });
+};

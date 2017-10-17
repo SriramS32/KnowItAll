@@ -640,7 +640,6 @@
 	@media screen and (min-width: 737px) and (max-width: 1200px) {
 
 		.row > * {
-			padding: 35px 0 0 35px;
 		}
 
 		.row {
@@ -1224,7 +1223,6 @@
 		min-height: 20px;
 	}
 
-
 		form input[type="text"]:focus,
 		form input[type="number"]:focus,
 		form input[type="email"]:focus,
@@ -1307,6 +1305,10 @@
 		}
 
 /* Search */
+
+	#radiobutton {
+		text-align: left;
+	}
 	
 
 	#searchwrapper {
@@ -1969,7 +1971,7 @@
 				margin: 0 0 0.5em 0;
 				font-size: 1em;
 				font-weight: 600;
-				letter-spacing: 0.05em;
+				text-align: left;
 			}
 
 			.box.post-excerpt .image.left {
@@ -2730,3 +2732,88 @@
 						}
 
 	}
+
+.chart {
+	width: auto;
+	height: 600px;
+	border-bottom: 1px solid;
+}
+
+#chartID {
+	align-self: right;
+}
+
+/* --------------------------
+ Option & Results Styles
+-------------------------- */
+.option {
+	width: 100%;
+	float: left;
+	clear: both;
+	text-align: left;
+}
+.option-label {
+	left: 0;
+	margin: 38px 20px 38px 0;
+	font-size: 44px;
+	text-align: right;
+}
+.results {
+	height: 60px;
+	width: 100%;
+	margin: 5px 0 0;	
+}
+.results .on {
+	height: 60px;
+	opacity: 0.75;
+	width: 0;
+}
+.results .on .count {
+	line-height: 60px;
+	font-size: 30px;
+	vertical-align: middle;
+	text-align: left;
+	position: absolute;
+	display: inline-block;
+}
+
+
+#option-1 .results .on {
+  width: 20%;
+}
+
+#option-2 .results .on {
+  width: 30%;
+}
+
+#option-3 .results .on {
+  width: 40%;
+}
+
+#option-4 .results .on {
+  width: 10%;
+}
+
+body {
+  background: rgba(131, 187, 241, 0.25);
+}
+
+#poweredby, .title {
+  color: #318ce7;
+}
+
+.option-label, .results .on .count {
+  color: #0a0a0a;
+}
+
+.chart {
+  border-color: #83bbf1;
+}
+
+.results {
+  background-color: rgba(228, 117, 110, 0.5);
+}
+
+.results .on {
+  background-color: #e5756e;
+}
