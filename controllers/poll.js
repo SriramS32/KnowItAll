@@ -10,13 +10,14 @@ exports.postPoll = function(req, res) {
                         .filter((e) => {
                             return e.length > 0;
     });
-    let opt = req.body.anon;
-    pollData.owner = (typeof opt !== 'undefined' && opt) ? '' : req.user.name;
+    pollData.owner = req.body.anon ? '' : req.user.name;
+    pollData.ownerId = req.user._id;
     pollData.createdOn = new Date();
     pollData.closedAfter = new Date(pollData.createdOn.getTime() + 1000*60*60*24*req.body.duration);
     pollData.tags = req.body.tags.split(',').map(e => e.trim());
+    console.log(pollData);
     exports.insertPoll(pollData).then((pollId) => {
-        res.redirect('/poll/${pollId}');
+        res.redirect(`/poll/${pollId}`);
     }, (err) => {
         console.log('error: ' +  err);
         res.redirect('/error');
@@ -173,4 +174,17 @@ exports.fetchPollCounts = function(poll_ID){
  */
 exports.buildPollLink = function(poll_ID){
     return 'http://localhost:8080/poll/'.concat(poll_ID);
+};
+
+exports.pollPage = (req, res) => {
+    let pollId = req.params.pollId;
+    let pollPromise = Poll.findOne( {_id: pollId} ).exec();
+    let pollVotePromise = PollVote.find( {poll: pollId} ).exec();
+    Promise.all([pollPromise, pollVotePromise]).then((results) => {
+        res.render('poll-page', {
+            title: 'Poll Page'
+        });
+    }, (err) => {
+        res.redirect('/error');
+    });
 };
