@@ -1,56 +1,26 @@
-doctype html
-//
-  Escape Velocity by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-html
-  head
-    title Escape Velocity by HTML5 UP
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    //if lte IE 8
-      script(src='js/ie/html5shiv.js')
-    link(rel='stylesheet', href='css/ev.css')
-    //if lte IE 8
-      link(rel='stylesheet', href='css/ie8.css')
+extends layout
 
+block content
   body.homepage
     #page-wrapper
-      // Header
-      #header-wrapper.wrapper
-        #header
-          h1#searchwrapper
-            form.form-wrapper.cf(method='post', action='/results-page')
-              input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
-              button#searchbutton(type='submit') Search
-              input#searchoption(type='checkbox', name='agreement', checked=False) 
-              p Search by Tag
-          // Nav
-          nav#nav
-            ul
-              li.current
-                a(href='#') Home
-              li
-                a(href='#') Create
-              li
-                a(href='#') Categories
-                ul
-                  li
-                    a(href='#') Food
-                  li
-                    a(href='#') Classes
-                  li
-                    a(href='#') Activities
-                  li
-                    a(href='#') Clubs
-                  li
-                    a(href='#') Residences
-              li
-                a(href='no-sidebar.html') Login/Logout
       // Intro
       #intro-wrapper.wrapper.style1
-        .title Getting Started
-        section#intro.container
+        .title Know It All      
+        #intro.container
+          #content
+            form.form-wrapper.cf(method='post', action='/results-page')
+              .row(class='150%')
+                .div(class='12u')
+                  ul.actions
+                    li
+                      input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
+                    li 
+                      input.style3(type='submit', class='style3', value='Search')
+              .row(class='150%')
+                .div(class='12u')
+                  input#searchoption(type='checkbox', name='agreement', checked=False) 
+                  p Search by Tag
+        #intro.container
           p.style1 Get the most out of your campus
           p.style2
             | Rate, Poll, and Review everything at USC
@@ -72,108 +42,42 @@ html
         .title Trending
         #highlights.container
           .row(class='150%')
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/poll0.jpg', alt='')
-                h3
-                  a(href='#') #{polls[0].question}
-                p
-                  | #{polls[0].tags.join(", ")}
-                ul.actions
-                  li
-                    a.button.style1(href='#') More Info
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/entity.jpg', alt='')
-                h3
-                  a(href='#') #{entities[0].name}
-                p
-                  | #{entities[0].tags.join(", ")}
-                ul.actions
-                  li
-                    a.button.style1(href='#') More Info
-            div(class='4u 12u(mobile)')
-              section.highlight
-                a.image.featured(href='#')
-                  img(src='images/poll2.jpg', alt='')
-                h3
-                  a(href='#') #{polls[1].question}
-                p
-                  | #{polls[1].tags.join(", ")}
-                ul.actions
-                  li
-                    a.button.style1(href='#') More Info
-      // Footer
-      #footer-wrapper.wrapper
-        .title The Rest Of It
-        #footer.container
-          header.style1
-            h2 Questions? Comments? Concerns?
-            p
-              | Contact us for any issues or just to say hi!
-          hr
-          .row(class='150%')
-            div(class='6u 12u(mobile)')
-              // Contact Form
-              section
-                form(method='post', action='#')
-                  .row(class='50%')
-                    div(class='6u 12u(mobile)')
-                      input#contact-name(type='text', name='name', placeholder='Name')
-                    div(class='6u 12u(mobile)')
-                      input#contact-email(type='text', name='email', placeholder='Email')
-                  .row(class='50%')
-                    div(class='12u')
-                      textarea#contact-message(name='message', placeholder='Message', rows='4')
-                  .row
-                    div(class='12u')
-                      ul.actions
-                        li
-                          input.style1(type='submit', value='Send')
-                        li
-                          input.style2(type='reset', value='Reset')
-            div(class='6u 12u(mobile)')
-              // Contact
-              section.feature-list.small
-                .row
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-home Mailing Address
-                      p
-                        | Untitled Corporation
-                        br
-                        | 														1234 Somewhere Rd #987
-                        br
-                        | 														Nashville, TN 00000-0000
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-comment Social
-                      p
-                        a(href='#') @untitled-corp
-                        br
-                        a(href='#') linkedin.com/untitled
-                        br
-                        a(href='#') facebook.com/untitled
-                .row
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-envelope Email
-                      p
-                        a(href='#') info@untitled.tld
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-phone Phone
-                      p
-                        | (000) 555-0000
-          hr
-        #copyright
-          ul
-            li © Untitled
-            li
-              | Design: 
-              a(href='http://html5up.net') HTML5 UP
+            if polls.length > 0
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/poll0.jpg', alt='')
+                  h3
+                    a(href='#') #{polls[0].question}
+                  p
+                    | #{polls[0].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') More Info
+            if entities.length > 0
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/entity.jpg', alt='')
+                  h3
+                    a(href='#') #{entities[0].name}
+                  p
+                    | #{entities[0].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') More Info
+            if polls.length > 1
+              div(class='4u 12u(mobile)')
+                section.highlight
+                  a.image.featured(href='#')
+                    img(src='images/poll2.jpg', alt='')
+                  h3
+                    a(href='#') #{polls[1].question}
+                  p
+                    | #{polls[1].tags.join(", ")}
+                  ul.actions
+                    li
+                      a.button.style1(href='#') More Info
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
