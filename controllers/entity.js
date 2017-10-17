@@ -99,10 +99,6 @@ exports.updateRating = function (entityId, user, rating, owner) {
     });
 };
 
-exports.fetchRating = function(entity) {
-    return Entity.findOne({_id: entity}).exec();
-}
-
 exports.insertComment = function(commentData, entity) {
     const comment = new Comment({
         body: commentData.comment,

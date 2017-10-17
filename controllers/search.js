@@ -74,6 +74,10 @@ exports.fetchTrendingEntities = function(limit) {
     return Entity.find().sort({_id: -1}).limit(limit).exec();    
 }
 
+exports.fetchEntity = function(entity) {
+    return Entity.findOne({_id: entity}).exec();
+}
+
 exports.getRecentActivity = function(user) {
     let ratingPromise = Rating.find( {user: user} ).exec();
     let commentPromise = Comment.find( {ownerId: user} ).exec();
