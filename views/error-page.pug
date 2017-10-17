@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  body
+    #page-wrapper
+      // Main
+      .wrapper.style2
+        #main.container
+          // Content
+          #content
+            h1.title Error
+            article.box.post
+              section#intro.container
+                p.style1 Uh oh, something went wrong! 
+                p.style3
+                  |Don't hate us - we're trying our best and we don't always KnowItAll ;) Contact our team for help.
+
+
+
+    // Scripts
+    script(src='js/jquery.min.js')
+    script(src='js/jquery.dropotron.min.js')
+    script(src='js/skel.min.js')
+    script(src='js/skel-viewport.min.js')
+    script(src='js/util.js')
+    //if lte IE 8
+      script(src='js/ie/respond.min.js')
+    script(src='js/main.js')
