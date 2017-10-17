@@ -169,6 +169,23 @@ exports.fetchPollCounts = function(poll_ID){
 //     // });
 // }
 
+function aggregateVotes(voteDocs, numOptions) {
+    let pollCounts = new Array(numOptions);
+    pollCounts.fill(0);
+    voteDocs.forEach(function(voteDoc) {
+        pollCounts[voteDoc.choice] += 1
+    });
+    return pollCounts;
+}
+
+function percentages(counts) {
+    let percentages = new Array(counts.length);
+    percentages.fill(0);
+    let totalVotes = counts.reduce((total, vote) => total + vote);
+    if (totalVotes == 0) return percentages;
+    return percentages.map(e => (100.0*e/totalVotes).toFixed());
+}
+
 /**
  * To be implemented further
  */
@@ -181,8 +198,13 @@ exports.pollPage = (req, res) => {
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
     let pollVotePromise = PollVote.find( {poll: pollId} ).exec();
     Promise.all([pollPromise, pollVotePromise]).then((results) => {
+        let [poll, votes] = results;
+        let counts = aggregateVotes(votes, poll.options.length)
         res.render('poll-page', {
-            title: 'Poll Page'
+            title: 'Poll Page',
+            poll: poll,
+            votes: counts,
+            percentages: percentages(counts)
         });
     }, (err) => {
         res.redirect('/error');

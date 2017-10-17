@@ -8,43 +8,47 @@ block content
         #main.container
           // Content
           #content
-            h1.title Poll Title
+            h1.title Poll
             article.box.post
               header.style1
                 h2
-                  | Poll Name
+                  | #{poll.question}
                 p
-                  | tags, tags, tags, tags, tags, tags, tags 
+                  | #{poll.tags.join(', ')} 
             .row(class='150%')
               div(class='4u 12u(mobile)')
                 section.box
                   header
                     .row
                       h2 Submit Your Answer
-                  form(method='post', action='#')
+                  form(method='post', action='')
                     .row(class='50%')
                       div(class='12u')
                         .container
-                        .row
-                          #radiobutton
-                           label
-                             input#Radios1(type='radio', name='survey', value='1')
-                             |     Option 1
-                        .row
-                          #radiobutton
-                           label
-                             input#Radios2(type='radio', name='survey', value='2')
-                             |     Option 2
-                        .row
-                          #radiobutton
-                           label
-                             input#Radios3(type='radio', name='survey', value='3')
-                             |      Option 3
-                        .row
-                          #radiobutton
-                           label
-                             input#Radios3(type='radio', name='survey', value='4')
-                             |      Option 4
+                        if poll.options.length > 0
+                          .row
+                            #radiobutton
+                            label
+                              input#Radios1(type='radio', name='survey', value='1')
+                              |     #{poll.options[0]}
+                        if poll.options.length > 1
+                          .row
+                            #radiobutton
+                            label
+                              input#Radios2(type='radio', name='survey', value='2')
+                              |     #{poll.options[1]}
+                        if poll.options.length > 2
+                          .row
+                            #radiobutton
+                            label
+                              input#Radios3(type='radio', name='survey', value='3')
+                              |      #{poll.options[2]}
+                        if poll.options.length > 3
+                          .row
+                            #radiobutton
+                            label
+                              input#Radios3(type='radio', name='survey', value='4')
+                              |      #{poll.options[3]}
                         .row
                            div(class='12u')
                         input.style1(type='submit', value='Submit')
@@ -52,39 +56,43 @@ block content
                 section.box
                   #chartID
                     .chart
-                      .row
-                        #option-1.option
-                          h3.option-label Option 1
-                          .results
-                            .on
-                              span.count 20%
-                      .row 
-                        #option-2.option
-                          h3.option-label Option 2
-                          .results
-                            .on
-                              span.count 30%
-                      .row  
-                        #option-3.option
-                          h3.option-label Option 3
-                          .results
-                            .on
-                              span.count 40%
-                      .row  
-                        #option-4.option
-                          h3.option-label Option 4
-                          .results
-                            .on
-                              span.count 10%
+                      if poll.options.length > 0
+                        .row
+                          #option-1.option
+                            h3.option-label #{poll.options[0]}
+                            .results
+                              .on
+                                span.count #{percentages[0]}%
+                      if poll.options.length > 1
+                        .row 
+                          #option-2.option
+                            h3.option-label #{poll.options[1]}
+                            .results
+                              .on
+                                span.count #{percentages[1]}%
+                      if poll.options.length > 2
+                        .row  
+                          #option-3.option
+                            h3.option-label #{poll.options[2]}
+                            .results
+                              .on
+                                span.count #{percentages[2]}%
+                      if poll.options.length > 3
+                        .row  
+                          #option-4.option
+                            h3.option-label #{poll.options[3]}
+                            .results
+                              .on
+                                span.count #{percentages[3]}%
 
 
 
     // Scripts
-    script(src='js/jquery.min.js')
-    script(src='js/jquery.dropotron.min.js')
-    script(src='js/skel.min.js')
-    script(src='js/skel-viewport.min.js')
-    script(src='js/util.js')
+    script(src='/js/jquery.min.js')
+    script(src='/js/jquery.dropotron.min.js')
+    script(src='/js/skel.min.js')
+    script(src='/js/skel-viewport.min.js')
+    script(src='/js/util.js')
     //if lte IE 8
-      script(src='js/ie/respond.min.js')
-    script(src='js/main.js')
+      script(src='/js/ie/respond.min.js')
+    script(src='/js/main.js')
