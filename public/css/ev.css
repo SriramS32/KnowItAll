@@ -168,7 +168,6 @@
 	.chart {
 		width: auto;
 		height: 600px;
-		border-bottom: 1px solid;
 	}
 
 	#chartID {
@@ -209,23 +208,6 @@
 		display: inline-block;
 	}
 
-
-	#option-1 .results .on {
-	  width: 20%;
-	}
-
-	#option-2 .results .on {
-	  width: 30%;
-	}
-
-	#option-3 .results .on {
-	  width: 40%;
-	}
-
-	#option-4 .results .on {
-	  width: 10%;
-	}
-
 	body {
 	  background: rgba(131, 187, 241, 0.25);
 	}
@@ -236,6 +218,7 @@
 
 	.option-label, .results .on .count {
 	  color: #0a0a0a;
+	  padding-left: 15px;
 	}
 
 	.chart {
