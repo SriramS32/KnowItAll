@@ -15,7 +15,7 @@ block content
                 section.box
                   header
                     h1 Poll 
-                  form(method='post', action='#')
+                  form(method='post', action='/poll-submit')
                     .row(class='50%')
                       div(class='12u')
                         textarea#contact-question(type='text', name='question', placeholder='Question', rows='2')
@@ -36,7 +36,7 @@ block content
                         input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
                     .row(class='50%')
                       div(class='12u')
-                        input#contact-email(type='number', name='tags', placeholder='Duration (in days)', min='0')
+                        input#contact-email(type='number', name='duration', placeholder='Duration (in days)', min='1', step='1')
                     .row(class='50%')
                       div(class='12u')
                         input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')

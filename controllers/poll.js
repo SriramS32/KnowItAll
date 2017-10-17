@@ -3,8 +3,24 @@ const Poll = Schema.Poll
 const PollVote = Schema.PollVote
 
 
-exports.postPoll = function(req, res){
-    
+exports.postPoll = function(req, res) {
+    let pollData = {};
+    pollData.question = req.body.question;
+    pollData.options = [req.body.option1, req.body.option2, req.body.option3, req.body.option4]
+                        .filter((e) => {
+                            return e.length > 0;
+    });
+    let opt = req.body.anon;
+    pollData.owner = (typeof opt !== 'undefined' && opt) ? '' : req.user.name;
+    pollData.createdOn = new Date();
+    pollData.closedAfter = new Date(pollData.createdOn.getTime() + 1000*60*60*24*req.body.duration);
+    pollData.tags = req.body.tags.split(',').map(e => e.trim());
+    exports.insertPoll(pollData).then((pollId) => {
+        res.redirect('/poll/${pollId}');
+    }, (err) => {
+        console.log('error: ' +  err);
+        res.redirect('/error');
+    })
 }
 
 
@@ -20,10 +36,11 @@ exports.insertPoll = function(pollData){
         closedAfter: pollData.closedAfter,
         tags: pollData.tags
     });
-    poll.save((err) => {
-        if (err) console.log("Error in creating poll, ", err);
+    return poll.save().then((poll) => {
+        return Promise.resolve(poll._id);
+    }, (err) => {
+        return Promise.reject('error creating poll');
     });
-    return poll._id
 };
 
 /**

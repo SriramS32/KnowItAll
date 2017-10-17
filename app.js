@@ -134,7 +134,7 @@ app.get('/profile-page', homeController.profilePage)
 // app.post('/results-page/', searchController.freeTextSearch);
 app.post('/results-page/', searchController.search);
 app.post('/entity-submit', entityController.postEntity);
-app.post('/poll-submit', pollController.insertPoll);
+app.post('/poll-submit', pollController.postPoll);
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
@@ -151,6 +151,7 @@ app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+app.get('/error', homeController.error);
 
 
 /**
