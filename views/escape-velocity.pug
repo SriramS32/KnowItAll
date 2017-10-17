@@ -1,56 +1,28 @@
-doctype html
-//
-  Escape Velocity by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-html
-  head
-    title Escape Velocity by HTML5 UP
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    //if lte IE 8
-      script(src='js/ie/html5shiv.js')
-    link(rel='stylesheet', href='css/ev.css')
-    //if lte IE 8
-      link(rel='stylesheet', href='css/ie8.css')
+extends layout
 
+block content
   body.homepage
     #page-wrapper
-      // Header
-      #header-wrapper.wrapper
-        #header
-          h1#searchwrapper
-            form.form-wrapper.cf(method='post', action='/results-page')
-              input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
-              button#searchbutton(type='submit') Search
-              input#searchoption(type='checkbox', name='agreement', checked=False) 
-              p Search by Tag
-          // Nav
-          nav#nav
-            ul
-              li.current
-                a(href='#') Home
-              li
-                a(href='#') Create
-              li
-                a(href='#') Categories
-                ul
-                  li
-                    a(href='#') Food
-                  li
-                    a(href='#') Classes
-                  li
-                    a(href='#') Activities
-                  li
-                    a(href='#') Clubs
-                  li
-                    a(href='#') Residences
-              li
-                a(href='no-sidebar.html') Login/Logout
       // Intro
       #intro-wrapper.wrapper.style1
-        .title Getting Started
-        section#intro.container
+        .title Know It All      
+        #intro.container
+          #content
+            form.form-wrapper.cf(method='post', action='/results-page')
+              .row(class='150%')
+                .div(class='12u')
+                  ul.actions
+                    li
+                      input#searchinput(type='text', placeholder='Search KnowItAll...', required='', name='query')
+                    li 
+                      input.style3(type='submit', class='style3', value='Search')
+              .row(class='50%')
+                div(class='12u')
+                  input#contact-anon(type='checkbox', name='agreement')
+                  label(for='contact-anon') Search by Tag
+      .wrapper.style2
+        .title Your Vote Counts
+        #intro.container
           p.style1 Get the most out of your campus
           p.style2
             | Rate, Poll, and Review everything at USC
@@ -62,10 +34,11 @@ html
             strong hard.
             |  We're here to help. 
             | Search our database to see ratings, reviews and polls about all sorts of stuff on campus.
-            | Create an account to make your voice heard. It's time to 
+            | Sign up with your USC ID to make your voice heard. It's time to 
             strong KnowItAll!
           ul.actions
             li
+<<<<<<< HEAD
               a.button.style3.big(href='#') Create Account
       // Highlights
       .wrapper.style3
@@ -177,6 +150,51 @@ html
             li
               | Design: 
               a(href='http://html5up.net') HTML5 UP
+=======
+              a.button.style3.big(href='/signup') Sign Up
+      if entities.length > 0 && polls.length > 0
+        // Highlights
+        .wrapper.style3
+          .title Trending
+          #highlights.container
+            .row(class='150%')
+              if polls.length > 0
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/poll0.jpg', alt='')
+                    h3
+                      a(href='#') #{polls[0].question}
+                    p
+                      | #{polls[0].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
+              if entities.length > 0
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/entity.jpg', alt='')
+                    h3
+                      a(href='#') #{entities[0].name}
+                    p
+                      | #{entities[0].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
+              if polls.length > 1
+                div(class='4u 12u(mobile)')
+                  section.highlight
+                    a.image.featured(href='#')
+                      img(src='images/poll2.jpg', alt='')
+                    h3
+                      a(href='#') #{polls[1].question}
+                    p
+                      | #{polls[1].tags.join(", ")}
+                    ul.actions
+                      li
+                        a.button.style1(href='#') More Info
+>>>>>>> origin/UI-home
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
