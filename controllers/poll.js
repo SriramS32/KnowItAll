@@ -24,6 +24,14 @@ exports.postPoll = function(req, res) {
     })
 }
 
+exports.pollVoteSubmit = (req, res) => {
+    let pollId = req.body.pollId;
+    let userId = req.user._id;
+    let pollChoice = parseInt(req.body.survey);
+    exports.updatePollVotes(pollId, userId, pollChoice).then((success) => {
+        res.redirect(`/poll/${pollId}`);
+    })
+}
 
 /**
  * Returns id of poll created
@@ -55,6 +63,32 @@ exports.insertPoll = function(pollData){
  */
 exports.updatePollVotes = function(poll_ID, userID, userVote){
     console.log('poll id: ' + poll_ID);
+    return PollVote.findOne({user: userID, poll: poll_ID}).exec().then((pollEntry) => {
+        if (pollEntry) {
+            // Updating poll choice
+            console.log('Updating poll choice');
+            pollEntry.choice = userVote;
+            pollEntry.save((err) => {
+                if (err) console.log('error updating poll choice to ', userVote);
+            });
+        }
+        else {
+            const pollVote = new PollVote({
+                user: userID,
+                poll: poll_ID,
+                choice: userVote
+            });
+            pollVote.save((err) => {
+                if (err) console.log("Error in making poll choice, ", err);
+            });
+            console.log('Creating new poll vote with id ', pollVote._id);
+        }
+        return Promise.resolve(1);
+    }, (err) => {
+        console.log('error checking for existing: ' + err);
+        return Promise.reject('error checking for existing: ' + err);
+    })
+    /*
     PollVote.findOne({user: userID, poll: poll_ID}, (err, pollEntry) => {
         if (err) console.log('error checking for existing: ' + err);
         else if (pollEntry) {
@@ -77,6 +111,7 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
             console.log('Creating new poll vote with id ', pollVote._id);
         }
     });
+    */
 };
 
 /**
@@ -183,7 +218,8 @@ function percentages(counts) {
     percentages.fill(0);
     let totalVotes = counts.reduce((total, vote) => total + vote);
     if (totalVotes == 0) return percentages;
-    return percentages.map(e => (100.0*e/totalVotes).toFixed());
+    //console.log(percentages.map(e => (100.0*e/totalVotes).toFixed()));
+    return counts.map(e => (100.0*e/totalVotes).toFixed());
 }
 
 /**

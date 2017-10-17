@@ -130,14 +130,11 @@ app.get('/escape-velocity', homeController.escapeVelocity);
 app.get('/profile-page', homeController.profilePage)
 app.get('/poll/:pollId', pollController.pollPage);
 
-
-// app.get('/results-page', homeController.resultsPage);
-
-// app.post('/results-page/', searchController.freeTextSearch);
 app.post('/results-page/', searchController.search);
 app.post('/entity-submit', entityController.postEntity);
 app.post('/poll-submit', pollController.postPoll);
 app.post('/rating-submit', entityController.newRating);
+app.post('/pollvote-submit', pollController.pollVoteSubmit);
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);

@@ -21,7 +21,7 @@ block content
                   header
                     .row
                       h2 Submit Your Answer
-                  form(method='post', action='pollvote-submit')
+                  form(method='post', action='/pollvote-submit')
                     .row(class='50%')
                       div(class='12u')
                         .container
@@ -29,25 +29,25 @@ block content
                           .row
                             #radiobutton
                             label
-                              input#Radios1(type='radio', name='survey', value='1')
+                              input#Radios1(type='radio', name='survey', value='0')
                               |     #{poll.options[0]}
                         if poll.options.length > 1
                           .row
                             #radiobutton
                             label
-                              input#Radios2(type='radio', name='survey', value='2')
+                              input#Radios2(type='radio', name='survey', value='1')
                               |     #{poll.options[1]}
                         if poll.options.length > 2
                           .row
                             #radiobutton
                             label
-                              input#Radios3(type='radio', name='survey', value='3')
+                              input#Radios3(type='radio', name='survey', value='2')
                               |      #{poll.options[2]}
                         if poll.options.length > 3
                           .row
                             #radiobutton
                             label
-                              input#Radios3(type='radio', name='survey', value='4')
+                              input#Radios3(type='radio', name='survey', value='3')
                               |      #{poll.options[3]}
                         .row
                            div(class='12u')
