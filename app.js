@@ -133,7 +133,7 @@ app.get('/escape-velocity', homeController.escapeVelocity);
 
 // app.post('/results-page/', searchController.freeTextSearch);
 app.post('/results-page/', searchController.search);
-app.post('/entity-submit', entityController.insertEnt);
+app.post('/entity-submit', entityController.postEntity);
 app.post('/poll-submit', pollController.insertPoll);
 
 app.get('/login', userController.getLogin);

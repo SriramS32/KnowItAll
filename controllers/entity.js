@@ -3,7 +3,7 @@ const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
 
-exports.insertEnt = function(req, res){
+exports.postEntity = function(req, res){
     let newEntity = new Object();
     newEntity.name = req.body.name;
     newEntity.tags = req.body.tags.split(', ');
