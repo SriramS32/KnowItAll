@@ -1,3 +1,7 @@
+const Schema = require('../models/Schema');
+const Entity = Schema.Entity;
+const Rating = Schema.Rating;
+const Comment = Schema.Comment;
 /**
  * GET /
  * Home page.
@@ -41,13 +45,29 @@ exports.newEntryPage = (req, res) => {
 };
 
 exports.entityPage = (req, res) => {
-  searchController.fetchEntity(req.params.entityId).then((entity) => {
-    res.render('entity-page', {
-      title: 'Entity Page',
-      entity: entity
-    });
-  }, (err) => {
+  // searchController.fetchEntity(req.params.entityId).then((entity) => {
+  //   res.render('entity-page', {
+  //     title: 'Entity Page',
+  //     entity: entity,
+
+  //   });
+  // }, (err) => {
     
-  })
+  // })
+  let entityId = req.params.entityId;
+  let entityPromise = Entity.findOne( { _id: entityId }).exec();
+  let commentPromise = Comment.find( { entity: entityId } ).exec();
+  let ratingPromise = Rating.find( { entity: entityId } ).exec();
+  Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
+      let [entity, comments, ratings] = results;
+      console.log(ratings);
+      console.log(comments);
+      res.render(`entity-page`, {
+          entity: entity,
+          comments: comments,
+          ratings: ratings,
+          user: req.user
+      });
+  });
   
 };

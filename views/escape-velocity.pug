@@ -38,119 +38,6 @@ block content
             strong KnowItAll!
           ul.actions
             li
-<<<<<<< HEAD
-              a.button.style3.big(href='#') Create Account
-      // Highlights
-      .wrapper.style3
-        .title Trending
-        #highlights.container
-          .row(class='150%')
-            if polls.length > 0
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/poll0.jpg', alt='')
-                  h3
-                    a(href='#') #{polls[0].question}
-                  p
-                    | #{polls[0].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
-            if entities.length > 0
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/entity.jpg', alt='')
-                  h3
-                    a(href='#') #{entities[0].name}
-                  p
-                    | #{entities[0].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
-            if polls.length > 1
-              div(class='4u 12u(mobile)')
-                section.highlight
-                  a.image.featured(href='#')
-                    img(src='images/poll2.jpg', alt='')
-                  h3
-                    a(href='#') #{polls[1].question}
-                  p
-                    | #{polls[1].tags.join(", ")}
-                  ul.actions
-                    li
-                      a.button.style1(href='#') More Info
-      // Footer
-      #footer-wrapper.wrapper
-        .title The Rest Of It
-        #footer.container
-          header.style1
-            h2 Questions? Comments? Concerns?
-            p
-              | Contact us for any issues or just to say hi!
-          hr
-          .row(class='150%')
-            div(class='6u 12u(mobile)')
-              // Contact Form
-              section
-                form(method='post', action='#')
-                  .row(class='50%')
-                    div(class='6u 12u(mobile)')
-                      input#contact-name(type='text', name='name', placeholder='Name')
-                    div(class='6u 12u(mobile)')
-                      input#contact-email(type='text', name='email', placeholder='Email')
-                  .row(class='50%')
-                    div(class='12u')
-                      textarea#contact-message(name='message', placeholder='Message', rows='4')
-                  .row
-                    div(class='12u')
-                      ul.actions
-                        li
-                          input.style1(type='submit', value='Send')
-                        li
-                          input.style2(type='reset', value='Reset')
-            div(class='6u 12u(mobile)')
-              // Contact
-              section.feature-list.small
-                .row
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-home Mailing Address
-                      p
-                        | Untitled Corporation
-                        br
-                        | 														1234 Somewhere Rd #987
-                        br
-                        | 														Nashville, TN 00000-0000
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-comment Social
-                      p
-                        a(href='#') @untitled-corp
-                        br
-                        a(href='#') linkedin.com/untitled
-                        br
-                        a(href='#') facebook.com/untitled
-                .row
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-envelope Email
-                      p
-                        a(href='#') info@untitled.tld
-                  div(class='6u 12u(mobile)')
-                    section
-                      h3.icon.fa-phone Phone
-                      p
-                        | (000) 555-0000
-          hr
-        #copyright
-          ul
-            li © Untitled
-            li
-              | Design: 
-              a(href='http://html5up.net') HTML5 UP
-=======
               a.button.style3.big(href='/signup') Sign Up
       if entities.length > 0 && polls.length > 0
         // Highlights
@@ -194,7 +81,6 @@ block content
                     ul.actions
                       li
                         a.button.style1(href='#') More Info
->>>>>>> origin/UI-home
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')

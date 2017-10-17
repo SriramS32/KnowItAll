@@ -20,19 +20,19 @@ exports.insertEnt = function(req, res){
 
     exports.insertEntity(newEntity, req.user._id).then((entityId) => {
         if (entityId) {// Don't remove, inserts Entity
-            console.log("Starting to retrieve info to render entity page");
-            let entityPromise = Entity.findOne( { _id: entityId }).exec();
-            let commentPromise = Comment.find( { _id: entityId } ).exec();
-            let ratingPromise = Rating.find( { entity: entityId } ).exec();
-            Promise.all([entityPromise, commentPromise]).then((results) => {
-                let [entity, comments, ratings] = results;
-                res.render('entity-page', {
-                    entity: entity,
-                    comments: comments,
-                    ratings: ratings,
-                    user: req.user
-                });
-            });
+            res.redirect(`entity/${entityId}`);
+            // let entityPromise = Entity.findOne( { _id: entityId }).exec();
+            // let commentPromise = Comment.find( { _id: entityId } ).exec();
+            // let ratingPromise = Rating.find( { entity: entityId } ).exec();
+            // Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
+            //     let [entity, comments, ratings] = results;
+            //     res.redirect('entity/${entity._id}', {
+            //         entity: entity,
+            //         comments: comments,
+            //         ratings: ratings,
+            //         user: req.user
+            //     });
+            // });
         }
     }, (err) => {
         console.log('error inserting entity: ', err);

@@ -16,50 +16,49 @@ block content
                 p
                   | Tags: #{entity.tags.join(", ")}
             .row(class='150%')
-              div(class='4u 12u(mobile)')
-                if user
-                    section.box
+              if user
+                div(class='4u 12u(mobile)')
+                  section.box
                     header
                         .row
                         h2 Submit your own rating
                     form(method='post', action='/new-rating')
                         .row(class='50%')
-                        div(class='12u')
+                          div(class='12u')
                             input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
                         .row(class='50%')
-                        div(class='12u')
+                          div(class='12u')
                             textarea#contact-question(type='text', name='comment', placeholder='Comments', rows='2')
                         .row(class='50%')
-                        div(class='12u')
+                          div(class='12u')
                             input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
                         .row(class='50%')
-                        div(class='12u')
+                          div(class='12u')
                             input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
                             label(for='contact-anon') Submit as Anonymous
                         .row
-                        div(class='12u')
+                          div(class='12u')
                             input.style1(type='submit', value='Create New Rating')
-          if ratings && ratings.length > 0
-            each val in ratings
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 #{val.rating}/10
-                      h2 #{val.updatedAt}
-                  p 
-                    | #{val.owner}
-          if comments && comments.length > 0
-            each val in comments
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h2 #{val.updatedAt}
-                  p
-                    | #{val.body}
-                  p 
-                    | #{val.owner}
+              if ratings && ratings.length > 0
+                each val in ratings
+                  div(class='4u 12u(mobile)')
+                    section.box
+                      header
+                        .row
+                          h1 Rating: #{val.rating}/10
+                          h2 #{val.updatedAt}
+                      p 
+                        | #{val.owner}
+              if comments && comments.length > 0
+                each val in comments
+                  div(class='4u 12u(mobile)')
+                    section.box
+                      header
+                        .row
+                          h1 #{val.body}
+                          h2 #{val.updatedAt}
+                      p 
+                        | #{val.owner}
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
