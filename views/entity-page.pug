@@ -22,16 +22,14 @@ block content
                     header
                         .row
                         h2 Submit your own rating
-                    form(method='post', action='/new-rating')
+                    form(method='post', action='/rating-submit')
                         .row(class='50%')
                           div(class='12u')
                             input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
+                            input(type='hidden', name='entityId', value= entity._id)
                         .row(class='50%')
                           div(class='12u')
                             textarea#contact-question(type='text', name='comment', placeholder='Comments', rows='2')
-                        .row(class='50%')
-                          div(class='12u')
-                            input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
                         .row(class='50%')
                           div(class='12u')
                             input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
