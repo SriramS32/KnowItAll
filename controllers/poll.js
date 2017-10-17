@@ -3,7 +3,7 @@ const Poll = Schema.Poll
 const PollVote = Schema.PollVote
 
 
-exports.insertPol = function(req, res){
+exports.postPoll = function(req, res){
     
 }
 
