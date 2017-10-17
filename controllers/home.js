@@ -76,3 +76,9 @@ exports.profilePage = (req, res) => {
     title: 'Profile Page'
   });
 };
+
+exports.pollPage = (req, res) => {
+  res.render('poll-page', {
+      title: 'Poll Page'
+  });
+};
