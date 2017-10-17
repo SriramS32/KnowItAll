@@ -14,62 +14,68 @@ block content
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[0].name}
+                      h2 
+                        a(href='entity/' + entities[0]._id) #{entities[0].name}
                     a.image.featured(href='#')
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[0].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[0]._id) More
               if entities.length > 1
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[1].name}
+                      h2 
+                        a(href='entity/' + entities[1]._id) #{entities[1].name}
                     a.image.featured(href='#')
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[1].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[1]._id) More
               if entities.length > 2
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[2].name}
+                      h2 
+                        a(href='entity/' + entities[2]._id) #{entities[2].name}
                     a.image.featured(href='#')
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[2].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[2]._id) More
               if entities.length > 3
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[3].name}
+                      h2 
+                        a(href='entity/' + entities[3]._id) #{entities[3].name}
                     a.image.featured(href='#')
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[3].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[3]._id) More
               if entities.length > 4
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[4].name}
+                      h2 
+                        a(href='entity/' + entities[4]._id) #{entities[4].name}
                     a.image.featured(href='#')
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[4].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[4]._id) More
               if entities.length > 5
                 div(class='4u 12u(mobile)')
                   section.box
                     header
-                      h2 #{entities[5].name}
+                      h2 
+                        a(href='entity/' + entities[5]._id) #{entities[5].name}
                     a.image.featured(href='#')
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[5].tags.join(", ")}
-                    a.button.style1(href='#') More
+                    a.button.style1(href='entity/' + entities[5]._id) More
       // Highlights
       .wrapper.style3
         .title Poll Results
