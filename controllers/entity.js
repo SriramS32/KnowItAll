@@ -3,6 +3,22 @@ const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
 
+exports.newRating = function(req, res){
+    let newRating = new Object();
+    let entityId = req.body.entityId;
+    newRating.rating = req.body.rating;
+    newRating.comment = req.body.comment;
+    newRating.owner = req.body.anon ? '' : req.user.name;
+    newRating.user = req.user._id;
+    // console.log(newRating);
+    // console.log(req.body.entityId);
+    exports.updateRating(entityId, req.user._id, req.body.rating, newRating.owner)
+    if (newRating.comment.length > 0){
+        exports.insertComment(newRating, entityId);
+    }
+    res.redirect(`entity/${entityId}`);
+}
+
 exports.postEntity = function(req, res){
     let newEntity = new Object();
     newEntity.name = req.body.name;
@@ -10,7 +26,7 @@ exports.postEntity = function(req, res){
     newEntity.rating = req.body.rating;
     newEntity.comment = req.body.comment;
 
-    newEntity.owner = req.body.anon ? '' : req.user.name,
+    newEntity.owner = req.body.anon ? '' : req.user.name;
     // newEntity.owner = req.body.anon ? '' : "Sriram",
 
     newEntity.user = req.user._id; 
