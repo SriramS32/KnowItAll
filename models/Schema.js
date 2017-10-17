@@ -16,7 +16,8 @@ const pollSchema = new mongoose.Schema({
   options: [String],
   createdOn: Date,
   closedAfter: Date,
-  owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
+  owner: String,
   tags: [String]
 }, { timestamps: true });
 
