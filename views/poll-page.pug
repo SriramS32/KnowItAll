@@ -21,7 +21,7 @@ block content
                   header
                     .row
                       h2 Submit Your Answer
-                  form(method='post', action='')
+                  form(method='post', action='pollvote-submit')
                     .row(class='50%')
                       div(class='12u')
                         .container
@@ -52,6 +52,7 @@ block content
                         .row
                            div(class='12u')
                         input.style1(type='submit', value='Submit')
+                        input(type='hidden', name='pollId', value=poll._id)
               div(class='4u 12u(mobile)')
                 section.box
                   #chartID
