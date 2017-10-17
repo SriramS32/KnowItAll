@@ -7,6 +7,7 @@ const Comment = Schema.Comment;
  * Home page.
  */
 const searchController = require('./search');
+const userController = require('./user');
 exports.index = (req, res) => {
   res.redirect('/landing');
 };
@@ -37,8 +38,15 @@ exports.newEntryPage = (req, res) => {
 };
 
 exports.profilePage = (req, res) => {
-  res.render('profile-page', {
-    title: 'Profile Page'
+  Promise.all([userController.fetchUserPolls(req.user.id, 3), userController.fetchUserRatings(req.user.id, 3)])
+  .then((results) => {
+    let [pollVotes, ratings] = results;
+    res.render('profile-page', {
+      title: 'Profile Page',
+      user: req.user,
+      pollVotes: pollVotes,
+      ratings: ratings
+    });
   });
 };
 

@@ -4,6 +4,9 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const Schema = require('../models/Schema');
 const User = Schema.User;
+const Rating = Schema.Rating;
+const Poll = Schema.Poll;
+const PollVote = Schema.PollVote;
 
 /**
  * GET /login
@@ -294,6 +297,14 @@ exports.postReset = (req, res, next) => {
     .then(() => { if (!res.finished) res.redirect('/'); })
     .catch(err => next(err));
 };
+
+exports.fetchUserPolls = function(userId, limit) {
+  return PollVote.find({user: userId}).sort({_id: -1}).limit(limit).exec();    
+}
+
+exports.fetchUserRatings = function(userId, limit) {
+  return Rating.find({user: userId}).sort({_id: -1}).limit(limit).exec();    
+}
 
 /**
  * GET /forgot

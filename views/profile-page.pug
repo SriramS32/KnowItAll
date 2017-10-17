@@ -11,79 +11,29 @@ block content
             article.box.post
               header.style1
                 h2
-                  | Username
-                p Maybe the date joined or some other stat from the backend
+                  | #{user.name}
+                p #{user.email}
             .row(class='150%')
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
-              div(class='4u 12u(mobile)')
-                section.box
-                  header
-                    .row
-                      h1 *****
-                      h2 6/15/17
-                  p
-                    | Comments if any...
-                  p 
-                    | User/Anonymous
+              if pollVotes && pollVotes.length > 0
+                each val in pollVotes
+                  div(class='4u 12u(mobile)')
+                    section.box
+                      header
+                        .row
+                          h1 Choice: #{val.choice+1}
+                          h2 #{val.updatedAt}
+                      p 
+                        | #{val.owner || 'anon'}
+              if ratings && ratings.length > 0
+                each val in ratings
+                  div(class='4u 12u(mobile)')
+                    section.box
+                      header
+                        .row
+                          h1 Rating: #{val.rating}/10
+                          h2 #{val.updatedAt}
+                      p 
+                        | #{val.owner || 'anon'}
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
