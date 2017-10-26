@@ -21,14 +21,14 @@ passport.use(new LocalStrategy((username, password, done) => {
   User.findOne({ email: username + '@usc.edu' }, (err, user) => {
     if (err) { return done(err); }
     if (!user) {
-      return done(null, false, { msg: `Email ${email} not found.` });
+      return done(null, false, { msg: 'Invalid email' });
     }
     user.comparePassword(password, (err, isMatch) => {
       if (err) { return done(err); }
       if (isMatch) {
         return done(null, user);
       }
-      return done(null, false, { msg: 'Invalid email or password.' });
+      return done(null, false, { msg: 'Invalid email or password' });
     });
   });
 }));

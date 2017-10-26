@@ -8,6 +8,13 @@ const Rating = Schema.Rating;
 const Poll = Schema.Poll;
 const PollVote = Schema.PollVote;
 
+var isEmpty = (obj) => {
+  for (var x in obj) {
+    return false;
+  }
+  return true;
+}
+
 /**
  * GET /login
  * Login page.
@@ -16,10 +23,21 @@ exports.getLogin = (req, res) => {
   if (req.user) {
     return res.redirect('/');
   }
-  res.render('account/login', {
-    title: 'Login'
-  });
+  let flash = req.flash();
+  console.log(flash);
+  if (isEmpty(flash)) {
+    res.render('account/login', {
+      title: 'Login'
+    });
+  }
+  else {
+    res.render('account/login', {
+      title: 'Login',
+      err: flash.errors[0]
+    });
+  }
 };
+
 
 /**
  * POST /login
@@ -66,9 +84,19 @@ exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/');
   }
-  res.render('account/signup', {
-    title: 'Create Account'
-  });
+  let flash = req.flash();
+  console.log(flash);
+  if (isEmpty(flash)) {
+    res.render('account/signup', {
+      title: 'Create Account'
+    });
+  }
+  else {
+    res.render('account/signup', {
+      title: 'Create Account',
+      err: flash.errors[0]
+    });
+  }
 };
 
 /**
@@ -91,8 +119,7 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password,
     name: req.body.username
   });
-
-  User.findOne({ email: req.body.email }, (err, existingUser) => {
+  User.findOne({ email: user.email }, (err, existingUser) => {
     if (err) { return next(err); }
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });

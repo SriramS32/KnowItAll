@@ -8,6 +8,8 @@ block content
         .title Log In    
         #main.container
           // Content
+          if err
+            h2.errorMsg Error: #{err.msg}
           #content
             div(class'6u 12u(mobile)')
               // Contact Form
