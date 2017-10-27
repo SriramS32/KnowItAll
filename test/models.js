@@ -2,7 +2,8 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 require('sinon-mongoose');
 
-const User = require('../controllers/User');
+const Schema = require('../models/Schema');
+const User = Schema.User;
 
 describe('User Model', () => {
   it('should create a new user', (done) => {

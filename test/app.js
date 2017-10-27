@@ -2,10 +2,10 @@ const request = require('supertest');
 const app = require('../app.js');
 
 describe('GET /', () => {
-  it('should return 200 OK', (done) => {
+  it('should return 302 redirect OK', (done) => {
     request(app)
       .get('/')
-      .expect(200, done);
+      .expect(302, done);
   });
 });
 
@@ -26,10 +26,10 @@ describe('GET /signup', () => {
 });
 
 describe('GET /api', () => {
-  it('should return 200 OK', (done) => {
+  it('should return 404 OK', (done) => {
     request(app)
       .get('/api')
-      .expect(200, done);
+      .expect(404, done);
   });
 });
 
