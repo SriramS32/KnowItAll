@@ -16,7 +16,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[0]._id) #{entities[0].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[0]._id)
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[0].tags.join(", ")}
@@ -27,7 +27,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[1]._id) #{entities[1].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[1]._id)
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[1].tags.join(", ")}
@@ -38,7 +38,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[2]._id) #{entities[2].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[2]._id)
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[2].tags.join(", ")}
@@ -49,7 +49,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[3]._id) #{entities[3].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[3]._id)
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[3].tags.join(", ")}
@@ -60,7 +60,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[4]._id) #{entities[4].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[4]._id)
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[4].tags.join(", ")}
@@ -71,7 +71,7 @@ block content
                     header
                       h2 
                         a(href='/entity/' + entities[5]._id) #{entities[5].name}
-                    a.image.featured(href='#')
+                    a.image.featured(href='/entity/' + entities[5]._id)
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[5].tags.join(", ")}
@@ -84,7 +84,7 @@ block content
             if polls.length > 0
               div(class='4u 12u(mobile)')
                 section.highlight
-                  a.image.featured(href='#')
+                  a.image.featured(href='/poll/' + polls[0]._id)
                     img(src='images/pic02.jpg', alt='')
                   h3 
                     a(href='/poll/' + polls[0]._id) #{polls[0].question}
@@ -96,7 +96,7 @@ block content
             if polls.length > 1
               div(class='4u 12u(mobile)')
                 section.highlight
-                  a.image.featured(href='#')
+                  a.image.featured(href='/poll/' + polls[1]._id)
                     img(src='images/pic03.jpg', alt='')
                   h3 
                     a(href='/poll/' + polls[1]._id) #{polls[1].question}
@@ -108,7 +108,7 @@ block content
             if polls.length > 2
               div(class='4u 12u(mobile)')
                 section.highlight
-                  a.image.featured(href='#')
+                  a.image.featured(href='/poll/' + polls[2]._id)
                     img(src='images/pic04.jpg', alt='')
                   h3 
                     a(href='/poll/' + polls[2]._id) #{polls[2].question}
