@@ -8,6 +8,8 @@ lib-cov
 *.gz
 *.swp
 
+.nyc_output
+
 pids
 logs
 results
