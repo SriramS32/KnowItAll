@@ -186,6 +186,37 @@ describe('Poll Model', () => {
     });
   });
 
+  it('should return valid poll', (done) => {
+    pollController.getPoll("59f68a6f0b93ac9d850e95db").then((result) => {
+      expect(result.question).to.equal("Test Poll 2");
+      done();
+    });
+  });
+
+  it('should create poll link', (done) => {
+    let result = pollController.buildPollLink("59f68a6f0b93ac9d850e95db");
+    expect(result).to.be.a('string');
+    expect(result).to.not.equal('');
+    done();
+  });
+
+  it('should error for invalid poll', (done) => {
+    pollController.getPoll("incorrect").then((result) => {
+      
+    }, (err) => {
+      expect(err.name).to.equal('CastError'); // Because there are no results
+      done();
+    });
+  });
+
+  it('should return proper percentages', (done) => {
+    let percentages = pollController.percentages([4, 5, 0, 1]);
+    expect(percentages[0]).to.equal('40');
+    expect(percentages[1]).to.equal('50');
+    expect(percentages[2]).to.equal('0');
+    expect(percentages[3]).to.equal('10');
+    done();
+  });
   
 });
 

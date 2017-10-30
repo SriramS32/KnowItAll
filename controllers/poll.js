@@ -239,6 +239,10 @@ function percentages(counts) {
     return counts.map(e => (100.0*e/totalVotes).toFixed());
 }
 
+exports.percentages = function(counts){
+    return percentages(counts);
+}
+
 /**
  * To be implemented further
  */
