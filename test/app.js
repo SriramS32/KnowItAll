@@ -64,3 +64,18 @@ describe('GET /random-url', () => {
       .expect(404, done);
   });
 });
+
+describe('GET entity-page', () => {
+
+  it('should return 302', (done) => {
+    request(app)
+      .get('/entity/thisisnotavalidentitypage')
+      .expect(302, done);
+  });
+
+  it('should return 302', (done) => {
+    request(app)
+      .get('/entity/59f68a380b93ac9d850e95d8')
+      .expect(200, done);
+  });
+});
