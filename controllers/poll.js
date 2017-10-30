@@ -71,8 +71,6 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
                 pollEntry.choice = userVote;
                 pollEntry.markModified("choice");                
                 pollEntry.save((err) => {
-                    console.log(err);
-                    if (!err) console.log("all good!");
                     if (!err) resolve(1);
                     else reject(0);
                 });
