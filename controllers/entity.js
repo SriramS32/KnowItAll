@@ -168,20 +168,27 @@ exports.insertComment = function(commentData, entity) {
 
 exports.entityPage = (req, res) => {
     let entityId = req.params.entityId;
-    let entityPromise = Entity.findOne( { _id: entityId }).exec();
-    let commentPromise = Comment.find( { entity: entityId } ).exec();
-    let ratingPromise = Rating.find( { entity: entityId } ).exec();
-    Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
-        let [entity, comments, ratings] = results;
-        // console.log(ratings);
-        // console.log(comments);
-        res.render(`entity-page`, {
-            entity: entity,
-            comments: comments,
-            ratings: ratings,
-            user: req.user
+    if (!entityId) res.redirect('/error');
+    else {
+        let entityPromise = Entity.findOne( { _id: entityId }).exec();
+        let commentPromise = Comment.find( { entity: entityId } ).exec();
+        let ratingPromise = Rating.find( { entity: entityId } ).exec();
+        Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
+            let [entity, comments, ratings] = results;
+            // console.log(ratings);
+            // console.log(comments);
+            if (!entity || !comments || !ratings) res.redirect('/error');
+            else res.render(`entity-page`, {
+                entity: entity,
+                comments: comments,
+                ratings: ratings,
+                user: req.user
+            });
+        }, (err) => {
+            console.log('bad url');
+            res.redirect('/error');
         });
-    });
+    }
   };
 
 /*
