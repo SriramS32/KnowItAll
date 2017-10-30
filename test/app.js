@@ -17,6 +17,22 @@ describe('GET /login', () => {
   });
 });
 
+describe('GET /landing', () => {
+  it('should return 200 OK', (done) => {
+    request(app)
+      .get('/landing')
+      .expect(200, done);
+  });
+});
+
+describe('GET /new-entry', () => {
+  it('should return 200 OK', (done) => {
+    request(app)
+      .get('/new-entry')
+      .expect(200, done);
+  });
+});
+
 describe('GET /signup', () => {
   it('should return 200 OK', (done) => {
     request(app)
