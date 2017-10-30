@@ -145,28 +145,27 @@ describe('Poll Model', () => {
     });
   });
 
-  // it('should update a vote', (done) => {
-  //   // Vote is 1 to begin with
-  //   let userVote = new Number(1);
-  //   let myPollId = "59f68a6f0b93ac9d850e95db";
-  //   let myUserId = testUser1;
-  //   pollController.updatePollVotes(myPollId, myUserId, userVote).then((val) => {
-  //     expect(val).to.equal(1);
-  //     pollController.fetchPollCounts(myPollId).then((result) => {
-  //       result.forEach(function(element) {
-  //         expect(element.choice).to.equal(1);
-  //       });
-  //       done();
-  //     }, (err) => {
-  //       assert.isOk(false, 'poll vote checking has failed')
-  //       done();
-  //     });
-  //     // });
-  //   }, (err) => {
-  //     assert.isOk(false, 'poll update has failed');
-  //     done();
-  //   });
-  // });
+  it('should update a vote', (done) => {
+    // Vote is 1 to begin with
+    let userVote = new Number(1);
+    let myPollId = "59f68a6f0b93ac9d850e95db";
+    let myUserId = testUser1;
+    pollController.updatePollVotes(myPollId, myUserId, userVote).then((val) => {
+      expect(val).to.equal(1);
+      pollController.fetchPollCounts(myPollId).then((result) => {
+        result.forEach(function(element) {
+          expect(element.choice).to.equal(1);
+        });
+        done();
+      }, (err) => {
+        assert.isOk(false, 'poll vote checking has failed')
+        done();
+      });
+    }, (err) => {
+      assert.isOk(false, 'poll update has failed');
+      done();
+    });
+  });
 
   it('should create a poll', (done) => {
     let params = new Object();

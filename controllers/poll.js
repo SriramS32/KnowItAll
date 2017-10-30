@@ -62,15 +62,32 @@ exports.insertPoll = function(pollData){
  * Returns: Nothing. Updates db state.
  */
 exports.updatePollVotes = function(poll_ID, userID, userVote){
-    console.log('poll id: ' + poll_ID);
+//    console.log('poll id: ' + poll_ID);
     return PollVote.findOne({user: userID, poll: poll_ID}).exec().then((pollEntry) => {
         if (pollEntry) {
             // Updating poll choice
-            console.log('Updating poll choice ');
-            pollEntry.choice = userVote;
-            pollEntry.save((err) => {
-                if (err) console.log('error updating poll choice to ', userVote);
+            // console.log('Updating poll choice ');
+            return new Promise((resolve, reject) => {
+                pollEntry.choice = userVote;
+                pollEntry.markModified("choice");                
+                pollEntry.save((err) => {
+                    console.log(err);
+                    if (!err) console.log("all good!");
+                    if (!err) resolve(1);
+                    else reject(0);
+                });
             });
+            /*
+            return pollEntry.save().then((entry) => {
+                console.log("saved! ", entry);
+                return exports.fetchPollCounts(poll_ID).then((results) => {
+                    console.log("after save, we have:", results);
+                    return Promise.resolve(1);                    
+                });
+            }, (err) => {
+                console.log("just saved: ", err);
+                if (err) console.log('error updating poll choice to ', userVote);
+            });*/
         }
         else {
             const pollVote = new PollVote({
@@ -81,7 +98,7 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
             pollVote.save((err) => {
                 if (err) console.log("Error in making poll choice, ", err);
             });
-            console.log('Creating new poll vote with id ', pollVote._id);
+            // console.log('Creating new poll vote with id ', pollVote._id);
         }
         return Promise.resolve(1);
     }, (err) => {
