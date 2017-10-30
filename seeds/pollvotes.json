@@ -1,0 +1,26 @@
+[
+    { 
+        "_id" : { "$oid" : "59f68be5ef31bb9f8cf98efe" }, 
+        "user" : { "$oid" : "59f6898be38c0c9cf88945ce" }, 
+        "poll" : { "$oid" : "59f689fb0b93ac9d850e95d7" }, 
+        "choice" : 1
+    },
+    { 
+        "_id" : { "$oid" : "59f68bf9ef31bb9f8cf98eff" }, 
+        "user" : { "$oid" : "59f6898be38c0c9cf88945ce" }, 
+        "poll" : { "$oid" : "59f68a6f0b93ac9d850e95db" }, 
+        "choice" : 3
+    },
+    { 
+        "_id" : { "$oid" : "59f68c81ef31bb9f8cf98f05" }, 
+        "user" : { "$oid" : "59f6898be38c0c9cf88945cd" }, 
+        "poll" : { "$oid" : "59f689fb0b93ac9d850e95d7" }, 
+        "choice" : 1
+    },
+    { 
+        "_id" : { "$oid" : "59f68c8aef31bb9f8cf98f06" }, 
+        "user" : { "$oid" : "59f6898be38c0c9cf88945cd" }, 
+        "poll" : { "$oid" : "59f68a6f0b93ac9d850e95db" }, 
+        "choice" : 1
+    }
+]

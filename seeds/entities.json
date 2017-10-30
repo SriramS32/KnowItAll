@@ -1,0 +1,16 @@
+[
+    {
+        "_id": { "$oid" : "59f68a380b93ac9d850e95d8" },
+        "ratingTotal": 12,
+        "ratingCount": 2,
+        "name": "Test Entity 1",
+        "tags" : [ "test", "rating", "entity 1" ]
+    },
+    { 
+        "_id" : { "$oid" : "59f68aaf0b93ac9d850e95dc" }, 
+        "ratingTotal" : 12, 
+        "ratingCount" : 2, 
+        "name" : "Test Entity 2", 
+        "tags" : [ "test", "rating", "entity 2" ]
+    }
+]

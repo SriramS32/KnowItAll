@@ -1,0 +1,22 @@
+[
+    { 
+        "_id" : { "$oid" : "59f689fb0b93ac9d850e95d7" }, 
+        "question" : "Test Poll 1", 
+        "owner" : "hkunda", 
+        "ownerId" : { "$oid" : "59f6898be38c0c9cf88945cd" },
+        "createdOn" : "2017-10-30T02:10:03.364Z", 
+        "closedAfter" : "2017-11-03T02:10:03.364Z", 
+        "tags" : [ "test", "tag", "poll 1" ], 
+        "options" : [ "P1A1", "P1A2", "P1A3", "P1A4" ]
+    },
+    { 
+        "_id" : { "$oid" : "59f68a6f0b93ac9d850e95db" }, 
+        "question" : "Test Poll 2", 
+        "owner" : "", 
+        "ownerId" : { "$oid" : "59f6898be38c0c9cf88945ce" },        
+        "createdOn" : "2017-10-30T02:11:59.143Z", 
+        "closedAfter" : "2017-11-05T02:11:59.143Z", 
+        "tags" : [ "test", "poll", "poll 2" ], 
+        "options" : [ "P2A1", "P2A2", "P2A3", "P2A4" ]
+    }
+]

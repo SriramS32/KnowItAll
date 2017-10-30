@@ -1,0 +1,14 @@
+[
+    {
+        "_id": { "$oid": "59f6898be38c0c9cf88945cd"},
+        "email": "hkunda@usc.edu",
+        "password": "$2a$10$SPUrCA.o4CUT4iXtf3oj/.c9saq0X15iAIS759u0.WuyrFXBVXQkG",
+        "name": "hkunda"
+    },
+    {
+        "_id": { "$oid": "59f6898be38c0c9cf88945ce"},
+        "email": "sriramso@usc.edu",
+        "password": "$2a$10$eOC0DewIVjDtHlezesxOjOGHEOfnRSx7v2tZpV41nIp0cryDGl8Ea",
+        "name": "sriramso"
+    }
+]
