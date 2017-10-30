@@ -152,6 +152,12 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/error', homeController.error);
 
+/**
+ * Unknown route handler - MUST GO AFTER ALL OTHER ROUTES
+ */
+app.get('*', function (req, res) {
+  res.redirect('/error');
+});
 
 /**
  * Error Handler.
