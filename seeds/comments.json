@@ -8,7 +8,7 @@
     },
     {
         "_id" : { "$oid" : "59f68aaf0b93ac9d850e95dd" },
-        "body" : "Test Rating 2 ",
+        "body" : "Test Rating 2",
         "owner" : "",
         "ownerId" : { "$oid" : "59f6898be38c0c9cf88945ce" },
         "entity" : { "$oid": "59f68aaf0b93ac9d850e95dc" }
