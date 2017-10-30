@@ -66,7 +66,7 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
     return PollVote.findOne({user: userID, poll: poll_ID}).exec().then((pollEntry) => {
         if (pollEntry) {
             // Updating poll choice
-            console.log('Updating poll choice');
+            console.log('Updating poll choice ');
             pollEntry.choice = userVote;
             pollEntry.save((err) => {
                 if (err) console.log('error updating poll choice to ', userVote);
