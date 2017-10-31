@@ -220,22 +220,34 @@ describe('POST poll creation (logged in)', () => {
   });
 });
 
-describe('POST poll creation (logged in)', () => {
-  it('should create and render poll page', (done) => {
+describe('POST rating/comment creation (logged in)', () => {
+  it('should update entity page', (done) => {
     agent
-      .post('/poll-submit')
+      .post('/rating-submit')
       .type('form')
       .send({
-        question: "TestCreatedPoll1",
-        option1: "CreatedPoll1_O1", 
-        option2: "CreatedPoll1_O2", 
-        option3: "CreatedPoll1_O3", 
-        option4: "CreatedPoll1_O4", 
-        tags: "test, poll, CreatedPoll1",
+        rating: 5,
+        comment: "TESTCreatedComment", 
         anon: false,
-        duration: 7
+        entityId: "59f68a380b93ac9d850e95d8"
       })
       .expect(302, done)
-      .expect('Location', /\/poll\/*/);
+      .expect('Location', "/entity/59f68a380b93ac9d850e95d8");
   });
 });
+
+describe('POST poll vote creation (logged in)', () => {
+  it('should update poll page', (done) => {
+    agent
+      .post('/pollvote-submit')
+      .type('form')
+      .send({
+        survey: "2",
+        anon: false,
+        pollId: "59f689fb0b93ac9d850e95d7"
+      })
+      .expect(302, done)
+      .expect('Location', "/poll/59f689fb0b93ac9d850e95d7");
+  });
+});
+
