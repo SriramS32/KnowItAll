@@ -42,10 +42,10 @@ describe('GET /signup', () => {
 });
 
 describe('GET /api', () => {
-  it('should return 404 OK', (done) => {
+  it('should return 302 Redirect', (done) => {
     request(app)
       .get('/api')
-      .expect(404, done);
+      .expect(302, done);
   });
 });
 
@@ -58,9 +58,51 @@ describe('GET /contact', () => {
 });
 
 describe('GET /random-url', () => {
-  it('should return 404', (done) => {
+  it('should return 302 Redirect', (done) => {
     request(app)
       .get('/reset')
-      .expect(404, done);
+      .expect(302, done);
   });
 });
+
+describe('GET /entity', () => {
+
+  it('should return 302', (done) => {
+    request(app)
+      .get('/entity')
+      .expect(302, done);
+  });
+
+  it('should return 302', (done) => {
+    request(app)
+      .get('/entity/thisisnotavalidentitypage')
+      .expect(302, done);
+  });
+
+  it('should return 302', (done) => {
+    request(app)
+      .get('/entity/59f68a380b93ac9d850e95d8')
+      .expect(200, done);
+  });
+});
+
+describe('GET /poll', () => {
+
+    it('should return 302', (done) => {
+      request(app)
+        .get('/poll')
+        .expect(302, done);
+    });
+
+    it('should return 302', (done) => {
+      request(app)
+        .get('/poll/thisisnotavalidpollpage')
+        .expect(302, done);
+    });
+
+    it('should return 200', (done) => {
+      request(app)
+        .get('/poll/59f68a6f0b93ac9d850e95db')
+        .expect(200, done);
+    });
+  });

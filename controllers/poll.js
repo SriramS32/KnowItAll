@@ -71,8 +71,6 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
                 pollEntry.choice = userVote;
                 pollEntry.markModified("choice");                
                 pollEntry.save((err) => {
-                    console.log(err);
-                    if (!err) console.log("all good!");
                     if (!err) resolve(1);
                     else reject(0);
                 });
@@ -253,17 +251,21 @@ exports.buildPollLink = function(poll_ID){
 
 exports.pollPage = (req, res) => {
     let pollId = req.params.pollId;
+    if (!pollId) res.redirect('/error');
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
     let pollVotePromise = PollVote.find( {poll: pollId} ).exec();
     Promise.all([pollPromise, pollVotePromise]).then((results) => {
         let [poll, votes] = results;
-        let counts = aggregateVotes(votes, poll.options.length)
-        res.render('poll-page', {
-            title: 'Poll Page',
-            poll: poll,
-            votes: counts,
-            percentages: percentages(counts)
-        });
+        if (!poll || !votes) res.redirect('/error');
+        else {
+            let counts = aggregateVotes(votes, poll.options.length)
+            res.render('poll-page', {
+                title: 'Poll Page',
+                poll: poll,
+                votes: counts,
+                percentages: percentages(counts)
+            });
+        }
     }, (err) => {
         res.redirect('/error');
     });
