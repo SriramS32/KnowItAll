@@ -131,7 +131,7 @@ describe('POST failed login', () => {
       .post('/login')
       .type('form')
       .send({
-        username: 'hkunda1',
+        username: 'hkundanot',
         password: 'wronguser'
       })
       .expect(302, done)
