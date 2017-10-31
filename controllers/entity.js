@@ -3,6 +3,7 @@ const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
 
+/* istanbul ignore next */
 exports.newRating = function(req, res){
     let newRating = new Object();
     let entityId = req.body.entityId;
@@ -29,6 +30,7 @@ exports.newRating = function(req, res){
     });
 }
 
+/* istanbul ignore next */
 exports.postEntity = function(req, res){
     let newEntity = new Object();
     newEntity.name = req.body.name;
@@ -42,11 +44,11 @@ exports.postEntity = function(req, res){
     newEntity.user = req.user._id; 
     // newEntity.user = "59e42b26a05ae191bda98f00";
 
-    console.log(newEntity);
+    //console.log(newEntity);
 
     exports.insertEntity(newEntity, req.user._id).then((entityId) => {
         if (entityId) {// Don't remove, inserts Entity
-            res.redirect(`entity/${entityId}`);
+            res.redirect(`/entity/${entityId}`);
             // let entityPromise = Entity.findOne( { _id: entityId }).exec();
             // let commentPromise = Comment.find( { _id: entityId } ).exec();
             // let ratingPromise = Rating.find( { entity: entityId } ).exec();
@@ -67,6 +69,7 @@ exports.postEntity = function(req, res){
     
 }
 
+/* istanbul ignore next */
 exports.insertEntity = function (entityData, user) {
     const entity = new Entity({
         ratingTotal: 0,
@@ -97,7 +100,7 @@ exports.insertEntity = function (entityData, user) {
 };
 
 exports.updateRating = function (entityId, user, rating, owner) {
-    console.log('entity id: ' + entityId);
+    // console.log('entity id: ' + entityId);
     return Rating.findOne({user: user, entity: entityId}).exec().then((ratingEntry) => {
         if (ratingEntry) {
             let ratingDiff = rating - ratingEntry.rating;
@@ -166,22 +169,31 @@ exports.insertComment = function(commentData, entity) {
     });
 };
 
+
+/* istanbul ignore next */
 exports.entityPage = (req, res) => {
     let entityId = req.params.entityId;
-    let entityPromise = Entity.findOne( { _id: entityId }).exec();
-    let commentPromise = Comment.find( { entity: entityId } ).exec();
-    let ratingPromise = Rating.find( { entity: entityId } ).exec();
-    Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
-        let [entity, comments, ratings] = results;
-        // console.log(ratings);
-        // console.log(comments);
-        res.render(`entity-page`, {
-            entity: entity,
-            comments: comments,
-            ratings: ratings,
-            user: req.user
+    if (!entityId) res.redirect('/error');
+    else {
+        let entityPromise = Entity.findOne( { _id: entityId }).exec();
+        let commentPromise = Comment.find( { entity: entityId } ).exec();
+        let ratingPromise = Rating.find( { entity: entityId } ).exec();
+        Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
+            let [entity, comments, ratings] = results;
+            // console.log(ratings);
+            // console.log(comments);
+            if (!entity || !comments || !ratings) res.redirect('/error');
+            else res.render(`entity-page`, {
+                entity: entity,
+                comments: comments,
+                ratings: ratings,
+                user: req.user
+            });
+        }, (err) => {
+            console.log('bad url');
+            res.redirect('/error');
         });
-    });
+    }
   };
 
 /*

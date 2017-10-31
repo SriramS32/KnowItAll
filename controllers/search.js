@@ -10,6 +10,7 @@ const PollVote = Schema.PollVote;
  * Unchecked - free text search, Checked - tag search
  * Tags should be separated by commas ", "
  */
+/* istanbul ignore next */
 exports.search = function(req, res){
     let opt = req.body.agreement;
     if (typeof opt !== 'undefined' && opt) {
@@ -39,6 +40,7 @@ exports.search = function(req, res){
     }
 }
 
+/* istanbul ignore next */
 exports.freeTextSearch = function(req, res) {
     let query = req.body.query;
     let pollPromise = Poll.find( { question: { $regex: query, $options: 'i' }} ).limit(3).exec();
@@ -53,6 +55,7 @@ exports.freeTextSearch = function(req, res) {
     });
 };
 
+/* istanbul ignore next */
 exports.keywordSearch = function(req, res) {
     let query = [req.body.category.split(", ")]; // query is an array of tags
     let pollPromise = Poll.find( { tags: { $in: query }} ).limit(3).exec();

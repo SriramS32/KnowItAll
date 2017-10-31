@@ -15,7 +15,7 @@ exports.postPoll = function(req, res) {
     pollData.createdOn = new Date();
     pollData.closedAfter = new Date(pollData.createdOn.getTime() + 1000*60*60*24*req.body.duration);
     pollData.tags = req.body.tags.split(',').map(e => e.trim());
-    console.log(pollData);
+    // console.log(pollData);
     exports.insertPoll(pollData).then((pollId) => {
         res.redirect(`/poll/${pollId}`);
     }, (err) => {
@@ -62,15 +62,30 @@ exports.insertPoll = function(pollData){
  * Returns: Nothing. Updates db state.
  */
 exports.updatePollVotes = function(poll_ID, userID, userVote){
-    console.log('poll id: ' + poll_ID);
+//    console.log('poll id: ' + poll_ID);
     return PollVote.findOne({user: userID, poll: poll_ID}).exec().then((pollEntry) => {
         if (pollEntry) {
             // Updating poll choice
-            console.log('Updating poll choice');
-            pollEntry.choice = userVote;
-            pollEntry.save((err) => {
-                if (err) console.log('error updating poll choice to ', userVote);
+            // console.log('Updating poll choice ');
+            return new Promise((resolve, reject) => {
+                pollEntry.choice = userVote;
+                pollEntry.markModified("choice");                
+                pollEntry.save((err) => {
+                    if (!err) resolve(1);
+                    else reject(0);
+                });
             });
+            /*
+            return pollEntry.save().then((entry) => {
+                console.log("saved! ", entry);
+                return exports.fetchPollCounts(poll_ID).then((results) => {
+                    console.log("after save, we have:", results);
+                    return Promise.resolve(1);                    
+                });
+            }, (err) => {
+                console.log("just saved: ", err);
+                if (err) console.log('error updating poll choice to ', userVote);
+            });*/
         }
         else {
             const pollVote = new PollVote({
@@ -81,7 +96,7 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
             pollVote.save((err) => {
                 if (err) console.log("Error in making poll choice, ", err);
             });
-            console.log('Creating new poll vote with id ', pollVote._id);
+            // console.log('Creating new poll vote with id ', pollVote._id);
         }
         return Promise.resolve(1);
     }, (err) => {
@@ -204,6 +219,7 @@ exports.fetchPollCounts = function(poll_ID){
 //     // });
 // }
 
+/* istanbul ignore next */
 function aggregateVotes(voteDocs, numOptions) {
     let pollCounts = new Array(numOptions);
     pollCounts.fill(0);
@@ -222,6 +238,10 @@ function percentages(counts) {
     return counts.map(e => (100.0*e/totalVotes).toFixed());
 }
 
+exports.percentages = function(counts){
+    return percentages(counts);
+}
+
 /**
  * To be implemented further
  */
@@ -231,17 +251,21 @@ exports.buildPollLink = function(poll_ID){
 
 exports.pollPage = (req, res) => {
     let pollId = req.params.pollId;
+    if (!pollId) res.redirect('/error');
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
     let pollVotePromise = PollVote.find( {poll: pollId} ).exec();
     Promise.all([pollPromise, pollVotePromise]).then((results) => {
         let [poll, votes] = results;
-        let counts = aggregateVotes(votes, poll.options.length)
-        res.render('poll-page', {
-            title: 'Poll Page',
-            poll: poll,
-            votes: counts,
-            percentages: percentages(counts)
-        });
+        if (!poll || !votes) res.redirect('/error');
+        else {
+            let counts = aggregateVotes(votes, poll.options.length)
+            res.render('poll-page', {
+                title: 'Poll Page',
+                poll: poll,
+                votes: counts,
+                percentages: percentages(counts)
+            });
+        }
     }, (err) => {
         res.redirect('/error');
     });

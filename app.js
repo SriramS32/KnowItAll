@@ -152,94 +152,17 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/error', homeController.error);
 
+/**
+ * Unknown route handler - MUST GO AFTER ALL OTHER ROUTES
+ */
+app.get('*', function (req, res) {
+  res.redirect('/error');
+});
 
 /**
  * Error Handler.
  */
 app.use(errorHandler());
-
-// db.users.insertOne({"email":"sriramso@usc.edu","password":"abc123","profile": "Sriram"})
-function testCreatePoll(){
-  let params = new Object();
-  params.question = "Where can I get good coffee?";
-  params.options = ["Starbucks", "Philz Coffee", "Coffee Leaf", "Parkside"];
-  params.owner = mongoose.Schema.Types.ObjectId("59e420f3a05ae191bda98efe");
-  let dateObj = new Date();
-  params.createdOn = dateObj;
-  params.closedAfter = new Date(dateObj.getTime() + 24*60*60*1000);
-  params.tags = ["Food", "Coffee"];
-  let pollid = pollController.insertPoll(params);
-  console.log(pollid);
-}
-
-function testPollVote(){
-  let userVote = new Number(1);
-  let myPollId = "59e444bceb6acc3b4764c10d";
-  let myUserId = "59e420f3a05ae191bda98efe";
-  pollController.updatePollVotes(myPollId, myUserId, userVote);
-}
-
-function testPollVoteUpdate(){
-  let userVote = new Number(2);
-  let myPollId = "59e444bceb6acc3b4764c10d";
-  let myUserId = "59e420f3a05ae191bda98efe";
-  pollController.updatePollVotes(myPollId, myUserId, userVote);
-}
-
-function testFreeSearch(myRegex){
-  let searchResults = searchController.freeTextSearch(myRegex);
-  searchResults.poll
-    .then(function(val){
-      console.log("Polls: ", val);
-    });
-  searchResults.entity
-    .then(function(val){
-      console.log("Entities: ", val);
-    });
-}
-
-function testKeywordSearch(query){
-  let searchResults = searchController.keywordSearch(query);
-  searchResults.poll
-    .then(function(val){
-      console.log("Polls: ", val);
-    });
-  searchResults.entity
-    .then(function(val){
-      console.log("Entities: ", val);
-    });
-}
-
-function testTrending(limit){
-  searchController.fetchTrendingPolls(limit)
-    .then(function(val){
-      console.log("Polls: ", val);
-    });
-  searchController.fetchTrendingEntities(limit)
-    .then(function(val){
-      console.log("Entities: ", val);
-    });
-}
-
-function testRecentActivity(){
-  let searchResults = searchController.getRecentActivity("59e420f3a05ae191bda98efe");
-  searchResults.rating
-    .then(function(val){
-      console.log("User ratings ", val);
-    });
-  searchResults.comment
-    .then(function(val){
-      console.log("User comments ", val);
-    });
-  searchResults.pollVote
-    .then(function(val){
-      console.log("User poll votes ", val);
-    });
-  searchResults.poll
-    .then(function(val){
-      console.log("User polls ", val);
-    });
-}
 
 /**
  * Start Express server.
@@ -247,20 +170,6 @@ function testRecentActivity(){
 app.listen(app.get('port'), () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
-  // testCreatePoll();
-
-  // testPollVote();
-  // setTimeout(testPollVoteUpdate, 1000);
-
-  // testFreeSearch("Panda");
-  // testFreeSearch("best fast");
-
-  // testKeywordSearch(["Food"]);
-  // testKeywordSearch(["Fast Food"]);
-
-  // testTrending(2);
-
-  // testRecentActivity();
   console.log();
 
 });

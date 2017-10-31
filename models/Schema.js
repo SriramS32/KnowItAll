@@ -74,13 +74,6 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
   });
 };
 
-userSchema.methods.getRatings = function getRatings() {
-  
-}
-
-userSchema.methods.getPolls = function getPolls() {
-
-}
 
 const User = mongoose.model('User', userSchema);
 const Poll = mongoose.model('Poll', pollSchema);
