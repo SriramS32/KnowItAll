@@ -3,7 +3,7 @@ module.exports = {
     browser
       .url('http://localhost:8080/landing')
       .waitForElementVisible('body', 1000)
-      .waitForElementVisible('#intro-wrapper', 1000)
+      .waitForElementVisible('#intro-wrapper', 10000)
       .assert.containsText('#intro-wrapper', 'KNOW IT ALL')
 
       .assert.containsText('#nav', 'SIGNUP')
