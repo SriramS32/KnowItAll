@@ -44,11 +44,11 @@ exports.postEntity = function(req, res){
     newEntity.user = req.user._id; 
     // newEntity.user = "59e42b26a05ae191bda98f00";
 
-    console.log(newEntity);
+    // console.log(newEntity);
 
     exports.insertEntity(newEntity, req.user._id).then((entityId) => {
         if (entityId) {// Don't remove, inserts Entity
-            res.redirect(`entity/${entityId}`);
+            res.redirect(`/entity/${entityId}`);
             // let entityPromise = Entity.findOne( { _id: entityId }).exec();
             // let commentPromise = Comment.find( { _id: entityId } ).exec();
             // let ratingPromise = Rating.find( { entity: entityId } ).exec();
