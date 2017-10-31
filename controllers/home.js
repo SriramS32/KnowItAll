@@ -38,16 +38,29 @@ exports.newEntryPage = (req, res) => {
 };
 
 exports.profilePage = (req, res) => {
-  Promise.all([userController.fetchUserPolls(req.user.id, 3), userController.fetchUserRatings(req.user.id, 3)])
-  .then((results) => {
-    let [pollVotes, ratings] = results;
-    res.render('profile-page', {
-      title: 'Profile Page',
-      user: req.user,
-      pollVotes: pollVotes,
-      ratings: ratings
+  console.log(req.session);
+  if (!req.user) {
+    console.log('redirect1');
+    res.redirect('/login');
+  }
+  else {
+    Promise.all([userController.fetchUserPolls(req.user.id, 3), userController.fetchUserRatings(req.user.id, 3)])
+    .then((results) => {
+      let [pollVotes, ratings] = results;
+      if (!pollVotes || !ratings) {
+        console.log('redirect');
+        res.redirect('/error');
+      }
+      else {
+        res.render('profile-page', {
+          title: 'Profile Page',
+          user: req.user,
+          pollVotes: pollVotes,
+          ratings: ratings
+        });
+      }
     });
-  });
+  }
 };
 
 exports.error = (req, res) => {
