@@ -221,6 +221,7 @@ exports.fetchPollCounts = function(poll_ID){
 //     // });
 // }
 
+/* istanbul ignore next */
 function aggregateVotes(voteDocs, numOptions) {
     let pollCounts = new Array(numOptions);
     pollCounts.fill(0);

@@ -97,5 +97,12 @@
     "plugins": [
       "chai-friendly"
     ]
+  },
+  "nyc": {
+    "exclude": [
+      "config",
+      "controllers/api.js",
+      "controllers/contact.js"
+    ]
   }
 }

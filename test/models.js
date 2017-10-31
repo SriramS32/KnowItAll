@@ -297,10 +297,13 @@ describe('Entity Model', () => {
       done();
     });
   });
-  // it('should create a new entity, rating, and comment', (done) => {
-    
-  // });
-  // it('should have updated total ratings')
+});
+
+describe('Comment', () => {
+  it('should insert a comment', (done) => {
+    entityController.insertComment("New test comment", "59f68aaf0b93ac9d850e95dc");
+    done();
+  });
 });
 
 // function testFreeSearch(myRegex){
