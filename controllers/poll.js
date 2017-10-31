@@ -15,7 +15,7 @@ exports.postPoll = function(req, res) {
     pollData.createdOn = new Date();
     pollData.closedAfter = new Date(pollData.createdOn.getTime() + 1000*60*60*24*req.body.duration);
     pollData.tags = req.body.tags.split(',').map(e => e.trim());
-    console.log(pollData);
+    // console.log(pollData);
     exports.insertPoll(pollData).then((pollId) => {
         res.redirect(`/poll/${pollId}`);
     }, (err) => {
