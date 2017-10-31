@@ -1,6 +1,12 @@
 const request = require('supertest');
 const app = require('../app.js');
-
+const Schema = require('../models/Schema.js');
+const User = Schema.User;
+const Entity = Schema.Entity;
+const Poll = Schema.Poll;
+const PollVote = Schema.PollVote;
+const Rating = Schema.Rating;
+const Comment = Schema.Comment;
 var agent = request.agent(app);
 
 describe('GET /', () => {
@@ -44,15 +50,6 @@ describe('GET /signup', () => {
   });
 });
 
-describe('GET /api', () => {
-  it('should return 302 Redirect', (done) => {
-    request(app)
-      .get('/api')
-      .expect(302, done)
-      .expect('Location', '/error');
-  });
-});
-
 describe('GET /contact', () => {
   it('should return 200 OK', (done) => {
     request(app)
@@ -86,7 +83,7 @@ describe('GET /entity', () => {
       .expect('Location', '/error');
   });
 
-  it('should return 302', (done) => {
+  it('should return 200', (done) => {
     request(app)
       .get('/entity/59f68a380b93ac9d850e95d8')
       .expect(200, done);
@@ -184,4 +181,61 @@ describe('GET /profile-page (logged in)', () => {
       .get('/profile-page')
       .expect(200, done);
   })
+});
+
+describe('POST entity creation (logged in)', () => {
+  it('should create and render entity page', (done) => {
+    agent
+      .post('/entity-submit')
+      .type('form')
+      .send({
+        name: "TestCreatedEntity1",
+        tags: "test, entity, CreatedEntity1",
+        rating: 7,
+        comment: "TestCreatedEntity1 Comment",
+        anon: false
+      })
+      .expect(302, done)
+      .expect('Location', /\/entity\/*/);
+  });
+});
+
+describe('POST poll creation (logged in)', () => {
+  it('should create and render poll page', (done) => {
+    agent
+      .post('/poll-submit')
+      .type('form')
+      .send({
+        question: "TestCreatedPoll1",
+        option1: "CreatedPoll1_O1", 
+        option2: "CreatedPoll1_O2", 
+        option3: "CreatedPoll1_O3", 
+        option4: "CreatedPoll1_O4", 
+        tags: "test, poll, CreatedPoll1",
+        anon: false,
+        duration: 7
+      })
+      .expect(302, done)
+      .expect('Location', /\/poll\/*/);
+  });
+});
+
+describe('POST poll creation (logged in)', () => {
+  it('should create and render poll page', (done) => {
+    agent
+      .post('/poll-submit')
+      .type('form')
+      .send({
+        question: "TestCreatedPoll1",
+        option1: "CreatedPoll1_O1", 
+        option2: "CreatedPoll1_O2", 
+        option3: "CreatedPoll1_O3", 
+        option4: "CreatedPoll1_O4", 
+        tags: "test, poll, CreatedPoll1",
+        anon: false,
+        duration: 7
+      })
+      .expect(302, done)
+      .expect('Location', /\/poll\/*/);
+  });
 });

@@ -230,41 +230,45 @@ describe('Trending', () => {
 
   it('should not return expired polls', (done) => {
     searchController.fetchTrendingPolls(3).then((result) => {
-      expect(result.length).to.equal(1);
+      expect(result.length).to.equal(2);
       done();
     });
   });
 
   it('should properly return trending entities', (done) => {
     searchController.fetchTrendingEntities(1).then((result) => {
-      expect(result[0].name).to.equal("Test Entity 2"); // Sorts by id
-      expect(result[0].ratingCount).to.equal(2);
-      expect(result[0].ratingTotal).to.equal(12);
+      expect(result[0].name).to.equal("TestCreatedEntity1"); // Sorts by id
+      expect(result[0].ratingCount).to.equal(1);
+      expect(result[0].ratingTotal).to.equal(7);
       done();
     });
   });
 
   it('should properly return multiple trending entities', (done) => {
     searchController.fetchTrendingEntities(2).then((result) => {
-      expect(result[0].name).to.equal("Test Entity 2"); // Sorts by id
-      expect(result[0].ratingCount).to.equal(2);
-      expect(result[0].ratingTotal).to.equal(12);
-      expect(result[1].name).to.equal("Test Entity 1"); // Sorts by id
+      expect(result[0].name).to.equal("TestCreatedEntity1"); // Sorts by id
+      expect(result[0].ratingCount).to.equal(1);
+      expect(result[0].ratingTotal).to.equal(7);
+      expect(result[1].name).to.equal("Test Entity 2"); // Sorts by id
       expect(result[1].ratingCount).to.equal(2);
       expect(result[1].ratingTotal).to.equal(12);
+      
       done();
     });
   });
 
   it('should saturate multiple trending entities', (done) => {
     searchController.fetchTrendingEntities(10).then((result) => {
-      expect(result[0].name).to.equal("Test Entity 2"); // Sorts by id
-      expect(result[0].ratingCount).to.equal(2);
-      expect(result[0].ratingTotal).to.equal(12);
-      expect(result[1].name).to.equal("Test Entity 1"); // Sorts by id
+      expect(result[0].name).to.equal("TestCreatedEntity1"); // Sorts by id
+      expect(result[0].ratingCount).to.equal(1);
+      expect(result[0].ratingTotal).to.equal(7);
+      expect(result[1].name).to.equal("Test Entity 2"); // Sorts by id
       expect(result[1].ratingCount).to.equal(2);
       expect(result[1].ratingTotal).to.equal(12);
-      expect(result.length).to.equal(2);
+      expect(result[2].name).to.equal("Test Entity 1"); // Sorts by id
+      expect(result[2].ratingCount).to.equal(2);
+      expect(result[2].ratingTotal).to.equal(12);
+      expect(result.length).to.equal(3);
       done();
     });
   });
