@@ -97,7 +97,7 @@ exports.insertEntity = function (entityData, user) {
 };
 
 exports.updateRating = function (entityId, user, rating, owner) {
-    console.log('entity id: ' + entityId);
+    // console.log('entity id: ' + entityId);
     return Rating.findOne({user: user, entity: entityId}).exec().then((ratingEntry) => {
         if (ratingEntry) {
             let ratingDiff = rating - ratingEntry.rating;
