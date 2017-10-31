@@ -151,6 +151,20 @@ describe('POST failed login', () => {
   });
 });
 
+describe('POST successful login', () => {
+  it('correct username/password', (done) => {
+    request(app)
+      .post('/login')
+      .type('form')
+      .send({
+        username: 'sriramso',
+        password: 'dcba'
+      })
+      .expect(302, done)
+      .expect('Location', '/landing');
+  });
+});
+
 describe('GET /profile-page (logged in)', () => {
 
   it('should 302 after login', (done) => {
