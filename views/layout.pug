@@ -22,16 +22,16 @@ html
           nav#nav
             ul
               li
-                a(href='/landing') Home
+                a(id='home',href='/landing') Home
               li
-                a(href='/new-entry') Create Entry
+                a(id='create',href='/new-entry') Create Entry
               li
-                a(href='/landing') Search
+                a(id='search',href='/landing') Search
               li
                 if user
-                  a(href='/profile-page') Profile
+                  a(id='profile', href='/profile-page') Profile
                 else
-                  a(href='signup') Login/Signup
+                  a(id='signup', href='signup') Login/Signup
 
           block header
       block content

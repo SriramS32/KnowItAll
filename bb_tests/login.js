@@ -1,5 +1,5 @@
 module.exports = {
-  'Create (logged in) test' : function (browser) {
+  'Log in test' : function (browser) {
     browser
       .url('http://localhost:8080/landing')
       .waitForElementVisible('body', 1000)
@@ -15,19 +15,10 @@ module.exports = {
       .setValue('input[id=username]', 'nikkangh')
       .setValue('input[id=password]', 'test')
       .click('button[type=submit]')
-      
+
       .waitForElementVisible('body', 1000)
       .assert.containsText('#nav', 'PROFILE')
-
-      .assert.containsText('#nav', 'CREATE ENTRY')
-      .click('a[id=create]')
-
-      .pause(1000)
-      .waitForElementVisible('body', 1000)
-
-      .assert.containsText('#page-wrapper', 'CREATE SOMETHING NEW')
-      .assert.containsText('#content', 'Poll')
-      .assert.containsText('#content', 'Rating')
+      .assert.containsText('#intro-wrapper', 'KNOW IT ALL')
 
       .pause(1000)
       .end();

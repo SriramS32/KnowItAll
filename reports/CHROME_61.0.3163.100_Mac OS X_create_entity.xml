@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="create_entity"
+    errors="0" failures="0" hostname="" id="" package="create_entity" skipped="0"
+    tests="1" time="7.756" timestamp="Tue, 31 Oct 2017 07:09:29 GMT">
+  
+    <testcase name="Create Entity test" classname="create_entity" time="7.756" assertions="15">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

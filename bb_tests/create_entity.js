@@ -1,5 +1,5 @@
 module.exports = {
-  'Create (logged in) test' : function (browser) {
+  'Create Entity test' : function (browser) {
     browser
       .url('http://localhost:8080/landing')
       .waitForElementVisible('body', 1000)
@@ -15,9 +15,10 @@ module.exports = {
       .setValue('input[id=username]', 'nikkangh')
       .setValue('input[id=password]', 'test')
       .click('button[type=submit]')
-      
+
       .waitForElementVisible('body', 1000)
       .assert.containsText('#nav', 'PROFILE')
+
 
       .assert.containsText('#nav', 'CREATE ENTRY')
       .click('a[id=create]')
@@ -28,6 +29,16 @@ module.exports = {
       .assert.containsText('#page-wrapper', 'CREATE SOMETHING NEW')
       .assert.containsText('#content', 'Poll')
       .assert.containsText('#content', 'Rating')
+
+      .setValue('textarea[name=comment]', 'test')
+      .setValue('input[name=name', 'TEST ENTITY')
+      .setValue('input[name=rating', '2')
+      .setValue('input[name=tags]', 't, est, test, testy')
+
+      .click('input[id=createRating')
+
+      .waitForElementVisible('body', 1000)
+      .assert.containsText('#content', 'TEST ENTITY')
 
       .pause(1000)
       .end();
