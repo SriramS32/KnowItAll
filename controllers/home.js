@@ -38,9 +38,7 @@ exports.newEntryPage = (req, res) => {
 };
 
 exports.profilePage = (req, res) => {
-  console.log(req.session);
   if (!req.user) {
-    console.log('redirect1');
     res.redirect('/login');
   }
   else {
@@ -48,7 +46,6 @@ exports.profilePage = (req, res) => {
     .then((results) => {
       let [pollVotes, ratings] = results;
       if (!pollVotes || !ratings) {
-        console.log('redirect');
         res.redirect('/error');
       }
       else {

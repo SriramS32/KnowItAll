@@ -24,7 +24,6 @@ exports.getLogin = (req, res) => {
     return res.redirect('/');
   }
   let flash = req.flash();
-  console.log(flash);
   if (isEmpty(flash)) {
     res.render('account/login', {
       title: 'Login'
@@ -85,7 +84,6 @@ exports.getSignup = (req, res) => {
     return res.redirect('/');
   }
   let flash = req.flash();
-  console.log(flash);
   if (isEmpty(flash)) {
     res.render('account/signup', {
       title: 'Create Account'
