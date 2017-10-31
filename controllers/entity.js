@@ -3,6 +3,7 @@ const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
 
+/* istanbul ignore next */
 exports.newRating = function(req, res){
     let newRating = new Object();
     let entityId = req.body.entityId;
@@ -29,6 +30,7 @@ exports.newRating = function(req, res){
     });
 }
 
+/* istanbul ignore next */
 exports.postEntity = function(req, res){
     let newEntity = new Object();
     newEntity.name = req.body.name;
@@ -67,6 +69,7 @@ exports.postEntity = function(req, res){
     
 }
 
+/* istanbul ignore next */
 exports.insertEntity = function (entityData, user) {
     const entity = new Entity({
         ratingTotal: 0,

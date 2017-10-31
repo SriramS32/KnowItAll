@@ -19,6 +19,7 @@ var isEmpty = (obj) => {
  * GET /login
  * Login page.
  */
+/* istanbul ignore next */
 exports.getLogin = (req, res) => {
   if (req.user) {
     return res.redirect('/');
@@ -42,6 +43,7 @@ exports.getLogin = (req, res) => {
  * POST /login
  * Sign in using email and password.
  */
+/* istanbul ignore next */
 exports.postLogin = (req, res, next) => {
   req.assert('password', 'Password cannot be blank').notEmpty();
 
@@ -70,6 +72,7 @@ exports.postLogin = (req, res, next) => {
  * GET /logout
  * Log out.
  */
+/* istanbul ignore next */
 exports.logout = (req, res) => {
   req.logout();
   res.redirect('/');
@@ -79,6 +82,7 @@ exports.logout = (req, res) => {
  * GET /signup
  * Signup page.
  */
+/* istanbul ignore next */
 exports.getSignup = (req, res) => {
   if (req.user) {
     return res.redirect('/');
@@ -101,6 +105,7 @@ exports.getSignup = (req, res) => {
  * POST /signup
  * Create a new local account.
  */
+/* istanbul ignore next */
 exports.postSignup = (req, res, next) => {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -139,6 +144,7 @@ exports.postSignup = (req, res, next) => {
  * GET /account
  * Profile page.
  */
+/* istanbul ignore next */
 exports.getAccount = (req, res) => {
   res.render('account/profile', {
     title: 'Account Management'
