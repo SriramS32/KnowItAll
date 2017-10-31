@@ -44,7 +44,7 @@ exports.postEntity = function(req, res){
     newEntity.user = req.user._id; 
     // newEntity.user = "59e42b26a05ae191bda98f00";
 
-    // console.log(newEntity);
+    //console.log(newEntity);
 
     exports.insertEntity(newEntity, req.user._id).then((entityId) => {
         if (entityId) {// Don't remove, inserts Entity
@@ -169,6 +169,8 @@ exports.insertComment = function(commentData, entity) {
     });
 };
 
+
+/* istanbul ignore next */
 exports.entityPage = (req, res) => {
     let entityId = req.params.entityId;
     if (!entityId) res.redirect('/error');
