@@ -2196,6 +2196,14 @@
 						#nav > ul > li.active > a, #nav > ul > li.active > span {
 							color: #fff;
 						}
+			#poptag {
+				background: #e99570;
+				display: inline-block;
+				border-radius: 10px;
+				padding: 0 5px;
+				margin: 0 5px;
+				text-align: center;
+			}
 
 			.dropotron {
 				background: #222835 url("images/overlay.png");
