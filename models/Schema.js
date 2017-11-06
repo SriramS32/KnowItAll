@@ -27,6 +27,12 @@ const pollVoteSchema = new mongoose.Schema({
   poll: { type: Schema.Types.ObjectId, ref: 'Poll' }
 }, { timestamps: true });
 
+const pollLikeSchema = new mongoose.Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User'},
+  weight: Number,
+  poll: { type: Schema.Types.ObjectId, ref: 'Poll'}
+}, { timestamps: true });
+
 const entitySchema = new mongoose.Schema({
   ratingTotal: Number,
   ratingCount: Number,
@@ -78,6 +84,7 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
 const User = mongoose.model('User', userSchema);
 const Poll = mongoose.model('Poll', pollSchema);
 const PollVote = mongoose.model('PollVote', pollVoteSchema);
+const PollLike = mongoose.model('PollLike', pollLikeSchema);
 const Entity = mongoose.model('Entity', entitySchema);
 const Rating = mongoose.model('Rating', ratingSchema);
 const Comment = mongoose.model('Comment', commentSchema);
@@ -85,6 +92,7 @@ const Comment = mongoose.model('Comment', commentSchema);
 exports.User = User;
 exports.Poll = Poll;
 exports.PollVote = PollVote;
+exports.PollLike = PollLike;
 exports.Entity = Entity;
 exports.Rating = Rating;
 exports.Comment = Comment;

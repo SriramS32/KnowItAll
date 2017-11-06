@@ -1,6 +1,7 @@
-const Schema = require('../models/Schema')
-const Poll = Schema.Poll
-const PollVote = Schema.PollVote
+const Schema = require('../models/Schema');
+const Poll = Schema.Poll;
+const PollVote = Schema.PollVote;
+const PollLike = Schema.PollLike;
 
 
 exports.postPoll = function(req, res) {
@@ -30,7 +31,20 @@ exports.pollVoteSubmit = (req, res) => {
     let pollChoice = parseInt(req.body.survey);
     exports.updatePollVotes(pollId, userId, pollChoice).then((success) => {
         res.redirect(`/poll/${pollId}`);
-    })
+    });
+}
+
+exports.pollLikeSubmit = (req, res) => {
+    let pollId = req.body.pollId;
+    let userId = req.user._id;
+    let likeChoice = parseInt(req.body.choice);
+    console.log(pollId + " | " + userId + " | " + likeChoice);
+    exports.updatePollLikes(pollId, userId, likeChoice).then((success) => {
+        res.redirect(`/poll/${pollId}`);
+    }, (err) => {
+        console.log(err);
+        res.redirect('/error');
+    });
 }
 
 /**
@@ -59,7 +73,7 @@ exports.insertPoll = function(pollData){
  * Params: poll_ID and userID are Mongo Object IDs whereas userVote
  * should be a Number representing choice on Poll
  * 
- * Returns: Nothing. Updates db state.
+ * Returns: Promise that resolves upon successful update, rejects on failure.
  */
 exports.updatePollVotes = function(poll_ID, userID, userVote){
 //    console.log('poll id: ' + poll_ID);
@@ -130,6 +144,53 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
 };
 
 /**
+ * Updating a poll like that a single user made
+ * Two paths -> User hasn't liked/disliked poll yet or User is updating his/her poll like
+ * 
+ * Params: poll_ID and userID are Mongo Object IDs whereas userVote
+ * should be a Number representing their contribution towards Poll Like
+ * 
+ * Returns: Promise that resolves upon successful update, rejects on failure.
+ */
+exports.updatePollLikes = function(poll_ID, userID, userVote) {
+    return PollLike.findOne({user: userID, poll: poll_ID}).exec().then((likeEntry) => {
+        if (likeEntry) {
+            // Updating poll choice
+            // console.log('Updating poll choice ');
+            return new Promise((resolve, reject) => {
+                likeEntry.weight = userVote;
+                likeEntry.markModified("weight");                
+                likeEntry.save((err) => {
+                    if (!err) resolve(1);
+                    else reject(0);
+                });
+            });
+        }
+        else {
+            const pollLike = new PollLike({
+                user: userID,
+                poll: poll_ID,
+                weight: userVote
+            });
+            return new Promise((resolve, reject) => {
+                pollLike.save((err) => {
+                    if (err) {
+                        console.log("Error in making poll choice, ", err);
+                        reject(0);
+                    }
+                    else resolve(1);
+                });
+            })
+            // console.log('Creating new poll vote with id ', pollVote._id);
+        }
+    }, (err) => {
+        console.log('error checking for existing: ' + err);
+        return Promise.reject('error checking for existing: ' + err);
+    });
+};
+    
+
+/**
  * Returns a promise with the Poll
  */
 exports.getPoll = function(poll_ID){
@@ -141,6 +202,10 @@ exports.getPoll = function(poll_ID){
  */
 exports.fetchPollCounts = function(poll_ID){
     return PollVote.find({ poll: poll_ID }).exec();
+}
+
+exports.fetchPollLikes = function(poll_ID) {
+    return PollLike.find({ poll: poll_ID}).exec();
 }
 
 // /**
@@ -237,6 +302,15 @@ function percentages(counts) {
     //console.log(percentages.map(e => (100.0*e/totalVotes).toFixed()));
     return counts.map(e => (100.0*e/totalVotes).toFixed());
 }
+/* istanbul ignore next */
+function aggregateLikes(likes) {
+    let up = 0, down = 0;
+    likes.forEach((e) => {
+        if (e.weight === 1) up++;
+        else down++;
+    });
+    return [up, down];
+}
 
 exports.percentages = function(counts){
     return percentages(counts);
@@ -253,17 +327,21 @@ exports.pollPage = (req, res) => {
     let pollId = req.params.pollId;
     if (!pollId) res.redirect('/error');
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
-    let pollVotePromise = PollVote.find( {poll: pollId} ).exec();
-    Promise.all([pollPromise, pollVotePromise]).then((results) => {
-        let [poll, votes] = results;
-        if (!poll || !votes) res.redirect('/error');
+    let pollVotePromise = exports.fetchPollCounts(pollId);
+    let pollLikePromise = exports.fetchPollLikes(pollId);
+    Promise.all([pollPromise, pollVotePromise, pollLikePromise]).then((results) => {
+        let [poll, votes, likes] = results;
+        if (!poll) res.redirect('/error');
         else {
             let counts = aggregateVotes(votes, poll.options.length)
+            let [upLikes, downLikes] = aggregateLikes(likes);
             res.render('poll-page', {
                 title: 'Poll Page',
                 poll: poll,
                 votes: counts,
-                percentages: percentages(counts)
+                percentages: percentages(counts),
+                upLikes: upLikes,
+                downLikes: downLikes
             });
         }
     }, (err) => {

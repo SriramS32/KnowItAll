@@ -134,6 +134,7 @@ app.post('/entity-submit', entityController.postEntity);
 app.post('/poll-submit', pollController.postPoll);
 app.post('/rating-submit', entityController.newRating);
 app.post('/pollvote-submit', pollController.pollVoteSubmit);
+app.post('/polllike-submit', pollController.pollLikeSubmit);
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
