@@ -1866,6 +1866,61 @@
 			color: #e97770;
 		}
 
+/* Poll Likes */
+			
+	#downVote {
+		border-radius: 50%;
+		width: 50px;
+		min-width: 50px;
+		height: 50px;
+		line-height: 50px;		
+		padding: 0;
+		margin: 0;
+		background: #ffffff;
+		border: 5px solid red;
+		color: red;
+		background-image: none;		
+	}
+	#downVote:hover {
+		border-radius: 50%;
+		width: 50px;
+		min-width: 50px;
+		height: 50px;
+		line-height: 50px;		
+		padding: 0;
+		margin: 0;
+		background: red;
+		border: 5px solid red;
+		color: white;
+		background-image: none;		
+	}
+	#upVote {
+		border-radius: 50%;
+		width: 50px;
+		min-width: 50px;
+		line-height: 50px;
+		height: 50px;
+		padding: 0;
+		margin: 0;
+		background: #ffffff;
+		border: 5px solid green;
+		color: green;
+		background-image: none;
+	}
+	#upVote:hover {
+		border-radius: 50%;
+		width: 50px;
+		min-width: 50px;
+		line-height: 50px;
+		height: 50px;
+		padding: 0;
+		margin: 0;
+		background: green;
+		border: 5px solid green;
+		color: white;
+		background-image: none;
+	}
+
 /* Copyright */
 
 	#copyright {

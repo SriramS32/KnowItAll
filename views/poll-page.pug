@@ -85,6 +85,19 @@ block content
                             .results
                               .on
                                 span.count #{percentages[3]}%
+              div(class='4u 12u(mobile)')
+                section.box
+                  header
+                    .row
+                      h2 What do others think?
+                  form(method='POST', action='/polllike-submit')
+                    input#value(type='hidden', name='choice', value='1')
+                    input(type='hidden', name='pollId', value=poll._id)
+                    input#upVote(type='submit', value='+' + upLikes) 
+                  form(method='POST', action='/polllike-submit')
+                    input#value(type='hidden', name='choice', value='-1')
+                    input(type='hidden', name='pollId', value=poll._id)
+                    input#downVote(type='submit', value='-' + downLikes) 
 
 
 
