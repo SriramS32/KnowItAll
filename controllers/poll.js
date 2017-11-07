@@ -285,13 +285,15 @@ exports.fetchPollLikes = function(poll_ID) {
 // }
 
 /* istanbul ignore next */
-function aggregateVotes(voteDocs, numOptions) {
+function aggregateVotes(voteDocs, numOptions, user_id) {
     let pollCounts = new Array(numOptions);
     pollCounts.fill(0);
+    let userChoice = -1;
     voteDocs.forEach(function(voteDoc) {
         pollCounts[voteDoc.choice] += 1
+        if (voteDoc.user.equals(user_id)) userChoice = voteDoc.choice;
     });
-    return pollCounts;
+    return [pollCounts, userChoice];
 }
 
 function percentages(counts) {
@@ -303,13 +305,14 @@ function percentages(counts) {
     return counts.map(e => (100.0*e/totalVotes).toFixed());
 }
 /* istanbul ignore next */
-function aggregateLikes(likes) {
-    let up = 0, down = 0;
+function aggregateLikes(likes, user_id) {
+    let up = 0, down = 0, user = 0;
     likes.forEach((e) => {
         if (e.weight === 1) up++;
         else down++;
+        if (e.user.equals(user_id)) user = e.weight;
     });
-    return [up, down];
+    return [up, down, user];
 }
 
 exports.percentages = function(counts){
@@ -333,15 +336,18 @@ exports.pollPage = (req, res) => {
         let [poll, votes, likes] = results;
         if (!poll) res.redirect('/error');
         else {
-            let counts = aggregateVotes(votes, poll.options.length)
-            let [upLikes, downLikes] = aggregateLikes(likes);
+            let [counts, userVote] = aggregateVotes(votes, poll.options.length, req.user._id);
+            let [upLikes, downLikes, userLike] = aggregateLikes(likes, req.user._id);
+            console.log(userVote == 0, userVote == 1, userVote == 2, userVote == 3);
             res.render('poll-page', {
                 title: 'Poll Page',
                 poll: poll,
                 votes: counts,
+                userVote: userVote,
                 percentages: percentages(counts),
                 upLikes: upLikes,
-                downLikes: downLikes
+                downLikes: downLikes,
+                userLike: userLike
             });
         }
     }, (err) => {
