@@ -1,9 +1,29 @@
 extends layout
 
 block content
+  script.
+    var something = function (id) {
+      if (id==0) {
+        document.getElementById("main").style.display = "none";
+        document.getElementById("highlights").style.display = "";
+      }
+      else if(id==1){
+        document.getElementById("main").style.display = "";
+        document.getElementById("highlights").style.display = "none";
+      }
+      else {
+        document.getElementById("main").style.display = "";
+        document.getElementById("highlights").style.display = "";
+      }
+    }
   body.no-sidebar
     #page-wrapper
       // Main
+      .wrapper.style3
+        .title Viewing options
+        button(href='#', style="margin-right: 20px;", type='button', onclick='something(0)') Poll only
+        button(href='#', style="margin-right: 20px;", type='button', onclick='something(1)') Entities only
+        button(href='#', type='button', onclick='something(2)') Show both
       .wrapper.style2
         .title Entity Results
         #main.container

@@ -55,36 +55,36 @@ block content
                     a.image.featured(href='#')
                       img(src='images/poll0.jpg', alt='')
                     h3
-                      a(href='#') #{polls[0].question}
+                      a(href='/poll/' + polls[0]._id) #{polls[0].question}
                     p
                       | #{polls[0].tags.join(", ")}
                     ul.actions
                       li
-                        a.button.style1(href='#') More Info
+                        a.button.style1(href='/poll/' + polls[0]._id) More Info
               if entities.length > 0
                 div(class='4u 12u(mobile)')
                   section.highlight
                     a.image.featured(href='#')
                       img(src='images/entity.jpg', alt='')
                     h3
-                      a(href='#') #{entities[0].name}
+                      a(href='/entity/' + entities[0]._id) #{entities[0].name}
                     p
                       | #{entities[0].tags.join(", ")}
                     ul.actions
                       li
-                        a.button.style1(href='#') More Info
+                        a.button.style1(href='/entity/' + entities[0]._id) More Info
               if polls.length > 1
                 div(class='4u 12u(mobile)')
                   section.highlight
                     a.image.featured(href='#')
                       img(src='images/poll2.jpg', alt='')
                     h3
-                      a(href='#') #{polls[1].question}
+                      a(href='/poll/' + polls[1]._id) #{polls[1].question}
                     p
                       | #{polls[1].tags.join(", ")}
                     ul.actions
                       li
-                        a.button.style1(href='#') More Info
+                        a.button.style1(href='/poll/' + polls[1]._id) More Info
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
