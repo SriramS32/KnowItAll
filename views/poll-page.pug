@@ -29,25 +29,25 @@ block content
                           .row
                             #radiobutton
                             label
-                              input#Radios1(type='radio', name='survey', value='0')
+                              input#Radios1(type='radio', name='survey', value='0', checked=(userVote==0))
                               |     #{poll.options[0]}
                         if poll.options.length > 1
                           .row
                             #radiobutton
                             label
-                              input#Radios2(type='radio', name='survey', value='1')
+                              input#Radios2(type='radio', name='survey', value='1', checked=(userVote==1))
                               |     #{poll.options[1]}
                         if poll.options.length > 2
                           .row
                             #radiobutton
                             label
-                              input#Radios3(type='radio', name='survey', value='2')
+                              input#Radios3(type='radio', name='survey', value='2', checked=(userVote==2))
                               |      #{poll.options[2]}
                         if poll.options.length > 3
                           .row
                             #radiobutton
                             label
-                              input#Radios3(type='radio', name='survey', value='3')
+                              input#Radios3(type='radio', name='survey', value='3', checked=(userVote==3))
                               |      #{poll.options[3]}
                         .row
                            div(class='12u')
@@ -90,14 +90,33 @@ block content
                   header
                     .row
                       h2 What do others think?
-                  form(method='POST', action='/polllike-submit')
-                    input#value(type='hidden', name='choice', value='1')
-                    input(type='hidden', name='pollId', value=poll._id)
-                    input#upVote(type='submit', value='+' + upLikes) 
-                  form(method='POST', action='/polllike-submit')
-                    input#value(type='hidden', name='choice', value='-1')
-                    input(type='hidden', name='pollId', value=poll._id)
-                    input#downVote(type='submit', value='-' + downLikes) 
+                  if userLike == 1
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#upVoteUser(type='submit', value='+' + upLikes) 
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='-1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#downVote(type='submit', value='-' + downLikes)
+                  else if userLike == -1
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#upVote(type='submit', value='+' + upLikes) 
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='-1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#downVoteUser(type='submit', value='-' + downLikes)
+                  else
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#upVote(type='submit', value='+' + upLikes) 
+                    form(method='POST', action='/polllike-submit')
+                      input#value(type='hidden', name='choice', value='-1')
+                      input(type='hidden', name='pollId', value=poll._id)
+                      input#downVote(type='submit', value='-' + downLikes)
 
 
 
