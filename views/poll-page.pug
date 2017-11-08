@@ -62,28 +62,28 @@ block content
                           #option-1.option
                             h3.option-label #{poll.options[0]}
                             .results
-                              .on
+                              .on(style="width:" + percentages[0] + "%")
                                 span.count #{percentages[0]}%
                       if poll.options.length > 1
                         .row 
                           #option-2.option
                             h3.option-label #{poll.options[1]}
                             .results
-                              .on
+                              .on(style="width:" + percentages[1] + "%")
                                 span.count #{percentages[1]}%
                       if poll.options.length > 2
                         .row  
                           #option-3.option
                             h3.option-label #{poll.options[2]}
                             .results
-                              .on
+                              .on(style="width:" + percentages[2] + "%")
                                 span.count #{percentages[2]}%
                       if poll.options.length > 3
                         .row  
                           #option-4.option
                             h3.option-label #{poll.options[3]}
                             .results
-                              .on
+                              .on(style="width:" + percentages[3] + "%")
                                 span.count #{percentages[3]}%
               div(class='4u 12u(mobile)')
                 section.box
@@ -91,32 +91,35 @@ block content
                     .row
                       h2 What do others think?
                   if userLike == 1
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#upVoteUser(type='submit', value='+' + upLikes) 
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='-1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#downVote(type='submit', value='-' + downLikes)
+                    .row(style="margin-left: 5px;")
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#upVoteUser(type='submit', value='+' + upLikes) 
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='-1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#downVote(type='submit', value='-' + downLikes)
                   else if userLike == -1
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#upVote(type='submit', value='+' + upLikes) 
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='-1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#downVoteUser(type='submit', value='-' + downLikes)
+                    .row(style="margin-left: 5px;")
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#upVote(type='submit', value='+' + upLikes) 
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='-1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#downVoteUser(type='submit', value='-' + downLikes)
                   else
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#upVote(type='submit', value='+' + upLikes) 
-                    form(method='POST', action='/polllike-submit')
-                      input#value(type='hidden', name='choice', value='-1')
-                      input(type='hidden', name='pollId', value=poll._id)
-                      input#downVote(type='submit', value='-' + downLikes)
+                    .row(style="margin-left: 5px;")
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#upVote(type='submit', value='+' + upLikes) 
+                      form(method='POST', action='/polllike-submit')
+                        input#value(type='hidden', name='choice', value='-1')
+                        input(type='hidden', name='pollId', value=poll._id)
+                        input#downVote(type='submit', value='-' + downLikes)
 
 
 

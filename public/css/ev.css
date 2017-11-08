@@ -197,7 +197,6 @@
 	.results .on {
 		height: 60px;
 		opacity: 0.75;
-		width: 0;
 	}
 	.results .on .count {
 		line-height: 60px;
