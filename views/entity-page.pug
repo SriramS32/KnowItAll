@@ -14,6 +14,10 @@ block content
                   | #{entity.name}
                 p Average Rating: #{(1.0*entity.ratingTotal/entity.ratingCount).toFixed(1)}/10
                 p
+                .bar
+                  .rating-bar
+                    span(class="rate-"+Math.round(1.0*entity.ratingTotal/entity.ratingCount))
+                      span.animate.red
                   | Tags: #{entity.tags.join(", ")}
             .row(class='150%')
               if user

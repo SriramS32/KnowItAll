@@ -40,6 +40,13 @@ block content
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[0].tags.join(", ")}
+                    p
+                    .bar
+                      .rating-bar
+                        span(class="rate-"+Math.round(1.0*entities[0].ratingTotal/entities[0].ratingCount))
+                          span.animate.red                  
+                      | Avg Rating: #{(1.0*entities[0].ratingTotal/entities[0].ratingCount).toFixed(1)}/10  
+                    p  
                     a.button.style1(href='/entity/' + entities[0]._id) More
               if entities.length > 1
                 div(class='4u 12u(mobile)')
@@ -51,6 +58,12 @@ block content
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[1].tags.join(", ")}
+                    p
+                      .bar
+                        .rating-bar
+                          span(class="rate-"+Math.round(1.0*entities[1].ratingTotal/entities[1].ratingCount))
+                            span.animate.red                  
+                      | Avg Rating: #{(1.0*entities[1].ratingTotal/entities[1].ratingCount).toFixed(1)}/10    
                     a.button.style1(href='/entity/' + entities[1]._id) More
               if entities.length > 2
                 div(class='4u 12u(mobile)')
@@ -62,6 +75,13 @@ block content
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[2].tags.join(", ")}
+                    p
+                      .bar
+                        .rating-bar
+                          span(class="rate-"+Math.round(1.0*entities[2].ratingTotal/entities[2].ratingCount))
+                            span.animate.red                  
+                      | Avg Rating: #{(1.0*entities[2].ratingTotal/entities[2].ratingCount).toFixed(1)}/10 
+                    p   
                     a.button.style1(href='/entity/' + entities[2]._id) More
               if entities.length > 3
                 div(class='4u 12u(mobile)')
@@ -73,6 +93,13 @@ block content
                       img(src='images/pic05.jpg', alt='')
                     p
                       | Tags: #{entities[3].tags.join(", ")}
+                    p
+                      .bar
+                        .rating-bar
+                          span(class="rate-"+Math.round(1.0*entities[3].ratingTotal/entities[3].ratingCount))
+                            span.animate.red
+                      | Avg Rating: #{(1.0*entities[3].ratingTotal/entities[3].ratingCount).toFixed(1)}/10 
+                    p   
                     a.button.style1(href='/entity/' + entities[3]._id) More
               if entities.length > 4
                 div(class='4u 12u(mobile)')
@@ -84,6 +111,13 @@ block content
                       img(src='images/pic06.jpg', alt='')
                     p
                       | Tags: #{entities[4].tags.join(", ")}
+                    p
+                      .bar
+                        .rating-bar
+                          span(class="rate-"+Math.round(1.0*entities[4].ratingTotal/entities[4].ratingCount))
+                            span.animate.red
+                      | Avg Rating: #{(1.0*entities[4].ratingTotal/entities[4].ratingCount).toFixed(1)}/10 
+                    p   
                     a.button.style1(href='/entity/' + entities[4]._id) More
               if entities.length > 5
                 div(class='4u 12u(mobile)')
@@ -95,6 +129,13 @@ block content
                       img(src='images/pic07.jpg', alt='')
                     p
                       | Tags: #{entities[5].tags.join(", ")}
+                    p
+                      .bar
+                        .rating-bar
+                          span(class="rate-"+Math.round(1.0*entities[5].ratingTotal/entities[5].ratingCount))
+                            span.animate.red
+                      | Avg Rating: #{(1.0*entities[5].ratingTotal/entities[5].ratingCount).toFixed(1)}/10 
+                    p   
                     a.button.style1(href='/entity/' + entities[5]._id) More
       // Highlights
       .wrapper.style3
