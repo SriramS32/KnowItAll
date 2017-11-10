@@ -95,31 +95,37 @@ block content
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#upVoteUser(type='submit', value='+' + upLikes) 
+                        button#upVoteUser(type='submit', value='')
+                          i(class='fa fa-thumbs-up') #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#downVote(type='submit', value='-' + downLikes)
+                        button#downVote(type='submit', value='')
+                          i(class='fa fa-thumbs-down') #{downLikes}
                   else if userLike == -1
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#upVote(type='submit', value='+' + upLikes) 
+                        button#upVote(type='submit', value='')
+                          i(class='fa fa-thumbs-up') #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#downVoteUser(type='submit', value='-' + downLikes)
+                        button#downVoteUser(type='submit', value='')
+                          i(class='fa fa-thumbs-down') #{downLikes}
                   else
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#upVote(type='submit', value='+' + upLikes) 
+                        button#upVote(type='submit', value='')
+                          i(class='fa fa-thumbs-up') #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        input#downVote(type='submit', value='-' + downLikes)
+                        button#downVote(type='submit', value='')
+                          i(class='fa fa-thumbs-down') #{downLikes}
 
 
 
