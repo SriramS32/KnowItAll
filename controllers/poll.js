@@ -336,9 +336,11 @@ exports.pollPage = (req, res) => {
         let [poll, votes, likes] = results;
         if (!poll) res.redirect('/error');
         else {
-            let [counts, userVote] = aggregateVotes(votes, poll.options.length, req.user._id);
-            let [upLikes, downLikes, userLike] = aggregateLikes(likes, req.user._id);
+            let userid = req.user ? req.user._id : '';
+            let [counts, userVote] = aggregateVotes(votes, poll.options.length, userid);
+            let [upLikes, downLikes, userLike] = aggregateLikes(likes, userid);
             console.log(userVote == 0, userVote == 1, userVote == 2, userVote == 3);
+            console.log(userLike);
             res.render('poll-page', {
                 title: 'Poll Page',
                 poll: poll,
