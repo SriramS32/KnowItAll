@@ -336,11 +336,11 @@ exports.postReset = (req, res, next) => {
 };
 
 exports.fetchUserPolls = function(userId, limit) {
-  return PollVote.find({user: userId}).sort({_id: -1}).limit(limit).exec();    
+  return PollVote.find({user: userId}).populate('user poll').sort({_id: -1}).limit(limit).exec();
 }
 
 exports.fetchUserRatings = function(userId, limit) {
-  return Rating.find({user: userId}).sort({_id: -1}).limit(limit).exec();    
+  return Rating.find({user: userId}).populate('user entity').sort({_id: -1}).limit(limit).exec();
 }
 
 /**
