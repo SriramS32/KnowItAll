@@ -7,8 +7,11 @@ const PollLike = Schema.PollLike;
 exports.postPoll = function(req, res) {
     let pollData = {};
     pollData.question = req.body.question;
-    pollData.options = [req.body.option1, req.body.option2, req.body.option3, req.body.option4]
-                        .filter((e) => {
+    let options = [];
+    for (let i = 1; i <= req.body.numOptions; i++) {
+        options.push(req.body['option'+i]);
+    }
+    pollData.options = options.filter((e) => {
                             return e.length > 0;
     });
     pollData.owner = req.body.anon ? '' : req.user.name;
@@ -339,7 +342,6 @@ exports.pollPage = (req, res) => {
             let userid = req.user ? req.user._id : '';
             let [counts, userVote] = aggregateVotes(votes, poll.options.length, userid);
             let [upLikes, downLikes, userLike] = aggregateLikes(likes, userid);
-            console.log(userVote == 0, userVote == 1, userVote == 2, userVote == 3);
             console.log(userLike);
             res.render('poll-page', {
                 title: 'Poll Page',
