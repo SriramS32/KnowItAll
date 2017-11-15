@@ -32,6 +32,10 @@ html
                   a(id='profile', href='/profile-page') Profile
                 else
                   a(id='signup', href='signup') Login/Signup
+              li
+                if user
+                  a(id='logout', href='/logout') Log Out
+
 
           block header
       block content
