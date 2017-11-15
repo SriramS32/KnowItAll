@@ -25,30 +25,12 @@ block content
                     .row(class='50%')
                       div(class='12u')
                         .container
-                        if poll.options.length > 0
+                        each option, i in poll.options
                           .row
                             #radiobutton
                             label
-                              input#Radios1(type='radio', name='survey', value='0', checked=(userVote==0))
-                              |     #{poll.options[0]}
-                        if poll.options.length > 1
-                          .row
-                            #radiobutton
-                            label
-                              input#Radios2(type='radio', name='survey', value='1', checked=(userVote==1))
-                              |     #{poll.options[1]}
-                        if poll.options.length > 2
-                          .row
-                            #radiobutton
-                            label
-                              input#Radios3(type='radio', name='survey', value='2', checked=(userVote==2))
-                              |      #{poll.options[2]}
-                        if poll.options.length > 3
-                          .row
-                            #radiobutton
-                            label
-                              input#Radios3(type='radio', name='survey', value='3', checked=(userVote==3))
-                              |      #{poll.options[3]}
+                              input(id='Radios#{i+1}', type='radio', name='survey', value='' + i, checked=(userVote==i))
+                              |     #{option}
                         .row
                            div(class='12u')
                         input.style1(type='submit', value='Submit')
@@ -57,34 +39,13 @@ block content
                 section.box
                   #chartID
                     .chart
-                      if poll.options.length > 0
+                      each option, i in poll.options
                         .row
-                          #option-1.option
-                            h3.option-label #{poll.options[0]}
+                          div(id='option-'+i, class='option')
+                            h3.option-label #{option}
                             .results
-                              .on(style="width:" + percentages[0] + "%")
-                                span.count #{percentages[0]}%
-                      if poll.options.length > 1
-                        .row 
-                          #option-2.option
-                            h3.option-label #{poll.options[1]}
-                            .results
-                              .on(style="width:" + percentages[1] + "%")
-                                span.count #{percentages[1]}%
-                      if poll.options.length > 2
-                        .row  
-                          #option-3.option
-                            h3.option-label #{poll.options[2]}
-                            .results
-                              .on(style="width:" + percentages[2] + "%")
-                                span.count #{percentages[2]}%
-                      if poll.options.length > 3
-                        .row  
-                          #option-4.option
-                            h3.option-label #{poll.options[3]}
-                            .results
-                              .on(style="width:" + percentages[3] + "%")
-                                span.count #{percentages[3]}%
+                              .on(style="width:" + percentages[i] + "%")
+                                span.count #{percentages[i]}%
               div(class='4u 12u(mobile)')
                 section.box
                   header
@@ -96,36 +57,42 @@ block content
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#upVoteUser(type='submit', value='')
-                          i(class='fa fa-thumbs-up') #{upLikes}
+                          i(class='fa fa-thumbs-up') 
+                          i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#downVote(type='submit', value='')
-                          i(class='fa fa-thumbs-down') #{downLikes}
+                          i(class='fa fa-thumbs-down') 
+                          i #{downLikes}
                   else if userLike == -1
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#upVote(type='submit', value='')
-                          i(class='fa fa-thumbs-up') #{upLikes}
+                          i(class='fa fa-thumbs-up') 
+                          i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#downVoteUser(type='submit', value='')
-                          i(class='fa fa-thumbs-down') #{downLikes}
+                          i(class='fa fa-thumbs-down')
+                          i #{downLikes}
                   else
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#upVote(type='submit', value='')
-                          i(class='fa fa-thumbs-up') #{upLikes}
+                          i(class='fa fa-thumbs-up')
+                          i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
                         button#downVote(type='submit', value='')
-                          i(class='fa fa-thumbs-down') #{downLikes}
+                          i(class='fa fa-thumbs-down')
+                          i #{downLikes}
 
 
 

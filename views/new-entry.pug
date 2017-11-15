@@ -1,6 +1,24 @@
 extends layout
-
 block content
+  script.
+    var numPollOptions = 2;
+    function addOption() {
+      numPollOptions++;
+      document.getElementById('num-options').value = '' + numPollOptions;
+      var row50 = document.createElement('div');
+      row50.classList.add('row');
+      row50.classList.add('50%');
+      var twelveU = document.createElement('div');
+      twelveU.classList.add('12u');
+      var optionInput = document.createElement('input');
+      optionInput.id = 'contact-email';
+      optionInput.type = 'text';
+      optionInput.name = 'option' + numPollOptions;
+      optionInput.placeholder = 'Option ' + numPollOptions;
+      twelveU.appendChild(optionInput);
+      row50.appendChild(twelveU);
+      document.getElementById('poll-options').appendChild(row50);
+    }
   body.no-sidebar
     #page-wrapper
       // Main
@@ -22,22 +40,22 @@ block content
                   section.box
                     header
                       h1 Poll 
-                    form(method='post', action='/poll-submit')
+                    form(id='poll-form', method='post', action='/poll-submit')
                       .row(class='50%')
                         div(class='12u')
                           textarea#contact-question(type='text', name='question', placeholder='Question', rows='2')
+                      input#num-options(type='hidden', name='numOptions', value='2')
+                      div#poll-options
+                        .row(class='50%')
+                          div(class='12u')
+                            input#contact-email(type='text', name='option1', placeholder='Option 1')
+                        .row(class='50%')
+                          div(class='12u')
+                            input#contact-email(type='text', name='option2', placeholder='Option 2')
                       .row(class='50%')
-                        div(class='12u')
-                          input#contact-email(type='text', name='option1', placeholder='Option 1')
-                      .row(class='50%')
-                        div(class='12u')
-                          input#contact-email(type='text', name='option2', placeholder='Option 2')
-                      .row(class='50%')
-                        div(class='12u')
-                          input#contact-email(type='text', name='option3', placeholder='Option 3')
-                      .row(class='50%')
-                        div(class='12u')
-                          input#contact-email(type='text', name='option4', placeholder='Option 4')
+                        div(class='12u add-option-p')
+                          div#add-option(onclick='addOption()')
+                            span(class='fa fa-plus')
                       .row(class='50%')
                         div(class='12u')
                           input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
