@@ -33,6 +33,12 @@ const pollLikeSchema = new mongoose.Schema({
   poll: { type: Schema.Types.ObjectId, ref: 'Poll'}
 }, { timestamps: true });
 
+const pollReportSchema = new mongoose.Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User'},
+  poll: { type: Schema.Types.ObjectId, ref: 'Poll'},
+  active: Number
+}, { timestamps: true });
+
 const entitySchema = new mongoose.Schema({
   ratingTotal: Number,
   ratingCount: Number,
@@ -54,6 +60,13 @@ const commentSchema = new mongoose.Schema({
   ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
   entity: { type: Schema.Types.ObjectId, ref: 'Entity' }
 }, { timestamps: true});
+
+const entityReportSchema = new mongoose.Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User'},
+  entity: { type: Schema.Types.ObjectId, ref: 'Entity'},
+  active: Number
+}, { timestamps: true });
+
 
 /**
  * Password hash middleware.
@@ -85,14 +98,18 @@ const User = mongoose.model('User', userSchema);
 const Poll = mongoose.model('Poll', pollSchema);
 const PollVote = mongoose.model('PollVote', pollVoteSchema);
 const PollLike = mongoose.model('PollLike', pollLikeSchema);
+const PollReport = mongoose.model('PollReport', pollReportSchema);
 const Entity = mongoose.model('Entity', entitySchema);
 const Rating = mongoose.model('Rating', ratingSchema);
 const Comment = mongoose.model('Comment', commentSchema);
+const EntityReport = mongoose.model('EntityReport', entityReportSchema);
 
 exports.User = User;
 exports.Poll = Poll;
 exports.PollVote = PollVote;
 exports.PollLike = PollLike;
+exports.PollReport = PollReport;
 exports.Entity = Entity;
 exports.Rating = Rating;
 exports.Comment = Comment;
+exports.EntityReport = EntityReport;
