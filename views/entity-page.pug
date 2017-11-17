@@ -61,6 +61,11 @@ block content
                           h2 #{val.updatedAt}
                       p 
                         | #{val.owner || 'anon'}
+            if report == 0
+              .row(style="margin-left: 5px;")
+                form(method='POST', action='/entityreport-submit')
+                  input(type='hidden', name='entityId', value=entity._id)
+                  button#report(type='submit', value='') Report
     // Scripts
     script(src='/js/jquery.min.js')
     script(src='/js/jquery.dropotron.min.js')
