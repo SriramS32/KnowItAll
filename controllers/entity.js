@@ -2,6 +2,7 @@ const Schema = require('../models/Schema');
 const Entity = Schema.Entity;
 const Rating = Schema.Rating;
 const Comment = Schema.Comment;
+const EntityReport = Schema.EntityReport;
 
 /* istanbul ignore next */
 exports.newRating = function(req, res){
@@ -67,6 +68,20 @@ exports.postEntity = function(req, res){
     });
     // entityId = exports.insertEntity(newEntity, newEntity.user);
     
+}
+
+exports.entityReportSubmit = (req, res) => {
+    let entityId = req.body.entityId;
+    let userId = req.user._id;
+    let report = new EntityReport({
+        entity: entityId,
+        user: userId,
+        active: 1
+    });
+    report.save((err) => {
+        if (err) res.redirect('/error');
+        else res.redirect(`/entity/${entityId}`);
+    });   
 }
 
 /* istanbul ignore next */
@@ -175,19 +190,22 @@ exports.entityPage = (req, res) => {
     let entityId = req.params.entityId;
     if (!entityId) res.redirect('/error');
     else {
-        let entityPromise = Entity.findOne( { _id: entityId }).exec();
+        let entityPromise = Entity.findOne( { _id: entityId } ).exec();
         let commentPromise = Comment.find( { entity: entityId } ).exec();
         let ratingPromise = Rating.find( { entity: entityId } ).exec();
-        Promise.all([entityPromise, commentPromise, ratingPromise]).then((results) => {
-            let [entity, comments, ratings] = results;
+        let entityReportPromise = EntityReport.find( { entity: entityId, user: req.user._id } ).exec();
+        Promise.all([entityPromise, commentPromise, ratingPromise, entityReportPromise]).then((results) => {
+            let [entity, comments, ratings, reports] = results;
             // console.log(ratings);
             // console.log(comments);
+            let reported = Number(!!reports.length);
             if (!entity || !comments || !ratings) res.redirect('/error');
             else res.render(`entity-page`, {
                 entity: entity,
                 comments: comments,
                 ratings: ratings,
-                user: req.user
+                user: req.user,
+                report: reported
             });
         }, (err) => {
             console.log('bad url');
