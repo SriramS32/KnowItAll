@@ -29,7 +29,7 @@ block content
                           .row
                             #radiobutton
                             label
-                              input(id='Radios#{i+1}', type='radio', name='survey', value='' + i, checked=(userVote==i))
+                              input(id='Radios#{i+1}', type='radio', name='survey', value='' + i, checked=(userVote==i), required)
                               |     #{option}
                         .row
                            div(class='12u')

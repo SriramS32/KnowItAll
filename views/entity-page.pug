@@ -29,7 +29,7 @@ block content
                     form(method='post', action='/rating-submit')
                         .row(class='50%')
                           div(class='12u')
-                            input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
+                            input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10', required)
                             input(type='hidden', name='entityId', value= entity._id)
                         .row(class='50%')
                           div(class='12u')
