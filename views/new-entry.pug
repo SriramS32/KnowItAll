@@ -4,6 +4,7 @@ block content
     var numPollOptions = 2;
     function addOption() {
       numPollOptions++;
+      var pollOptionsList = document.getElementById('poll-options');
       document.getElementById('num-options').value = '' + numPollOptions;
       var row50 = document.createElement('div');
       row50.classList.add('row');
@@ -15,9 +16,17 @@ block content
       optionInput.type = 'text';
       optionInput.name = 'option' + numPollOptions;
       optionInput.placeholder = 'Option ' + numPollOptions;
+      optionInput.required = true;
       twelveU.appendChild(optionInput);
       row50.appendChild(twelveU);
-      document.getElementById('poll-options').appendChild(row50);
+      pollOptionsList.appendChild(row50);
+    }
+    function removeOption() {
+      if (numPollOptions == 2) return;
+      numPollOptions--;
+      var pollOptionsList = document.getElementById('poll-options');
+      document.getElementById('num-options').value = '' + numPollOptions;
+      pollOptionsList.removeChild(pollOptionsList.lastChild);
     }
   body.no-sidebar
     #page-wrapper
@@ -43,25 +52,27 @@ block content
                     form(id='poll-form', method='post', action='/poll-submit')
                       .row(class='50%')
                         div(class='12u')
-                          textarea#contact-question(type='text', name='question', placeholder='Question', rows='2')
+                          textarea#contact-question(type='text', name='question', placeholder='Question', rows='2', required)
                       input#num-options(type='hidden', name='numOptions', value='2')
                       div#poll-options
                         .row(class='50%')
                           div(class='12u')
-                            input#contact-email(type='text', name='option1', placeholder='Option 1')
+                            input#contact-email(type='text', name='option1', placeholder='Option 1', required)
                         .row(class='50%')
                           div(class='12u')
-                            input#contact-email(type='text', name='option2', placeholder='Option 2')
-                      .row(class='50%')
-                        div(class='12u add-option-p')
+                            input#contact-email(type='text', name='option2', placeholder='Option 2', required)
+                      .row#num-poll-options(class='50%')
+                        div#num-poll-options-p(class='12u')
                           div#add-option(onclick='addOption()')
                             span(class='fa fa-plus')
+                          div#remove-option(onclick='removeOption()')
+                            span(class='fa fa-minus')
                       .row(class='50%')
                         div(class='12u')
-                          input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                          input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)', required)
                       .row(class='50%')
                         div(class='12u')
-                          input#contact-email(type='number', name='duration', placeholder='Duration (in days)', min='0')
+                          input#contact-email(type='number', name='duration', placeholder='Duration (in days)', min='0', required)
                       .row(class='50%')
                         div(class='12u')
                           input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
@@ -77,16 +88,16 @@ block content
                     form(method='post', action='/entity-submit')
                       .row(class='50%')
                         div(class='12u')
-                          input#contact-email(type='text', name='name', placeholder='Entity Name')
+                          input#contact-email(type='text', name='name', placeholder='Entity Name', required)
                       .row(class='50%')
                         div(class='12u')
-                          input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10')
+                          input#contact-email(type='number', name='rating', placeholder='Rating (0-10)', min='0', max='10', required)
                       .row(class='50%')
                         div(class='12u')
                           textarea#contact-question(type='text', name='comment', placeholder='Comments', rows='2')
                       .row(class='50%')
                         div(class='12u')
-                          input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)')
+                          input#contact-email(type='text', name='tags', placeholder='Tags (comma separated)', required)
                       .row(class='50%')
                         div(class='12u')
                           input#contact-anon(type='checkbox', name='anon', value='Submit as Anonymous')
