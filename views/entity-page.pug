@@ -61,7 +61,7 @@ block content
                           h2 #{val.updatedAt}
                       p 
                         | #{val.owner || 'anon'}
-            if report == 0
+            if (report == 0) && user
               .row(style="margin-left: 5px;")
                 form(method='POST', action='/entityreport-submit')
                   input(type='hidden', name='entityId', value=entity._id)
