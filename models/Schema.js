@@ -17,6 +17,7 @@ const pollSchema = new mongoose.Schema({
   createdOn: Date,
   closedAfter: Date,
   ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
+  likeWeight: Number,
   owner: String,
   tags: [String]
 }, { timestamps: true });
@@ -42,6 +43,7 @@ const pollReportSchema = new mongoose.Schema({
 const entitySchema = new mongoose.Schema({
   ratingTotal: Number,
   ratingCount: Number,
+  ratingAverage: Number,
   name: String,
   tags: [String]
   // id: Schema.Types.ObjectId

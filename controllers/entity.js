@@ -89,6 +89,7 @@ exports.insertEntity = function (entityData, user) {
     const entity = new Entity({
         ratingTotal: 0,
         ratingCount: 0,
+        ratingAverage: 0,
         name: entityData.name,
         tags: entityData.tags
     });
@@ -124,20 +125,40 @@ exports.updateRating = function (entityId, user, rating, owner) {
             ratingEntry.save((err) => {
                 if (err) console.log('error updating rating');
             });
-            Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: ratingDiff } }, (err, entity) => {
-                if (err) console.log('error updating total rating: ', err);
+            let entityPromise = Entity.findOne( { _id: entityId } ).exec();
+            entityPromise.then((result) => {
+                console.log(result.ratingTotal);
+                console.log(result.ratingDiff);
+                console.log(result.ratingCount);
+                var ratingAv = (1.0*(result.ratingTotal+ratingDiff)/(result.ratingCount));
+                console.log(ratingAv);
+                Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: ratingDiff }, $set: { ratingAverage: ratingAv} }, (err, entity) => {
+                    if (err) console.log('error updating total rating: ', err);
+                });
+            }, (err) => {
+                console.log('error checking for existing entity: ' + err);
             });
         }
         else {
-            Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: rating, ratingCount: 1 } }, (err, entity) => {
-                if (err) console.log('error updating total rating: ', err);
-                else if (entity) {
-                    console.log('adding to rating table');
-                    const ratingEntry = new Rating({ user: user, rating: rating, entity: entityId, owner: owner});
-                    ratingEntry.save((err) => {
-                        if (err) console.log('error adding rating entry: ', err);
-                    });
-                }
+            let entityPromise = Entity.findOne( { _id: entityId } ).exec();
+            entityPromise.then((result) => {
+                console.log(result.ratingTotal);
+                console.log(result.ratingDiff);
+                console.log(result.ratingCount);
+                var ratingAv = (1.0*(result.ratingTotal+rating)/(result.ratingCount+1));
+                console.log(ratingAv);
+                Entity.findOneAndUpdate({ _id: entityId }, { $inc: { ratingTotal: rating, ratingCount: 1 }, $set: { ratingAverage: ratingAv} }, (err, entity) => {
+                    if (err) console.log('error updating total rating: ', err);
+                    else if (entity) {
+                        console.log('adding to rating table');
+                        const ratingEntry = new Rating({ user: user, rating: rating, entity: entityId, owner: owner});
+                        ratingEntry.save((err) => {
+                            if (err) console.log('error adding rating entry: ', err);
+                        });
+                    }
+                });
+            }, (err) => {
+                console.log('error checking for existing entity: ' + err);
             });
         }
         return Promise.resolve(1);

@@ -77,6 +77,7 @@ exports.insertPoll = function(pollData){
         options: pollData.options,
         owner: pollData.owner,
         createdOn: pollData.createdOn,
+        likeWeight: 0,
         closedAfter: pollData.closedAfter,
         tags: pollData.tags
     });
@@ -175,9 +176,15 @@ exports.updatePollVotes = function(poll_ID, userID, userVote){
  */
 exports.updatePollLikes = function(poll_ID, userID, userVote) {
     return PollLike.findOne({user: userID, poll: poll_ID}).exec().then((likeEntry) => {
+        let likeIncrement = -1;
+        if (userVote === 1) likeIncrement = 1;
         if (likeEntry) {
             // Updating poll choice
             // console.log('Updating poll choice ');
+            if (likeEntry.weight != likeIncrement) likeIncrement *= 2;
+            Poll.findOneAndUpdate({ _id: poll_ID }, { $inc: { likeWeight: likeIncrement } }, (err, entity) => {
+                if (err) console.log('error updating poll like weights: ', err);
+            });
             return new Promise((resolve, reject) => {
                 likeEntry.weight = userVote;
                 likeEntry.markModified("weight");                
@@ -188,6 +195,9 @@ exports.updatePollLikes = function(poll_ID, userID, userVote) {
             });
         }
         else {
+            Poll.findOneAndUpdate({ _id: poll_ID }, { $inc: { likeWeight: likeIncrement } }, (err, entity) => {
+                if (err) console.log('error updating poll like weights: ', err);
+            });
             const pollLike = new PollLike({
                 user: userID,
                 poll: poll_ID,
@@ -204,6 +214,16 @@ exports.updatePollLikes = function(poll_ID, userID, userVote) {
             })
             // console.log('Creating new poll vote with id ', pollVote._id);
         }
+        
+        // let pollLikePromise = exports.fetchPollLikes(poll_ID);
+        // let up = 0, down = 0, user = 0;
+        // likes.forEach((e) => {
+        //     if (e.weight === 1) up++;
+        //     else down++;
+        //     if (e.user.equals(user_id)) user = e.weight;
+        // });
+        // return [up, down, user];
+
     }, (err) => {
         console.log('error checking for existing: ' + err);
         return Promise.reject('error checking for existing: ' + err);
