@@ -188,15 +188,16 @@ exports.insertComment = function(commentData, entity) {
 /* istanbul ignore next */
 exports.entityPage = (req, res) => {
     let entityId = req.params.entityId;
+    let userid = req.user ? req.user._id : '';
     if (!entityId) res.redirect('/error');
     else {
         let entityPromise = Entity.findOne( { _id: entityId } ).exec();
         let commentPromise = Comment.find( { entity: entityId } ).exec();
         let ratingPromise = Rating.find( { entity: entityId } ).exec();
-        let entityReportPromise = EntityReport.find( { entity: entityId, user: req.user._id } ).exec();
+        let entityReportPromise = userid ? EntityReport.find( { entity: entityId, user: userid } ).exec() : Promise.resolve(['not_logged_in']);
         Promise.all([entityPromise, commentPromise, ratingPromise, entityReportPromise]).then((results) => {
             let [entity, comments, ratings, reports] = results;
-            // console.log(ratings);
+            // console.log(reports);
             // console.log(comments);
             let reported = Number(!!reports.length);
             if (!entity || !comments || !ratings) res.redirect('/error');
