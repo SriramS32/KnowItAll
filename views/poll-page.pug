@@ -33,7 +33,10 @@ block content
                               |     #{option}
                         .row
                            div(class='12u')
-                        input.style1(type='submit', value='Submit')
+                        if loggedIn
+                          input.style1(type='submit', value='Submit')
+                        else 
+                          input.style1(type='submit', value='Submit', disabled, style='cursor: not-allowed')
                         input(type='hidden', name='pollId', value=poll._id)
               div(class='4u 12u(mobile)')
                 section.box
@@ -56,43 +59,73 @@ block content
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#upVoteUser(type='submit', value='')
-                          i(class='fa fa-thumbs-up') 
-                          i #{upLikes}
+                        if loggedIn
+                          button#upVoteUser(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-up') 
+                            i #{upLikes}
+                        else
+                          button#upVoteUser(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                            i(class='fa fa-thumbs-up') 
+                            i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#downVote(type='submit', value='')
-                          i(class='fa fa-thumbs-down') 
-                          i #{downLikes}
+                        if loggedIn
+                          button#downVote(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-down') 
+                            i #{downLikes}
+                        else 
+                          button#downVote(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                            i(class='fa fa-thumbs-down') 
+                            i #{downLikes}
                   else if userLike == -1
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#upVote(type='submit', value='')
-                          i(class='fa fa-thumbs-up') 
-                          i #{upLikes}
+                        if loggedIn
+                          button#upVote(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-up') 
+                            i #{upLikes}
+                        else
+                          button#upVote(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                              i(class='fa fa-thumbs-up') 
+                              i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#downVoteUser(type='submit', value='')
-                          i(class='fa fa-thumbs-down')
-                          i #{downLikes}
+                        if loggedIn
+                          button#downVoteUser(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-down')
+                            i #{downLikes}
+                        else
+                          button#downVoteUser(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                            i(class='fa fa-thumbs-down')
+                            i #{downLikes}
                   else
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#upVote(type='submit', value='')
-                          i(class='fa fa-thumbs-up')
-                          i #{upLikes}
+                        if loggedIn
+                          button#upVote(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-up')
+                            i #{upLikes}
+                        else 
+                          button#upVote(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                            i(class='fa fa-thumbs-up')
+                            i #{upLikes}
                       form(method='POST', action='/polllike-submit')
                         input#value(type='hidden', name='choice', value='-1')
                         input(type='hidden', name='pollId', value=poll._id)
-                        button#downVote(type='submit', value='')
-                          i(class='fa fa-thumbs-down')
-                          i #{downLikes}
+                        if loggedIn
+                          button#downVote(type='submit', value='', disabled=!loggedIn)
+                            i(class='fa fa-thumbs-down')
+                            i #{downLikes}
+                        else 
+                          button#downVote(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
+                            i(class='fa fa-thumbs-down')
+                            i #{downLikes}
                   if report == 0
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/pollreport-submit')
