@@ -374,9 +374,11 @@ exports.pollPage = (req, res) => {
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
     let pollVotePromise = exports.fetchPollCounts(pollId);
     let pollLikePromise = exports.fetchPollLikes(pollId);
-    let pollReportPromise = exports.fetchPollReportForUser(pollId, userid);
+    let pollReportPromise = userid ? exports.fetchPollReportForUser(pollId, userid) : Promise.resolve(['not_logged_in']);
     Promise.all([pollPromise, pollVotePromise, pollLikePromise, pollReportPromise]).then((results) => {
         let [poll, votes, likes, reports] = results;
+        console.log('rendering pollpage');
+        console.log(results);
         if (!poll) res.redirect('/error');
         else {
             let reported = Number(!!reports.length);
@@ -392,10 +394,12 @@ exports.pollPage = (req, res) => {
                 upLikes: upLikes,
                 downLikes: downLikes,
                 userLike: userLike,
-                report: reported
+                report: reported,
+                loggedIn: !!userid
             });
         }
     }, (err) => {
+        console.log(err);
         res.redirect('/error');
     });
 };
