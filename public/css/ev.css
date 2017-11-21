@@ -1428,10 +1428,22 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 		margin-bottom: 0;
 	}
 
+	section.box {
+		background-color: lightgray;
+	}
+
+	section.box header {
+		margin: 1em 1em 1em 1em;
+	}
+
 	header.style1 {
 		text-align: center;
-		margin: 0 auto;
+		margin: 10px auto;
 	}
+
+		header.style1 h1 {
+			font-weight: 900;
+		}
 
 		header.style1 h2 {
 			font-weight: 700;
@@ -1439,6 +1451,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		header.style1 p {
 			color: #b1b4b9;
+			text-align: center;
 		}
 
 /* Search */
@@ -2294,7 +2307,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 				font-size: 2.15em;
 				letter-spacing: 0.05em;
 				text-align: center;
-
 			}
 
 			.box h2 {

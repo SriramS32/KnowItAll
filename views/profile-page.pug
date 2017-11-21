@@ -20,20 +20,22 @@ block content
                     section.box
                       header
                         .row
-                          h1 Choice: #{val.choice+1}
+                          h1 #{val.poll.question}
+                          h2 Choice: #{val.choice+1}
                           h2 #{val.updatedAt}
-                      p 
-                        | #{val.owner || 'anon'}
+                          p 
+                            | #{val.owner || 'anon'}
               if ratings && ratings.length > 0
                 each val in ratings
                   div(class='4u 12u(mobile)')
                     section.box
                       header
                         .row
-                          h1 Rating: #{val.rating}/10
+                          h1 #{val.entity.name}
+                          h2 Rating: #{val.rating}/10
                           h2 #{val.updatedAt}
-                      p 
-                        | #{val.owner || 'anon'}
+                          p 
+                            | #{val.owner || 'anon'}
     // Scripts
     script(src='js/jquery.min.js')
     script(src='js/jquery.dropotron.min.js')
