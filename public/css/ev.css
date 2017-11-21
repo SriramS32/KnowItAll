@@ -196,7 +196,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 		}
 
 		.container {
-			width: 1000px;
+			width: 850px;
 		}
 
 	}
@@ -594,6 +594,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -75px 0 -1px -75px;
+			border: solid;
+			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {
@@ -772,7 +774,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	@media screen and (min-width: 737px) and (max-width: 1200px) {
 
 		.row > * {
-			padding: 35px 0 0 35px;
+			padding: 5px 0 0 35px;
 		}
 
 		.row {
@@ -809,6 +811,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -52.5px 0 -1px -52.5px;
+			border: solid;
+			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {
@@ -1024,6 +1028,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -15px 0 -1px -15px;
+			border: solid;
+			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {
