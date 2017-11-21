@@ -472,7 +472,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	}
 
 	.\34 u, .\34 u\24 {
-		width: 33.3333333333%;
 		clear: none;
 		margin-left: 0;
 	}
@@ -594,8 +593,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -75px 0 -1px -75px;
-			border: solid;
-			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {
@@ -811,8 +808,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -52.5px 0 -1px -52.5px;
-			border: solid;
-			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {
@@ -1028,8 +1023,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 		.row.\31 50\25 {
 			margin: -15px 0 -1px -15px;
-			border: solid;
-			border-width: 5px;
 		}
 
 		.row.uniform.\31 50\25 > * {

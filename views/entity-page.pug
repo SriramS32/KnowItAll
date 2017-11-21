@@ -21,7 +21,7 @@ block content
                   | Tags: #{entity.tags.join(", ")}
             .row(class='150%')
               if user
-                div(class='4u 12u(mobile)')
+                div(class='4u 12u(mobile)', style='border:solid')
                   section.box
                     header
                         .row
@@ -43,7 +43,7 @@ block content
                             input.style1(type='submit', value='Create New Rating')
               if ratings && ratings.length > 0
                 each val in ratings
-                  div(class='4u 12u(mobile)')
+                  div(class='4u 12u(mobile)', style='border:solid')
                     section.box
                       header
                         .row
@@ -53,7 +53,7 @@ block content
                         | #{val.owner || 'anon'}
               if comments && comments.length > 0
                 each val in comments
-                  div(class='4u 12u(mobile)')
+                  div(class='4u 12u(mobile)', style='border:solid')
                     section.box
                       header
                         .row
