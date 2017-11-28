@@ -472,6 +472,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	}
 
 	.\34 u, .\34 u\24 {
+		width: 33.33333333%;
 		clear: none;
 		margin-left: 0;
 	}
@@ -1425,10 +1426,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 	section:last-child,
 	article:last-child {
 		margin-bottom: 0;
-	}
-
-	section.box {
-		background-color: lightgray;
 	}
 
 	section.box header {
