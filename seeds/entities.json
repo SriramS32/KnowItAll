@@ -4,13 +4,15 @@
         "ratingTotal": 12,
         "ratingCount": 2,
         "name": "Test Entity 1",
-        "tags" : [ "test", "rating", "entity 1" ]
+        "tags" : [ "test", "rating", "entity 1" ],
+        "hidden" : false
     },
     { 
         "_id" : { "$oid" : "59f68aaf0b93ac9d850e95dc" }, 
         "ratingTotal" : 12, 
         "ratingCount" : 2, 
         "name" : "Test Entity 2", 
-        "tags" : [ "test", "rating", "entity 2" ]
+        "tags" : [ "test", "rating", "entity 2" ],
+        "hidden" : false
     }
 ]

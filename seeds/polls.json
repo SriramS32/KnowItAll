@@ -7,7 +7,8 @@
         "createdOn" : "2017-10-30T02:10:03.364Z", 
         "closedAfter" : "2017-11-03T02:10:03.364Z", 
         "tags" : [ "test", "tag", "poll 1" ], 
-        "options" : [ "P1A1", "P1A2", "P1A3", "P1A4" ]
+        "options" : [ "P1A1", "P1A2", "P1A3", "P1A4" ],
+        "hidden" : false
     },
     { 
         "_id" : { "$oid" : "59f68a6f0b93ac9d850e95db" }, 
@@ -17,6 +18,7 @@
         "createdOn" : "2017-10-30T02:11:59.143Z", 
         "closedAfter" : "2017-11-05T02:11:59.143Z", 
         "tags" : [ "test", "poll", "poll 2" ], 
-        "options" : [ "P2A1", "P2A2", "P2A3", "P2A4" ]
+        "options" : [ "P2A1", "P2A2", "P2A3", "P2A4" ],
+        "hidden" : false
     }
 ]
