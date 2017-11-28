@@ -61,7 +61,16 @@ block content
                           h2 #{val.updatedAt}
                       p 
                         | #{val.owner || 'anon'}
-            if (report == 0) && user
+            if user && user.admin
+              .row(stype="margin-left: 5px;") 
+                h2 
+                  i(class='fa fa-exclamation-triangle')
+                  span #{numReports}
+                if numReports >= 2
+                  form(method='POST', action='/entity-delete')
+                    input(type='hidden', name='entityId', value=entity._id)
+                    button#report(type='submit', value='') Delete
+            else if (report == 0) && user
               .row(style="margin-left: 5px;")
                 form(method='POST', action='/entityreport-submit')
                   input(type='hidden', name='entityId', value=entity._id)

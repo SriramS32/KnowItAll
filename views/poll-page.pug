@@ -126,7 +126,16 @@ block content
                           button#downVote(type='submit', value='', disabled=!loggedIn, style='cursor: not-allowed')
                             i(class='fa fa-thumbs-down')
                             i #{downLikes}
-                  if report == 0
+                  if admin
+                    .row(stype="margin-left: 5px;") 
+                      h2 
+                        i(class='fa fa-exclamation-triangle')
+                        span #{numReports}
+                      if numReports >= 2
+                        form(method='POST', action='/poll-delete')
+                          input(type='hidden', name='pollId', value=poll._id)
+                          button#report(type='submit', value='') Delete
+                  else if report == 0
                     .row(style="margin-left: 5px;")
                       form(method='POST', action='/pollreport-submit')
                         input#value(type='hidden', name='report', value='0')
