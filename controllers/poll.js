@@ -230,6 +230,19 @@ exports.updatePollLikes = function(poll_ID, userID, userVote) {
     });
 };
     
+exports.pollDelete = (req, res) => {
+    if (!req.user || !req.user.admin) res.redirect('/error');
+    else {
+        let pollId = req.body.pollId;
+        Poll.findOneAndUpdate( {_id: pollId}, {$set: {hidden: true} }, err => {
+            if (err) {
+                console.log(err);
+                res.redirect('/error');
+            }
+            else res.redirect('/');
+        });
+    }
+}
 
 /**
  * Returns a promise with the Poll
@@ -255,6 +268,10 @@ exports.fetchPollReports = (poll_ID) => {
 
 exports.fetchPollReportForUser = (poll_ID, userId) => {
     return PollReport.find({ poll: poll_ID, user: userId }).exec();
+}
+
+exports.fetchPollReports = (poll_ID) => {
+    return PollReport.find({ poll: poll_ID }).exec();
 }
 
 // /**
@@ -364,18 +381,6 @@ function aggregateLikes(likes, user_id) {
     return [up, down, user];
 }
 
-/* istanbul ignore next */
-function userReported(reports, userId) {
-    console.log('in userReported');
-    reports.forEach((e) => {
-        console.log(e.user);
-        console.log(userId);
-        if (e.user.equals(userId)) return 1;
-    });
-    console.log('returning 0');
-    return 0;
-}
-
 exports.percentages = function(counts){
     return percentages(counts);
 }
@@ -394,14 +399,15 @@ exports.pollPage = (req, res) => {
     let pollPromise = Poll.findOne( {_id: pollId} ).exec();
     let pollVotePromise = exports.fetchPollCounts(pollId);
     let pollLikePromise = exports.fetchPollLikes(pollId);
-    let pollReportPromise = userid ? exports.fetchPollReportForUser(pollId, userid) : Promise.resolve(['not_logged_in']);
-    Promise.all([pollPromise, pollVotePromise, pollLikePromise, pollReportPromise]).then((results) => {
-        let [poll, votes, likes, reports] = results;
+    let userReportPromise = userid ? exports.fetchPollReportForUser(pollId, userid) : Promise.resolve(['not_logged_in']);
+    let reportPromise = exports.fetchPollReports(pollId);    
+    Promise.all([pollPromise, pollVotePromise, pollLikePromise, userReportPromise, reportPromise]).then((results) => {
+        let [poll, votes, likes, userReport, reports] = results;
         console.log('rendering pollpage');
         console.log(results);
         if (!poll) res.redirect('/error');
         else {
-            let reported = Number(!!reports.length);
+            let reported = Number(!!userReport.length);
             console.log(reported);
             let [counts, userVote] = aggregateVotes(votes, poll.options.length, userid);
             let [upLikes, downLikes, userLike] = aggregateLikes(likes, userid);
@@ -415,7 +421,9 @@ exports.pollPage = (req, res) => {
                 downLikes: downLikes,
                 userLike: userLike,
                 report: reported,
-                loggedIn: !!userid
+                loggedIn: !!userid,
+                admin: userid ? req.user.admin : false,
+                numReports: reports.length
             });
         }
     }, (err) => {

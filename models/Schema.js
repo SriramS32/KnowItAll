@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   password: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  name: String
+  name: String,
+  admin: { type: Boolean, default: false }
 }, { timestamps: true });
 
 const pollSchema = new mongoose.Schema({
@@ -19,7 +20,8 @@ const pollSchema = new mongoose.Schema({
   ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
   likeWeight: Number,
   owner: String,
-  tags: [String]
+  tags: [String],
+  hidden: { type: Boolean, default: false } 
 }, { timestamps: true });
 
 const pollVoteSchema = new mongoose.Schema({
@@ -45,8 +47,8 @@ const entitySchema = new mongoose.Schema({
   ratingCount: Number,
   ratingAverage: Number,
   name: String,
-  tags: [String]
-  // id: Schema.Types.ObjectId
+  tags: [String],
+  hidden: { type: Boolean, default: false } 
 }, { timestamps: true });
 
 const ratingSchema = new mongoose.Schema({

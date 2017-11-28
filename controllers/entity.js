@@ -205,6 +205,20 @@ exports.insertComment = function(commentData, entity) {
     });
 };
 
+exports.entityDelete = (req, res) => {
+    if (!req.user || !req.user.admin) res.redirect('/error');
+    else {
+        let entityId = req.body.entityId;
+        Entity.findOneAndUpdate( {_id: entityId}, {$set: {hidden: true} }, err => {
+            if (err) {
+                console.log(err);
+                res.redirect('/error');
+            }
+            else res.redirect('/');
+        });
+    }
+}
+
 
 /* istanbul ignore next */
 exports.entityPage = (req, res) => {
@@ -215,19 +229,21 @@ exports.entityPage = (req, res) => {
         let entityPromise = Entity.findOne( { _id: entityId } ).exec();
         let commentPromise = Comment.find( { entity: entityId } ).exec();
         let ratingPromise = Rating.find( { entity: entityId } ).exec();
-        let entityReportPromise = userid ? EntityReport.find( { entity: entityId, user: userid } ).exec() : Promise.resolve(['not_logged_in']);
-        Promise.all([entityPromise, commentPromise, ratingPromise, entityReportPromise]).then((results) => {
-            let [entity, comments, ratings, reports] = results;
+        let userReportPromise = userid ? EntityReport.find( { entity: entityId, user: userid } ).exec() : Promise.resolve(['not_logged_in']);
+        let reportPromise = EntityReport.find( { entity: entityId } ).exec();
+        Promise.all([entityPromise, commentPromise, ratingPromise, userReportPromise, reportPromise]).then((results) => {
+            let [entity, comments, ratings, userReport, reports] = results;
             // console.log(reports);
             // console.log(comments);
-            let reported = Number(!!reports.length);
+            let reported = Number(!!userReport.length);
             if (!entity || !comments || !ratings) res.redirect('/error');
             else res.render(`entity-page`, {
                 entity: entity,
                 comments: comments,
                 ratings: ratings,
                 user: req.user,
-                report: reported
+                report: reported,
+                numReports: reports.length
             });
         }, (err) => {
             console.log('bad url');

@@ -138,6 +138,9 @@ app.post('/polllike-submit', pollController.pollLikeSubmit);
 app.post('/pollreport-submit', pollController.pollReportSubmit);
 app.post('/entityreport-submit', entityController.entityReportSubmit);
 
+app.post('/entity-delete', entityController.entityDelete);
+app.post('/poll-delete', pollController.pollDelete);
+
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
